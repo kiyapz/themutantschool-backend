@@ -9,8 +9,7 @@ import videoRouter from "./routes/video.routes.js";
 import { swaggerUi, swaggerSpec } from "./swagger.js";
 import videoProcessingService from './services/videoProcessing.service.js';
 import videoQueueService from './services/videoQueueService.js';
-import Video from './models/video.model.js'; // Add this import
-// Get __dirname equivalent in ES modules
+import Video from './models/video.model.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
