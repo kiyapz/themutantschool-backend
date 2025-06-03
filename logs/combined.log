@@ -28,3 +28,5 @@
 [2025-06-02T17:01:13.215Z] [32minfo[39m: Received a GET request to /favicon.ico
 [2025-06-02T17:02:03.543Z] [32minfo[39m: Received a GET request to /
 [2025-06-02T17:02:04.085Z] [32minfo[39m: Received a GET request to /favicon.ico
+[2025-06-03T11:32:41.230Z] [32minfo[39m: Identity service running on port 3000
+[2025-06-03T11:32:51.883Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
