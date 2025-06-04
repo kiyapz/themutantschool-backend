@@ -1,10 +1,11 @@
 import { uploadsToCloudinary } from "../config/cloudinary.js";
 import { asyncErrorHandler } from "../middlewares/asyncHandler.js";
+import { RefreshToken } from "../models/refreshToken.model.js";
 import { User } from "../models/user.model.js";
 import { generateTokens } from "../utils/generateTokens.js";
 import { logger } from "../utils/logger.js";
 import { sendVerificationEmail } from "../utils/sendMail.js";
-import { validationRegistration } from "../utils/validation.js";
+import { validateLogin, validationRegistration } from "../utils/validation.js";
 
 // Create a new user
 export const signUpUser = asyncErrorHandler(async (req, res) => {
@@ -135,5 +136,110 @@ export const verifyAccount = asyncErrorHandler(async (req, res) => {
   return res.status(200).json({
     success: true,
     message: "Account verified successfully",
+  });
+});
+
+// Login User
+export const loginUser = asyncErrorHandler(async (req, res) => {
+  logger.info("Login endpoint hit...");
+  const { error } = validateLogin(req.body);
+  if (error) {
+    logger.warn("Validation error:", error.details[0].message);
+    return res.status(400).json({
+      success: false,
+      message: error.details[0].message,
+    });
+  }
+
+  const { email, password } = req.body;
+  const user = await User.findOne({ email });
+  if (!user) {
+    return res.status(404).json({ success: false, message: "User not found" });
+  }
+
+  const isPassword = await user.comparePassword(password);
+  if (!isPassword) {
+    logger.warn("Invalid credentials");
+    return res.status(400).json({
+      success: false,
+      message: "Invalid credentials",
+    });
+  }
+
+  // 💡 FIX: Await the generateTokens function
+  const { accessToken, refreshToken } = await generateTokens(user);
+
+  return res.status(200).json({
+    success: true,
+    message: "User logged in successfully",
+    accessToken,
+    refreshToken,
+    userId: user._id,
+  });
+});
+// Refresh Token
+export const userRefreshToken = asyncErrorHandler(async (req, res) => {
+  logger.info("Refresh token endpoint hit...");
+  const { refreshToken } = req.body;
+
+  if (!refreshToken) {
+    logger.warn("Refresh token is missing");
+    return res.status(400).json({
+      success: false,
+      message: "Refresh token is missing",
+    });
+  }
+
+  const storedToken = await RefreshToken.findOne({ token: refreshToken });
+
+  if (!storedToken || storedToken.expiredAt < new Date()) {
+    logger.warn("Invalid or expired token");
+    return res.status(401).json({
+      success: false,
+      message: "Invalid or expired token",
+    });
+  }
+
+  const user = await User.findById(storedToken.user);
+  if (!user) {
+    logger.warn("User not found for refresh token");
+    return res.status(404).json({
+      success: false,
+      message: "User not found",
+    });
+  }
+
+  const { accessToken: newAccess, refreshToken: newRefreshToken } =
+    await generateTokens(user);
+
+  // Delete the old token
+  await RefreshToken.deleteOne({ _id: storedToken._id });
+
+  return res.status(200).json({
+    accessToken: newAccess,
+    refreshToken: newRefreshToken,
+  });
+});
+// Logout User
+export const logOut = asyncErrorHandler(async (req, res) => {
+  logger.info("Logout endpoint hit...");
+  const { refreshToken } = req.body;
+
+  if (!refreshToken) {
+    logger.warn("Refresh token is missing");
+    return res.status(400).json({
+      success: false,
+      message: "Refresh token is missing",
+    });
+  }
+
+  // 💡 FIX: Use the RefreshToken model here
+  await RefreshToken.deleteOne({ token: refreshToken });
+
+  logger.info("Refresh token deleted successfully");
+
+  return res.status(200).json({
+    success: true,
+    message: "User logged out successfully",
   });
 });
