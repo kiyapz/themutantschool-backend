@@ -4,8 +4,9 @@ import { RefreshToken } from "../models/refreshToken.model.js";
 import { User } from "../models/user.model.js";
 import { generateTokens } from "../utils/generateTokens.js";
 import { logger } from "../utils/logger.js";
-import { sendVerificationEmail } from "../utils/sendMail.js";
+import { sendResetEmail, sendVerificationEmail } from "../utils/sendMail.js";
 import { validateLogin, validationRegistration } from "../utils/validation.js";
+import validator from "validator";
 
 // Create a new user
 export const signUpUser = asyncErrorHandler(async (req, res) => {
@@ -166,7 +167,6 @@ export const loginUser = asyncErrorHandler(async (req, res) => {
     });
   }
 
-  // 💡 FIX: Await the generateTokens function
   const { accessToken, refreshToken } = await generateTokens(user);
 
   return res.status(200).json({
@@ -242,4 +242,75 @@ export const logOut = asyncErrorHandler(async (req, res) => {
     success: true,
     message: "User logged out successfully",
   });
+});
+
+//request password token
+
+export const resetPasswordToken = asyncErrorHandler(async (req, res) => {
+  logger.info("reset token initiated...");
+  const { email } = req.body;
+
+  const user = await User.findOne({ email });
+
+  if (!user) {
+    return res.status(400).json({ message: "User does not exist" });
+  }
+
+  // Generate token and expiry
+  const resetToken = Math.floor(100000 + Math.random() * 900000).toString(); // 6-digit token
+  const resetTokenExpiresAt = Date.now() + 1 * 60 * 60 * 1000; // 1 hour from now
+
+  // Save token and expiry to user
+  user.resetPasswordToken = resetToken;
+  user.resetPasswordExpiresAt = resetTokenExpiresAt;
+
+  await user.save();
+
+  // Build frontend reset URL
+  const resetLink = `${process.env.RESET_PASSWORD_URL}/reset-password/${resetToken}`;
+
+  // Send the email
+  await sendResetEmail(email, resetLink);
+
+  res.status(200).json({ message: "Reset password link sent to your email" });
+});
+
+//Reset Password
+export const resetPasword = asyncErrorHandler(async (req, res) => {
+  logger.info("reset password initiated...");
+  const { resetToken } = req.params;
+  const { newPassword } = req.body;
+
+  const user = await User.findOne({ resetPasswordToken: resetToken });
+
+  if (!user) {
+    return res.status(400).json({ message: "Invalid or expired reset token" });
+  }
+
+  if (user.resetPasswordExpiresAt < Date.now()) {
+    return res.status(400).json({ message: "Reset token has expired" });
+  }
+
+  if (
+    !validator.isStrongPassword(newPassword, {
+      minLength: 6,
+      minLowercase: 1,
+      minUppercase: 1,
+      minNumbers: 1,
+      minSymbols: 1,
+    })
+  ) {
+    return res
+      .status(400)
+      .json({ message: "New password is not strong enough" });
+  }
+
+  // Set new password (hashing will be done by pre-save hook)
+  user.password = newPassword;
+  user.resetPasswordToken = "";
+  user.resetPasswordExpiresAt = null;
+
+  await user.save();
+
+  return res.status(200).json({ message: "Password reset successfully" });
 });

@@ -5,6 +5,8 @@ import {
   verifyAccount,
   logOut,
   userRefreshToken,
+  resetPasswordToken,
+  resetPasword,
 } from "../controllers.js/auth.controller.js";
 import { upload } from "../middlewares/uploads.js";
 
@@ -19,3 +21,7 @@ authRoutes.post("/login", loginUser);
 authRoutes.post("/refresh-token", userRefreshToken);
 //logout
 authRoutes.post("/logout", logOut);
+//reset token for pasword
+authRoutes.post("/reset-token", resetPasswordToken);
+//Rest password
+authRoutes.put("/reset-password/:resetToken", resetPasword);
