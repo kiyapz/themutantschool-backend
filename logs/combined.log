@@ -30,3 +30,149 @@
 [2025-06-02T17:02:04.085Z] [32minfo[39m: Received a GET request to /favicon.ico
 [2025-06-03T11:32:41.230Z] [32minfo[39m: Identity service running on port 3000
 [2025-06-03T11:32:51.883Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-03T12:10:59.394Z] [32minfo[39m: Identity service running on port 3000
+[2025-06-03T12:11:08.670Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-03T13:48:04.117Z] [32minfo[39m: Server is running on port 3000
+[2025-06-03T13:48:04.239Z] [32minfo[39m: ✅ Connected to Redis
+[2025-06-03T13:48:33.738Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-03T13:51:09.539Z] [32minfo[39m: ➡️ POST /api/auth/registration
+[2025-06-03T13:51:09.590Z] [32minfo[39m: 📦 Body: {"name":"Elijah","username":"Elijah","email":"elijahpeter265@gmail.com","password":"1234567890"}
+[2025-06-03T13:51:10.543Z] [31merror[39m: Can't find /api/auth/registration on the server
+[2025-06-03T13:53:34.431Z] [32minfo[39m: ➡️ POST /api/auth/register
+[2025-06-03T13:53:34.432Z] [32minfo[39m: 📦 Body: {"name":"Elijah","username":"Elijah","email":"elijahpeter265@gmail.com","password":"1234567890"}
+[2025-06-03T13:53:34.443Z] [32minfo[39m: Registration initiated...
+[2025-06-03T13:53:34.854Z] [31merror[39m: User validation failed: avatar.publicId: Path `avatar.publicId` is required., avatar.url: Path `avatar.url` is required.
+[2025-06-03T13:54:44.864Z] [32minfo[39m: Server is running on port 3000
+[2025-06-03T13:54:44.932Z] [32minfo[39m: ✅ Connected to Redis
+[2025-06-03T13:54:54.615Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-03T13:55:08.011Z] [32minfo[39m: ➡️ POST /api/auth/register
+[2025-06-03T13:55:08.013Z] [32minfo[39m: 📦 Body: {"name":"Elijah","username":"Elijah","email":"elijahpeter265@gmail.com","password":"1234567890"}
+[2025-06-03T13:55:08.076Z] [32minfo[39m: Registration initiated...
+[2025-06-03T13:55:09.823Z] [32minfo[39m: User saved successfully: 683efebc33fc2e32f9fe6d1e
+[2025-06-03T13:55:24.880Z] [33mwarn[39m: Error sending verification email: Missing credentials for "PLAIN"
+[2025-06-03T13:55:24.883Z] [31merror[39m: Missing credentials for "PLAIN"
+[2025-06-03T14:04:05.418Z] [32minfo[39m: Server is running on port 3000
+[2025-06-03T14:04:05.533Z] [32minfo[39m: ✅ Connected to Redis
+[2025-06-03T14:04:26.002Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-03T14:05:33.964Z] [32minfo[39m: ➡️ POST /api/auth/register
+[2025-06-03T14:05:34.041Z] [32minfo[39m: 📦 Body: {"name":"Elijah","username":"Elijah","email":"elijahpeter265@gmail.com","password":"1234567890"}
+[2025-06-03T14:05:35.403Z] [32minfo[39m: Registration initiated...
+[2025-06-03T14:05:36.838Z] [32minfo[39m: User saved successfully: 683f012faee7757f488a090a
+[2025-06-03T14:05:39.006Z] [33mwarn[39m: Error sending verification email: Missing credentials for "PLAIN"
+[2025-06-03T14:05:39.009Z] [31merror[39m: Missing credentials for "PLAIN"
+[2025-06-03T14:10:39.242Z] [32minfo[39m: Server is running on port 3000
+[2025-06-03T14:10:39.300Z] [32minfo[39m: ✅ Connected to Redis
+[2025-06-03T14:10:52.162Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-03T14:11:16.460Z] [32minfo[39m: ➡️ POST /api/auth/register
+[2025-06-03T14:11:16.461Z] [32minfo[39m: 📦 Body: {"name":"Elijah","username":"Elijah","email":"elijahpeter265@gmail.com","password":"1234567890"}
+[2025-06-03T14:11:16.480Z] [32minfo[39m: Registration initiated...
+[2025-06-03T14:11:17.441Z] [32minfo[39m: User saved successfully: 683f02849c0e2ce4590365de
+[2025-06-03T14:11:26.608Z] [32minfo[39m: Email sent: 250 2.0.0 OK  1748959887 4fb4d7f45d1cf-60566c2a77asm7554603a12.16 - gsmtp
+[2025-06-03T20:39:16.321Z] [32minfo[39m: Server is running on port 3000
+[2025-06-03T20:39:16.356Z] [32minfo[39m: ✅ Connected to Redis
+[2025-06-03T20:39:25.445Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-03T20:40:09.246Z] [32minfo[39m: ➡️ POST /api/auth/register
+[2025-06-03T20:40:21.425Z] [31merror[39m: ENOENT: no such file or directory, open 'C:\Users\ELIJAH\Desktop\KIYAPZ\themutantschool\uploads\file-1748983221417.PNG'
+[2025-06-03T20:40:50.238Z] [32minfo[39m: ➡️ POST /api/auth/register
+[2025-06-03T20:40:50.327Z] [31merror[39m: ENOENT: no such file or directory, open 'C:\Users\ELIJAH\Desktop\KIYAPZ\themutantschool\uploads\file-1748983250320.PNG'
+[2025-06-03T20:44:01.419Z] [32minfo[39m: Server is running on port 3000
+[2025-06-03T20:44:01.447Z] [32minfo[39m: ✅ Connected to Redis
+[2025-06-03T20:44:14.555Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-03T20:44:25.053Z] [32minfo[39m: ➡️ POST /api/auth/register
+[2025-06-03T20:44:25.156Z] [32minfo[39m: Registration initiated...
+[2025-06-03T20:44:26.025Z] [33mwarn[39m: User already exists:
+[2025-06-03T20:45:46.952Z] [32minfo[39m: ➡️ POST /api/auth/register
+[2025-06-03T20:45:47.106Z] [32minfo[39m: Registration initiated...
+[2025-06-03T20:45:47.423Z] [31merror[39m: Cannot read properties of undefined (reading 'secure_url')
+[2025-06-03T20:49:58.331Z] [32minfo[39m: Server is running on port 3000
+[2025-06-03T20:49:58.437Z] [32minfo[39m: ✅ Connected to Redis
+[2025-06-03T20:50:33.405Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-03T20:50:40.556Z] [32minfo[39m: ➡️ POST /api/auth/register
+[2025-06-03T20:50:40.674Z] [32minfo[39m: Registration initiated...
+[2025-06-03T20:50:41.394Z] [31merror[39m: Cannot read properties of undefined (reading 'secure_url')
+[2025-06-03T20:52:38.493Z] [32minfo[39m: Server is running on port 3000
+[2025-06-03T20:52:38.551Z] [32minfo[39m: ✅ Connected to Redis
+[2025-06-03T20:52:49.021Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-03T20:52:54.672Z] [32minfo[39m: ➡️ POST /api/auth/register
+[2025-06-03T20:52:54.792Z] [32minfo[39m: Registration initiated...
+[2025-06-03T20:52:55.321Z] [31merror[39m: Cannot read properties of undefined (reading 'secure_url')
+[2025-06-03T20:52:58.641Z] [32minfo[39m: Uploaded to Cloudinary: https://res.cloudinary.com/drxiejhsy/image/upload/v1748983979/tarm54nhe11ruwajgq5t.png
+[2025-06-03T21:01:36.437Z] [32minfo[39m: Server is running on port 3000
+[2025-06-03T21:01:36.488Z] [32minfo[39m: ✅ Connected to Redis
+[2025-06-03T21:01:49.623Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-03T21:02:09.237Z] [32minfo[39m: ➡️ POST /api/auth/register
+[2025-06-03T21:02:09.426Z] [32minfo[39m: Registration initiated...
+[2025-06-03T21:02:09.800Z] [31merror[39m: Cannot read properties of undefined (reading 'secure_url')
+[2025-06-03T21:02:13.367Z] [32minfo[39m: Uploaded to Cloudinary: https://res.cloudinary.com/drxiejhsy/image/upload/v1748984533/l9pkxrhumsshwkfauqxv.png
+[2025-06-03T21:04:39.748Z] [32minfo[39m: Server is running on port 3000
+[2025-06-03T21:04:39.800Z] [32minfo[39m: ✅ Connected to Redis
+[2025-06-03T21:04:57.102Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-03T21:05:04.508Z] [32minfo[39m: ➡️ POST /api/auth/register
+[2025-06-03T21:05:04.667Z] [32minfo[39m: Registration initiated...
+[2025-06-03T21:05:04.980Z] [33mwarn[39m: Cloudinary did not return secure_url
+[2025-06-03T21:05:06.198Z] [32minfo[39m: User saved successfully: 683f6381c999d0197fa7d0fd
+[2025-06-03T21:05:10.202Z] [32minfo[39m: Uploaded to Cloudinary: https://res.cloudinary.com/drxiejhsy/image/upload/v1748984710/jxisr7os5dgwomvn1izd.png
+[2025-06-03T21:05:17.856Z] [32minfo[39m: Email sent: 250 2.0.0 OK  1748984719 a640c23a62f3a-adb390f09d7sm768936866b.148 - gsmtp
+[2025-06-03T21:09:48.277Z] [32minfo[39m: Server is running on port 3000
+[2025-06-03T21:09:48.337Z] [32minfo[39m: ✅ Connected to Redis
+[2025-06-03T21:10:06.639Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-03T21:10:55.785Z] [32minfo[39m: ➡️ POST /api/auth/register
+[2025-06-03T21:10:55.897Z] [32minfo[39m: Registration initiated...
+[2025-06-03T21:10:56.197Z] [31merror[39m: Cloudinary upload error:
+[2025-06-03T21:11:00.737Z] [32minfo[39m: Uploaded to Cloudinary: https://res.cloudinary.com/drxiejhsy/image/upload/v1748985061/b242fk78ron9xi4q9rft.png
+[2025-06-03T21:14:38.333Z] [32minfo[39m: Server is running on port 3000
+[2025-06-03T21:14:38.421Z] [32minfo[39m: ✅ Connected to Redis
+[2025-06-03T21:14:55.942Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-03T21:15:06.611Z] [32minfo[39m: ➡️ POST /api/auth/register
+[2025-06-03T21:15:07.294Z] [32minfo[39m: Registration initiated...
+[2025-06-03T21:15:12.336Z] [32minfo[39m: Uploaded to Cloudinary: https://res.cloudinary.com/drxiejhsy/image/upload/v1748985313/edu7dszfju8nhztdeysm.png
+[2025-06-03T21:15:13.408Z] [32minfo[39m: User saved successfully: 683f65e04fce3ff3b0dfd213
+[2025-06-03T21:15:16.969Z] [32minfo[39m: Email sent: 250 2.0.0 OK  1748985318 4fb4d7f45d1cf-60566c74cdfsm8180366a12.42 - gsmtp
+[2025-06-03T21:18:20.311Z] [32minfo[39m: ➡️ POST /api/auth/verify-account
+[2025-06-03T21:18:20.324Z] [31merror[39m: Cannot destructure property 'verificationToken' of 'req.body' as it is undefined.
+[2025-06-03T21:38:28.186Z] [32minfo[39m: ➡️ POST /api/auth/verify-account
+[2025-06-03T21:38:31.799Z] [31merror[39m: Cannot destructure property 'verificationToken' of 'req.body' as it is undefined.
+[2025-06-04T08:48:19.909Z] [32minfo[39m: Server is running on port 3000
+[2025-06-04T08:48:20.035Z] [32minfo[39m: ✅ Connected to Redis
+[2025-06-04T08:48:59.859Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-04T08:57:10.677Z] [32minfo[39m: ➡️ POST /api/auth/register
+[2025-06-04T08:57:11.788Z] [32minfo[39m: Registration initiated...
+[2025-06-04T08:57:13.274Z] [32minfo[39m: User saved successfully: 68400a68d73e07cbc141bb7d
+[2025-06-04T08:57:17.625Z] [32minfo[39m: Email sent: 250 2.0.0 OK  1749027437 a640c23a62f3a-ada6ad394b9sm1081385166b.132 - gsmtp
+[2025-06-04T08:59:36.461Z] [32minfo[39m: ➡️ POST /api/auth/verify-account
+[2025-06-04T08:59:36.469Z] [31merror[39m: Cannot destructure property 'verificationToken' of 'req.body' as it is undefined.
+[2025-06-04T09:05:36.821Z] [32minfo[39m: Server is running on port 3000
+[2025-06-04T09:05:36.918Z] [32minfo[39m: ✅ Connected to Redis
+[2025-06-04T09:05:50.899Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-04T09:05:55.150Z] [32minfo[39m: ➡️ POST /api/auth/verify-account
+[2025-06-04T09:05:55.167Z] [31merror[39m: Cannot destructure property 'verificationToken' of 'req.body' as it is undefined.
+[2025-06-04T09:05:55.172Z] [31merror[39m: status is not defined
+[2025-06-04T09:14:59.189Z] [32minfo[39m: Server is running on port 3000
+[2025-06-04T09:14:59.256Z] [32minfo[39m: ✅ Connected to Redis
+[2025-06-04T09:15:06.362Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-04T09:15:29.483Z] [32minfo[39m: ➡️ POST /api/auth/register
+[2025-06-04T09:15:29.564Z] [32minfo[39m: Registration initiated...
+[2025-06-04T09:15:30.649Z] [32minfo[39m: User saved successfully: 68400eb1ad7e0ea3f45a0c01
+[2025-06-04T09:15:33.830Z] [32minfo[39m: Email sent: 250 2.0.0 OK  1749028533 a640c23a62f3a-ada6ad6ac07sm1079982366b.177 - gsmtp
+[2025-06-04T09:16:53.800Z] [32minfo[39m: ➡️ POST /api/auth/verify-account
+[2025-06-04T09:16:53.807Z] [31merror[39m: Cannot destructure property 'email' of 'req.body' as it is undefined.
+[2025-06-04T09:17:57.855Z] [32minfo[39m: ➡️ POST /api/auth/verify-account
+[2025-06-04T09:17:57.860Z] [31merror[39m: Cannot destructure property 'email' of 'req.body' as it is undefined.
+[2025-06-04T09:19:37.824Z] [32minfo[39m: Server is running on port 3000
+[2025-06-04T09:19:37.858Z] [32minfo[39m: ✅ Connected to Redis
+[2025-06-04T09:19:48.689Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-04T09:22:27.643Z] [32minfo[39m: ➡️ POST /api/auth/verify-account
+[2025-06-04T09:22:27.646Z] [32minfo[39m: 📦 Body: {"email":"elijahpeter265@gmail.com","token":"289005"}
+[2025-06-04T09:22:28.211Z] [32minfo[39m: User verified successfully: 68400eb1ad7e0ea3f45a0c01
+[2025-06-04T10:59:25.735Z] [32m'info'[39m: Registration initiated...
+[2025-06-04T10:59:25.860Z] [32m'info'[39m: Registration initiated...
+[2025-06-04T10:59:25.867Z] [33m'warn'[39m: User already exists:
+[2025-06-04T11:02:33.889Z] [32m'info'[39m: Registration initiated...
+[2025-06-04T11:02:33.938Z] [32m'info'[39m: User saved successfully: fackid123
+[2025-06-04T11:02:34.039Z] [32m'info'[39m: Registration initiated...
+[2025-06-04T11:02:34.056Z] [33m'warn'[39m: User already exists:
+[2025-06-04T11:14:23.619Z] [32m'info'[39m: User verified successfully: verified123
+[2025-06-04T11:14:23.715Z] [33m'warn'[39m: Invalid or expired verification token
+[2025-06-04T11:14:23.746Z] [33m'warn'[39m: Invalid or expired verification token
+[2025-06-04T11:14:23.771Z] [33m'warn'[39m: Verification failed: User not found
+[2025-06-04T11:14:23.799Z] [32m'info'[39m: User already verified

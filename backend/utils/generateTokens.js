@@ -9,15 +9,16 @@ export const generateTokens = async (user) => {
       {
         userId: user._id,
         username: user.username,
+        email: user.email,
       },
       process.env.JWT_SECRET,
-      { expiresIn: "15m" }
+      { expiresIn: "5m" }
     );
 
     const refreshTokenValue = crypto.randomBytes(40).toString("hex");
 
     const expiredAt = new Date();
-    expiredAt.setDate(expiredAt.getDate() + 7);
+    expiredAt.setDate(expiredAt.getDate() + 1);
 
     await RefreshToken.create({
       token: refreshTokenValue,

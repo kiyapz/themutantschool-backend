@@ -4,3 +4,21 @@
 [2025-06-02T16:58:17.852Z] [31merror[39m: Cannot convert undefined or null to object
 [2025-06-02T16:58:19.997Z] [31merror[39m: Cannot convert undefined or null to object
 [2025-06-02T16:58:20.079Z] [31merror[39m: Cannot convert undefined or null to object
+[2025-06-03T13:51:10.543Z] [31merror[39m: Can't find /api/auth/registration on the server
+[2025-06-03T13:53:34.854Z] [31merror[39m: User validation failed: avatar.publicId: Path `avatar.publicId` is required., avatar.url: Path `avatar.url` is required.
+[2025-06-03T13:55:24.883Z] [31merror[39m: Missing credentials for "PLAIN"
+[2025-06-03T14:05:39.009Z] [31merror[39m: Missing credentials for "PLAIN"
+[2025-06-03T20:40:21.425Z] [31merror[39m: ENOENT: no such file or directory, open 'C:\Users\ELIJAH\Desktop\KIYAPZ\themutantschool\uploads\file-1748983221417.PNG'
+[2025-06-03T20:40:50.327Z] [31merror[39m: ENOENT: no such file or directory, open 'C:\Users\ELIJAH\Desktop\KIYAPZ\themutantschool\uploads\file-1748983250320.PNG'
+[2025-06-03T20:45:47.423Z] [31merror[39m: Cannot read properties of undefined (reading 'secure_url')
+[2025-06-03T20:50:41.394Z] [31merror[39m: Cannot read properties of undefined (reading 'secure_url')
+[2025-06-03T20:52:55.321Z] [31merror[39m: Cannot read properties of undefined (reading 'secure_url')
+[2025-06-03T21:02:09.800Z] [31merror[39m: Cannot read properties of undefined (reading 'secure_url')
+[2025-06-03T21:10:56.197Z] [31merror[39m: Cloudinary upload error:
+[2025-06-03T21:18:20.324Z] [31merror[39m: Cannot destructure property 'verificationToken' of 'req.body' as it is undefined.
+[2025-06-03T21:38:31.799Z] [31merror[39m: Cannot destructure property 'verificationToken' of 'req.body' as it is undefined.
+[2025-06-04T08:59:36.469Z] [31merror[39m: Cannot destructure property 'verificationToken' of 'req.body' as it is undefined.
+[2025-06-04T09:05:55.167Z] [31merror[39m: Cannot destructure property 'verificationToken' of 'req.body' as it is undefined.
+[2025-06-04T09:05:55.172Z] [31merror[39m: status is not defined
+[2025-06-04T09:16:53.807Z] [31merror[39m: Cannot destructure property 'email' of 'req.body' as it is undefined.
+[2025-06-04T09:17:57.860Z] [31merror[39m: Cannot destructure property 'email' of 'req.body' as it is undefined.

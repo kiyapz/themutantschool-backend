@@ -12,7 +12,7 @@ connectDb();
 
 // Start the server
 const server = app.listen(PORT, () => {
-  logger.info(`Identity service running on port ${PORT}`);
+  logger.info(`Server is running on port ${PORT}`);
 });
 
 // Handle unhandled promise rejections
