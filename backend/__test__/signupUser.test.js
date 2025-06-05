@@ -1,6 +1,6 @@
 import express from "express";
 import { User } from "../models/user.model.js";
-import { signUpUser } from "../controllers.js/auth.controller.js";
+import { signUpUser } from "../controllers/auth.controller.js";
 import { uploadsToCloudinary } from "../config/cloudinary.js";
 import { generateTokens } from "../utils/generateTokens.js";
 import { sendVerificationEmail } from "../utils/sendMail.js";
@@ -23,7 +23,8 @@ describe("POST/api/auth/signup", () => {
     //fake user
     const userData = {
       email: "joy@gmail.com",
-      name: "joy",
+      firstName: "joy",
+      lastName: "Peter",
       username: "Joy1",
       password: "1234567890",
     };

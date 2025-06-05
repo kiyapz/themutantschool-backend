@@ -4,7 +4,7 @@ import request from "supertest";
 import {
   resetPasswordToken,
   resetPasword,
-} from "../controllers.js/auth.controller.js";
+} from "../controllers/auth.controller.js";
 import { User } from "../models/user.model.js";
 import { sendResetEmail } from "../utils/sendMail.js";
 

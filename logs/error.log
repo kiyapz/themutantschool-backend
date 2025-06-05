@@ -27,3 +27,9 @@
 [2025-06-04T13:02:27.666Z] [31merror[39m: Cannot destructure property 'refreshToken' of 'req.body' as it is undefined.
 [2025-06-04T15:28:05.639Z] [31merror[39m: Cannot destructure property 'email' of 'req.body' as it is undefined.
 [2025-06-04T16:19:36.722Z] [31merror[39m: validator is not defined
+[2025-06-05T08:52:02.551Z] [31merror[39m: User validation failed: role: ` instructor` is not a valid enum value for path `role`.
+[2025-06-05T08:53:26.092Z] [31merror[39m: User validation failed: role: ` instructor` is not a valid enum value for path `role`.
+[2025-06-05T08:53:49.358Z] [31merror[39m: User validation failed: role: ` affiliate` is not a valid enum value for path `role`.
+[2025-06-05T08:54:25.123Z] [31merror[39m: User validation failed: role: `"instructor"` is not a valid enum value for path `role`.
+[2025-06-05T08:56:40.017Z] [31merror[39m: User validation failed: role: `"instructor"` is not a valid enum value for path `role`.
+[2025-06-05T10:47:13.934Z] [31merror[39m: fs is not defined

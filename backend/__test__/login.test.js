@@ -1,6 +1,6 @@
 import express from "express";
 import request from "supertest";
-import { loginUser, logOut } from "../controllers.js/auth.controller.js";
+import { loginUser, logOut } from "../controllers/auth.controller.js";
 import { User } from "../models/user.model.js";
 import { generateTokens } from "../utils/generateTokens.js";
 import { RefreshToken } from "../models/refreshToken.model.js";

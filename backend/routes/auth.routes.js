@@ -7,7 +7,7 @@ import {
   userRefreshToken,
   resetPasswordToken,
   resetPasword,
-} from "../controllers.js/auth.controller.js";
+} from "../controllers/auth.controller.js";
 import { upload } from "../middlewares/uploads.js";
 
 export const authRoutes = express.Router();

@@ -9,6 +9,7 @@ import { logger } from "./utils/logger.js";
 import { errorHandler } from "./middlewares/errorHandler.js";
 import { notFoundHandler } from "./middlewares/apiErrors.js";
 import { authRoutes } from "./routes/auth.routes.js";
+import { userRoutes } from "./routes/user.route.js";
 
 export const app = express();
 
@@ -79,7 +80,7 @@ const sensitiveEndpointLimiter = rateLimit({
 // 🛣️ Routes
 app.use("/api/auth/register", sensitiveEndpointLimiter);
 app.use("/api/auth", authRoutes);
-
+app.use("/api/user", userRoutes);
 // ❓ 404 Handler
 app.use(notFoundHandler);
 

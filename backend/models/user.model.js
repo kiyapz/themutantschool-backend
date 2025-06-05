@@ -4,7 +4,12 @@ import { logger } from "../utils/logger.js";
 
 const userSchema = new mongoose.Schema(
   {
-    name: {
+    firstName: {
+      type: String,
+      trim: true,
+      required: true,
+    },
+    lastName: {
       type: String,
       trim: true,
       required: true,
@@ -21,6 +26,20 @@ const userSchema = new mongoose.Schema(
       unique: true,
       trim: true,
     },
+    gender: {
+      type: String,
+
+      trim: true,
+    },
+    country: {
+      type: String,
+      trim: true,
+    },
+    dob: {
+      type: Date,
+
+      trim: true,
+    },
     password: {
       type: String,
       required: true,
@@ -28,7 +47,7 @@ const userSchema = new mongoose.Schema(
     role: {
       type: String,
       enum: ["admin", "instructor", "student", "affiliate"],
-      default: "student", // Fixed typo
+      default: "student",
     },
     avatar: {
       url: {

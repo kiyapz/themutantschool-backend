@@ -13,16 +13,23 @@ export const signUpUser = asyncErrorHandler(async (req, res) => {
   logger.info("Registration initiated...");
 
   // Validate input schema
-  const { error } = validationRegistration(req.body);
-  if (error) {
-    logger.warn("Validation error:", error.details[0].message);
-    return res.status(400).json({
-      success: false,
-      message: error.details[0].message,
-    });
-  }
+  // const { error } = validationRegistration(req.body);
+  // if (error) {
+  //   logger.warn("Validation error:", error.details[0].message);
+  //   return res.status(400).json({
+  //     success: false,
+  //     message: error.details[0].message,
+  //   });
+  // }
 
-  const { email, name, username, password } = req.body;
+  const {
+    email,
+    firstName,
+    lastName,
+    username,
+    password,
+    role = "student",
+  } = req.body;
 
   // Check if user already exists
   const existingUser = await User.findOne({ $or: [{ email }, { username }] });
@@ -61,12 +68,14 @@ export const signUpUser = asyncErrorHandler(async (req, res) => {
   // Create and save new user
   const user = new User({
     email,
-    name,
+    firstName,
+    lastName,
     username,
     password,
     avatar: { url, publicId },
     verificationToken,
     verificationTokenExpiresAt: verificationExpires,
+    role,
   });
 
   await user.save();
