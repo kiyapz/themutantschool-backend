@@ -1,7 +1,7 @@
 import nodemailer from "nodemailer";
 import { verificationHtml } from "./messages/verificationMessage.js";
-import { resetPasswordHtml } from "./messages/resetPasswordMessage.js";
 import { logger } from "./logger.js";
+import { resetPasswordHtml } from "./Emails/passwordResetToken.js";
 export const sendVerificationEmail = async (email, verificationToken) => {
   try {
     const transporter = nodemailer.createTransport({
@@ -29,8 +29,7 @@ export const sendVerificationEmail = async (email, verificationToken) => {
 };
 
 //reset password
-
-export const sendResetEmail = async (email, sendVerificationToken) => {
+export const sendResetEmail = async (email, resetLink) => {
   try {
     const transporter = nodemailer.createTransport({
       service: "gmail",
@@ -43,15 +42,15 @@ export const sendResetEmail = async (email, sendVerificationToken) => {
     const mailOptions = {
       from: process.env.EMAIL_USER,
       to: email,
-      subject: "Your Email Verification Code",
-      html: resetPasswordHtml(sendVerificationToken),
+      subject: "Reset Your Password",
+      html: resetPasswordHtml(resetLink),
     };
 
     const info = await transporter.sendMail(mailOptions);
     console.log("Email sent: " + info.response);
     return info;
   } catch (error) {
-    console.error("Error sending email:", error);
+    console.error("Error sending reset password email:", error);
     throw error;
   }
 };

@@ -1,15 +1,44 @@
 import mongoose from "mongoose";
+import argon2 from "argon2";
+import { logger } from "../utils/logger.js";
 
 const userSchema = new mongoose.Schema(
   {
-    name: {
+    firstName: {
       type: String,
+      trim: true,
+      required: true,
+    },
+    lastName: {
+      type: String,
+      trim: true,
+      required: true,
+    },
+    username: {
+      type: String,
+      trim: true,
+      unique: true,
       required: true,
     },
     email: {
       type: String,
       required: true,
       unique: true,
+      trim: true,
+    },
+    gender: {
+      type: String,
+
+      trim: true,
+    },
+    country: {
+      type: String,
+      trim: true,
+    },
+    dob: {
+      type: Date,
+
+      trim: true,
     },
     password: {
       type: String,
@@ -17,17 +46,15 @@ const userSchema = new mongoose.Schema(
     },
     role: {
       type: String,
-      default: "user",
       enum: ["admin", "instructor", "student", "affiliate"],
+      default: "student",
     },
     avatar: {
       url: {
         type: String,
-        required: true,
       },
       publicId: {
         type: String,
-        required: true,
       },
     },
     verificationToken: {
@@ -42,7 +69,6 @@ const userSchema = new mongoose.Schema(
       type: Date,
       default: Date.now,
     },
-
     resetPasswordToken: {
       type: String,
       default: "",
@@ -54,5 +80,29 @@ const userSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
+// Hash password before saving
+userSchema.pre("save", async function (next) {
+  if (this.isModified("password")) {
+    try {
+      this.password = await argon2.hash(this.password);
+    } catch (error) {
+      logger.warn(error);
+      return next(error);
+    }
+  }
+  next();
+});
+
+// Password comparison method
+userSchema.methods.comparePassword = async function (userPassword) {
+  try {
+    return await argon2.verify(this.password, userPassword);
+  } catch (error) {
+    throw error;
+  }
+};
+
+userSchema.index({ email: "text" });
 
 export const User = mongoose.model("User", userSchema);

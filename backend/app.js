@@ -8,77 +8,130 @@ import RateLimitRedisStore from "rate-limit-redis";
 import { logger } from "./utils/logger.js";
 import { errorHandler } from "./middlewares/errorHandler.js";
 import { notFoundHandler } from "./middlewares/apiErrors.js";
+import { authRoutes } from "./routes/auth.routes.js";
+import { userRoutes } from "./routes/user.route.js";
+import swaggerJSDoc from "swagger-jsdoc";
+import swaggerUi from "swagger-ui-express";
 
 export const app = express();
 
-// Redis setup
+// 🚀 Redis Setup
 const redisClient = new Redis(process.env.REDIS_URL);
-redisClient.on("error", (err) => {
-  logger.error("Redis error:", err);
-});
+redisClient.on("error", (err) => logger.error("❌ Redis error:", err));
+redisClient.on("connect", () => logger.info("✅ Connected to Redis"));
 
-// Middleware
+// 🛡️ Security & Basic Middleware
 app.use(helmet());
 app.use(cors());
 app.use(express.json());
+// Allowed front-end URL(s)
+const allowedOrigins = [process.env.FRONTEND_URL];
 
-// Logging incoming requests
+// CORS options object
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (!origin) {
+      // Allow requests with no origin (like Postman, curl)
+      return callback(null, true);
+    }
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      // Origin allowed
+      callback(null, true);
+    } else {
+      // Origin not allowed
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true, // if you need to support cookies/auth
+  optionsSuccessStatus: 200, // For legacy browser support
+};
+
+// Apply CORS middleware globally
+app.use(cors(corsOptions));
+// 📋 Request Logging
 app.use((req, res, next) => {
-  logger.info(`Received a ${req.method} request to ${req.url}`);
-
+  logger.info(`➡️ ${req.method} ${req.url}`);
   if (
     req.body &&
     typeof req.body === "object" &&
     Object.keys(req.body).length > 0
   ) {
-    logger.info(`Request Body: ${JSON.stringify(req.body)}`);
+    logger.info(`📦 Body: ${JSON.stringify(req.body)}`);
   }
-
   next();
 });
 
-// 🌐 Global Rate Limiter
-const rateLimiter = new RateLimiterRedis({
+// 🚦 Global Rate Limiter Middleware
+const globalRateLimiter = new RateLimiterRedis({
   storeClient: redisClient,
-  keyPrefix: "middleware",
+  keyPrefix: "rl_global",
   points: 5, // requests
   duration: 1, // per second
 });
 
-app.use((req, res, next) => {
-  rateLimiter
+const rateLimitMiddleware = (req, res, next) => {
+  globalRateLimiter
     .consume(req.ip)
     .then(() => next())
     .catch(() => {
-      logger.warn("Rate Limit exceeded for IP", req.ip);
+      logger.warn(`🚫 Rate limit exceeded: ${req.ip}`);
       res.status(429).json({
         success: false,
-        message: "Too many requests",
+        message: "Too many requests. Please try again later.",
       });
     });
-});
+};
+
+app.use(rateLimitMiddleware);
 
 // 🔐 Sensitive Endpoint Rate Limiter
 const sensitiveEndpointLimiter = rateLimit({
-  windowMs: 10 * 60 * 1000,
+  windowMs: 10 * 60 * 1000, // 10 minutes
   max: 10,
   standardHeaders: true,
   legacyHeaders: false,
-  handler: (req, res) => {
-    logger.warn("Rate Limit exceeded for IP", req.ip);
-    res.status(429).json({
-      success: false,
-      message: "Too many requests",
-    });
-  },
   store: new RateLimitRedisStore({
     sendCommand: (...args) => redisClient.call(...args),
   }),
+  handler: (req, res) => {
+    logger.warn(`🚫 Sensitive endpoint limit exceeded: ${req.ip}`);
+    res.status(429).json({
+      success: false,
+      message: "Too many requests. Please wait and try again.",
+    });
+  },
 });
-app.use("/", (req, res) => {
-  res.send({ message: "Hello World!" });
-});
-// 404 handler (for unmatched routes)
+
+// Swagger config
+const swaggerOptions = {
+  definition: {
+    openapi: "3.0.0",
+    info: {
+      title: "MUTANT SCHOOL",
+      version: "1.0.0",
+      description: "API documentation for Mutant School",
+    },
+    servers: [
+      {
+        url: "http://localhost:3000",
+      },
+    ],
+  },
+  apis: ["./routes/*.js"], // <-- Point to your routes for JSDoc scanning
+};
+
+const swaggerSpec = swaggerJSDoc(swaggerOptions);
+
+// Serve Swagger UI at /api-docs
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
+// 🛣️ Routes
+app.use("/api/auth/register", sensitiveEndpointLimiter);
+app.use("/api/auth", authRoutes);
+app.use("/api/user", userRoutes);
+
+// ❓ 404 Handler
 app.use(notFoundHandler);
-// Global error handler
+
+// 🧯 Global Error Handler
 app.use(errorHandler);
