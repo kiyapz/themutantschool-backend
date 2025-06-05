@@ -509,3 +509,23 @@
 [2025-06-05T11:50:19.144Z] [32minfo[39m: PUT /users/999 - Updating user profile...
 [2025-06-05T11:50:19.170Z] [32minfo[39m: DELETE /users/1 - Deleting user...
 [2025-06-05T11:50:19.192Z] [32minfo[39m: DELETE /users/999 - Deleting user...
+[2025-06-05T12:10:06.953Z] [32minfo[39m: Server is running on port 3000
+[2025-06-05T12:16:27.576Z] [32minfo[39m: Server is running on port 3000
+[2025-06-05T12:16:27.630Z] [32minfo[39m: ✅ Connected to Redis
+[2025-06-05T12:16:36.162Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-02.miqou6z.mongodb.net
+[2025-06-05T12:18:26.227Z] [32minfo[39m: ➡️ GET /api-docs
+[2025-06-05T12:18:29.337Z] [32minfo[39m: ➡️ GET /api-docs/
+[2025-06-05T12:18:31.304Z] [32minfo[39m: ➡️ GET /api-docs/swagger-ui.css
+[2025-06-05T12:18:31.433Z] [32minfo[39m: ➡️ GET /api-docs/swagger-ui-bundle.js
+[2025-06-05T12:18:31.437Z] [32minfo[39m: ➡️ GET /api-docs/swagger-ui-standalone-preset.js
+[2025-06-05T12:18:31.441Z] [32minfo[39m: ➡️ GET /api-docs/swagger-ui-init.js
+[2025-06-05T12:18:37.832Z] [32minfo[39m: ➡️ GET /api-docs/favicon-32x32.png
+[2025-06-05T12:19:33.162Z] [32minfo[39m: ➡️ GET /api-docs/
+[2025-06-05T12:19:33.544Z] [32minfo[39m: ➡️ GET /api-docs/swagger-ui.css
+[2025-06-05T12:19:33.553Z] [32minfo[39m: ➡️ GET /api-docs/swagger-ui-bundle.js
+[2025-06-05T12:19:33.564Z] [32minfo[39m: ➡️ GET /api-docs/swagger-ui-standalone-preset.js
+[2025-06-05T12:19:33.575Z] [32minfo[39m: ➡️ GET /api-docs/swagger-ui-init.js
+[2025-06-05T12:19:33.946Z] [32minfo[39m: ➡️ GET /api-docs/favicon-32x32.png
+[2025-06-05T12:19:33.954Z] [33mwarn[39m: 🚫 Rate limit exceeded: ::1
+[2025-06-05T12:19:34.031Z] [32minfo[39m: ➡️ GET /api-docs/favicon-16x16.png
+[2025-06-05T12:19:34.036Z] [33mwarn[39m: 🚫 Rate limit exceeded: ::1
