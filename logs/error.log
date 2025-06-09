@@ -33,3 +33,7 @@
 [2025-06-05T08:54:25.123Z] [31merror[39m: User validation failed: role: `"instructor"` is not a valid enum value for path `role`.
 [2025-06-05T08:56:40.017Z] [31merror[39m: User validation failed: role: `"instructor"` is not a valid enum value for path `role`.
 [2025-06-05T10:47:13.934Z] [31merror[39m: fs is not defined
+[2025-06-09T14:15:23.672Z] [31merror[39m: User validation failed: password: Path `password` is required., email: Path `email` is required., lastName: Path `lastName` is required., firstName: Path `firstName` is required.
+[2025-06-09T15:03:39.654Z] [31merror[39m: User validation failed: lastName: Path `lastName` is required., firstName: Path `firstName` is required.
+[2025-06-09T15:05:46.993Z] [31merror[39m: User validation failed: lastName: Path `lastName` is required., firstName: Path `firstName` is required.
+[2025-06-09T15:07:12.781Z] [31merror[39m: User validation failed: lastName: Path `lastName` is required., firstName: Path `firstName` is required.

@@ -529,3 +529,121 @@
 [2025-06-05T12:19:33.954Z] [33mwarn[39m: 🚫 Rate limit exceeded: ::1
 [2025-06-05T12:19:34.031Z] [32minfo[39m: ➡️ GET /api-docs/favicon-16x16.png
 [2025-06-05T12:19:34.036Z] [33mwarn[39m: 🚫 Rate limit exceeded: ::1
+[2025-06-05T12:27:39.159Z] [32minfo[39m: Server is running on port 3000
+[2025-06-05T12:27:39.242Z] [32minfo[39m: ✅ Connected to Redis
+[2025-06-05T12:27:46.434Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-05T12:27:53.650Z] [32minfo[39m: ➡️ GET /api-docs/
+[2025-06-05T12:27:53.747Z] [32minfo[39m: ➡️ GET /api-docs/swagger-ui.css
+[2025-06-05T12:27:53.753Z] [32minfo[39m: ➡️ GET /api-docs/swagger-ui-bundle.js
+[2025-06-05T12:27:53.764Z] [32minfo[39m: ➡️ GET /api-docs/swagger-ui-standalone-preset.js
+[2025-06-05T12:27:53.769Z] [32minfo[39m: ➡️ GET /api-docs/swagger-ui-init.js
+[2025-06-05T12:27:54.224Z] [32minfo[39m: ➡️ GET /api-docs/favicon-32x32.png
+[2025-06-05T12:27:54.234Z] [33mwarn[39m: 🚫 Rate limit exceeded: ::1
+[2025-06-05T12:27:54.289Z] [32minfo[39m: ➡️ GET /api-docs/favicon-16x16.png
+[2025-06-05T12:27:54.299Z] [33mwarn[39m: 🚫 Rate limit exceeded: ::1
+[2025-06-05T12:27:59.756Z] [32minfo[39m: ➡️ GET /api-docs/
+[2025-06-05T12:27:59.834Z] [32minfo[39m: ➡️ GET /api-docs/swagger-ui.css
+[2025-06-05T12:27:59.846Z] [32minfo[39m: ➡️ GET /api-docs/swagger-ui-bundle.js
+[2025-06-05T12:27:59.856Z] [32minfo[39m: ➡️ GET /api-docs/swagger-ui-init.js
+[2025-06-05T12:27:59.866Z] [32minfo[39m: ➡️ GET /api-docs/swagger-ui-standalone-preset.js
+[2025-06-05T12:28:00.227Z] [32minfo[39m: ➡️ GET /api-docs/favicon-32x32.png
+[2025-06-05T12:28:00.230Z] [33mwarn[39m: 🚫 Rate limit exceeded: ::1
+[2025-06-05T12:28:00.296Z] [32minfo[39m: ➡️ GET /api-docs/favicon-16x16.png
+[2025-06-05T12:28:00.299Z] [33mwarn[39m: 🚫 Rate limit exceeded: ::1
+[2025-06-05T12:28:00.924Z] [32minfo[39m: ➡️ GET /api-docs/
+[2025-06-05T12:28:00.998Z] [32minfo[39m: ➡️ GET /api-docs/swagger-ui.css
+[2025-06-05T12:28:01.006Z] [32minfo[39m: ➡️ GET /api-docs/swagger-ui-bundle.js
+[2025-06-05T12:28:01.015Z] [32minfo[39m: ➡️ GET /api-docs/swagger-ui-standalone-preset.js
+[2025-06-05T12:28:01.020Z] [32minfo[39m: ➡️ GET /api-docs/swagger-ui-init.js
+[2025-06-05T12:28:01.317Z] [32minfo[39m: ➡️ GET /api-docs/favicon-32x32.png
+[2025-06-05T12:28:01.325Z] [33mwarn[39m: 🚫 Rate limit exceeded: ::1
+[2025-06-05T12:28:01.418Z] [32minfo[39m: ➡️ GET /api-docs/favicon-16x16.png
+[2025-06-05T12:28:01.425Z] [33mwarn[39m: 🚫 Rate limit exceeded: ::1
+[2025-06-09T10:44:55.515Z] [32minfo[39m: Server is running on port 3000
+[2025-06-09T10:45:03.867Z] [32minfo[39m: ✅ Connected to Redis
+[2025-06-09T10:45:14.247Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-09T10:45:18.999Z] [32minfo[39m: ➡️ GET /api/user
+[2025-06-09T10:45:20.986Z] [33mwarn[39m: Access denied. No token provided.
+[2025-06-09T10:47:42.666Z] [32minfo[39m: ➡️ POST /api/auth/register
+[2025-06-09T10:47:43.318Z] [32minfo[39m: Registration initiated...
+[2025-06-09T10:47:44.289Z] [33mwarn[39m: User already exists:
+[2025-06-09T10:48:18.624Z] [32minfo[39m: ➡️ POST /api/auth/login
+[2025-06-09T10:48:18.626Z] [32minfo[39m: 📦 Body: {"email":"elijahfx43@gmail.com","password":"123456789Pe*"}
+[2025-06-09T10:48:18.632Z] [32minfo[39m: Login endpoint hit...
+[2025-06-09T10:49:17.512Z] [32minfo[39m: ➡️ GET /api/user
+[2025-06-09T10:49:17.522Z] [33mwarn[39m: Unauthorized admin-only access attempt by user: Unknown
+[2025-06-09T10:50:31.698Z] [32minfo[39m: ➡️ POST /api/auth/register
+[2025-06-09T10:50:31.711Z] [32minfo[39m: Registration initiated...
+[2025-06-09T10:50:32.636Z] [32minfo[39m: User saved successfully: 6846bc774e750b8f5f4aa70b
+[2025-06-09T10:50:35.574Z] [32minfo[39m: Email sent: 250 2.0.0 OK  1749466234 5b1f17b1804b1-452730d1686sm103979525e9.36 - gsmtp
+[2025-06-09T10:51:18.415Z] [32minfo[39m: ➡️ POST /api/auth/login
+[2025-06-09T10:51:18.416Z] [32minfo[39m: 📦 Body: {"email":"blessing@gmail.com","password":"1234567890"}
+[2025-06-09T10:51:18.420Z] [32minfo[39m: Login endpoint hit...
+[2025-06-09T10:52:54.791Z] [32minfo[39m: ➡️ GET /api/user
+[2025-06-09T10:52:54.799Z] [33mwarn[39m: Unauthorized admin-only access attempt by user: Unknown
+[2025-06-09T10:53:53.458Z] [32minfo[39m: ➡️ GET /api/user
+[2025-06-09T10:53:53.464Z] [33mwarn[39m: Unauthorized admin-only access attempt by user: Unknown
+[2025-06-09T10:54:00.968Z] [32minfo[39m: ➡️ POST /api/auth/login
+[2025-06-09T10:54:00.969Z] [32minfo[39m: 📦 Body: {"email":"blessing@gmail.com","password":"1234567890"}
+[2025-06-09T10:54:00.985Z] [32minfo[39m: Login endpoint hit...
+[2025-06-09T10:54:07.852Z] [32minfo[39m: ➡️ POST /api/auth/login
+[2025-06-09T10:54:07.853Z] [32minfo[39m: 📦 Body: {"email":"blessing@gmail.com","password":"1234567890"}
+[2025-06-09T10:54:07.858Z] [32minfo[39m: Login endpoint hit...
+[2025-06-09T10:54:40.495Z] [32minfo[39m: ➡️ GET /api/user
+[2025-06-09T10:54:40.504Z] [33mwarn[39m: Unauthorized admin-only access attempt by user: Unknown
+[2025-06-09T11:00:35.312Z] [32minfo[39m: Server is running on port 3000
+[2025-06-09T11:00:35.418Z] [32minfo[39m: ✅ Connected to Redis
+[2025-06-09T11:00:48.728Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-09T11:00:55.487Z] [32minfo[39m: ➡️ POST /api/auth/login
+[2025-06-09T11:00:55.489Z] [32minfo[39m: 📦 Body: {"email":"blessing@gmail.com","password":"1234567890"}
+[2025-06-09T11:00:55.507Z] [32minfo[39m: Login endpoint hit...
+[2025-06-09T11:01:21.359Z] [32minfo[39m: ➡️ GET /api/user
+[2025-06-09T11:01:21.373Z] [32minfo[39m: GET /users - Fetching all users...
+[2025-06-09T11:40:47.472Z] [32minfo[39m: ➡️ POST /api/auth/register
+[2025-06-09T11:40:56.809Z] [32minfo[39m: Registration initiated...
+[2025-06-09T11:41:04.120Z] [32minfo[39m: User saved successfully: 6846c84db6b083f779ce9c48
+[2025-06-09T11:41:10.019Z] [32minfo[39m: Email sent: 250 2.0.0 OK  1749469269 3f1490d57ef6-e81a4177076sm2234878276.38 - gsmtp
+[2025-06-09T11:42:13.466Z] [32minfo[39m: ➡️ POST /api/auth/verify-account
+[2025-06-09T11:42:13.481Z] [32minfo[39m: 📦 Body: {"email":"etienodouglas@gmail.com","token":"852966"}
+[2025-06-09T11:42:14.338Z] [32minfo[39m: User verified successfully: 6846c84db6b083f779ce9c48
+[2025-06-09T11:42:44.649Z] [32minfo[39m: ➡️ POST /api/auth/login
+[2025-06-09T11:42:44.672Z] [32minfo[39m: 📦 Body: {"email":"blessing@gmail.com","password":"1234567890"}
+[2025-06-09T11:42:44.730Z] [32minfo[39m: Login endpoint hit...
+[2025-06-09T11:43:11.657Z] [32minfo[39m: ➡️ GET /api/user
+[2025-06-09T11:43:11.739Z] [32minfo[39m: GET /users - Fetching all users...
+[2025-06-09T14:09:34.183Z] [32minfo[39m: Server is running on port 3000
+[2025-06-09T14:09:35.089Z] [32minfo[39m: ✅ Connected to Redis
+[2025-06-09T14:09:46.528Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-09T14:15:12.721Z] [32minfo[39m: ➡️ POST /api/auth/username
+[2025-06-09T14:15:12.845Z] [32minfo[39m: 📦 Body: {"username":"James10"}
+[2025-06-09T14:15:21.209Z] [32minfo[39m: checking if user exists initiated...
+[2025-06-09T14:15:23.672Z] [31merror[39m: User validation failed: password: Path `password` is required., email: Path `email` is required., lastName: Path `lastName` is required., firstName: Path `firstName` is required.
+[2025-06-09T14:39:28.961Z] [32minfo[39m: Server is running on port 3000
+[2025-06-09T14:39:29.065Z] [32minfo[39m: ✅ Connected to Redis
+[2025-06-09T14:39:33.026Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-01.miqou6z.mongodb.net
+[2025-06-09T14:40:39.803Z] [32minfo[39m: ➡️ POST /api/auth/username
+[2025-06-09T14:40:39.807Z] [32minfo[39m: 📦 Body: {"username":"James10"}
+[2025-06-09T14:40:39.980Z] [32minfo[39m: checking if user exists initiated...
+[2025-06-09T14:58:02.976Z] [32minfo[39m: Server is running on port 3000
+[2025-06-09T14:58:03.038Z] [32minfo[39m: ✅ Connected to Redis
+[2025-06-09T14:58:06.126Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-09T15:03:28.337Z] [32minfo[39m: Server is running on port 3000
+[2025-06-09T15:03:28.403Z] [32minfo[39m: ✅ Connected to Redis
+[2025-06-09T15:03:31.298Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-09T15:03:38.928Z] [32minfo[39m: ➡️ POST /api/auth/reset-token
+[2025-06-09T15:03:38.930Z] [32minfo[39m: 📦 Body: {"email":"elijahfx43@gmail.com"}
+[2025-06-09T15:03:39.654Z] [31merror[39m: User validation failed: lastName: Path `lastName` is required., firstName: Path `firstName` is required.
+[2025-06-09T15:05:40.395Z] [32minfo[39m: Server is running on port 3000
+[2025-06-09T15:05:40.439Z] [32minfo[39m: ✅ Connected to Redis
+[2025-06-09T15:05:42.881Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-01.miqou6z.mongodb.net
+[2025-06-09T15:05:46.130Z] [32minfo[39m: ➡️ POST /api/auth/reset-token
+[2025-06-09T15:05:46.131Z] [32minfo[39m: 📦 Body: {"email":"elijahfx43@gmail.com"}
+[2025-06-09T15:05:46.155Z] [32minfo[39m: reset token initiated...
+[2025-06-09T15:05:46.993Z] [31merror[39m: User validation failed: lastName: Path `lastName` is required., firstName: Path `firstName` is required.
+[2025-06-09T15:07:01.514Z] [32minfo[39m: Server is running on port 3000
+[2025-06-09T15:07:01.580Z] [32minfo[39m: ✅ Connected to Redis
+[2025-06-09T15:07:06.661Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-09T15:07:12.149Z] [32minfo[39m: ➡️ POST /api/auth/reset-token
+[2025-06-09T15:07:12.158Z] [32minfo[39m: 📦 Body: {"email":"elijahfx43@gmail.com"}
+[2025-06-09T15:07:12.215Z] [32minfo[39m: reset token initiated...
+[2025-06-09T15:07:12.781Z] [31merror[39m: User validation failed: lastName: Path `lastName` is required., firstName: Path `firstName` is required.
