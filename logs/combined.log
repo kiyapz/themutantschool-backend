@@ -647,3 +647,147 @@
 [2025-06-09T15:07:12.158Z] [32minfo[39m: 📦 Body: {"email":"elijahfx43@gmail.com"}
 [2025-06-09T15:07:12.215Z] [32minfo[39m: reset token initiated...
 [2025-06-09T15:07:12.781Z] [31merror[39m: User validation failed: lastName: Path `lastName` is required., firstName: Path `firstName` is required.
+[2025-06-09T15:09:25.930Z] [32minfo[39m: Server is running on port 3000
+[2025-06-09T15:09:25.973Z] [32minfo[39m: ✅ Connected to Redis
+[2025-06-09T15:09:32.126Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-09T15:09:37.955Z] [32minfo[39m: ➡️ POST /api/auth/reset-token
+[2025-06-09T15:09:37.957Z] [32minfo[39m: 📦 Body: {"email":"elijahfx43@gmail.com"}
+[2025-06-09T15:09:37.976Z] [32minfo[39m: reset token initiated...
+[2025-06-09T15:09:39.013Z] [31merror[39m: User validation failed: lastName: Path `lastName` is required., firstName: Path `firstName` is required.
+[2025-06-09T15:10:35.309Z] [32minfo[39m: Server is running on port 3000
+[2025-06-09T15:10:35.336Z] [32minfo[39m: ✅ Connected to Redis
+[2025-06-09T15:10:38.898Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-09T15:10:48.382Z] [32minfo[39m: ➡️ POST /api/auth/login
+[2025-06-09T15:10:48.384Z] [32minfo[39m: 📦 Body: {"email":"blessing@gmail.com","password":"1234567890"}
+[2025-06-09T15:10:48.417Z] [32minfo[39m: Login endpoint hit...
+[2025-06-09T15:11:02.310Z] [32minfo[39m: ➡️ POST /api/auth/reset-token
+[2025-06-09T15:11:02.322Z] [32minfo[39m: 📦 Body: {"email":"elijahfx43@gmail.com"}
+[2025-06-09T15:11:02.442Z] [32minfo[39m: reset token initiated...
+[2025-06-09T15:11:02.647Z] [31merror[39m: User validation failed: lastName: Path `lastName` is required., firstName: Path `firstName` is required.
+[2025-06-09T15:15:09.536Z] [32minfo[39m: Server is running on port 3000
+[2025-06-09T15:15:09.583Z] [32minfo[39m: ✅ Connected to Redis
+[2025-06-09T15:15:12.529Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-02.miqou6z.mongodb.net
+[2025-06-09T15:28:37.269Z] [32minfo[39m: Server is running on port 3000
+[2025-06-09T15:28:37.343Z] [32minfo[39m: ✅ Connected to Redis
+[2025-06-09T15:28:40.567Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-09T15:35:03.751Z] [32minfo[39m: ➡️ POST /api/auth/register
+[2025-06-09T15:35:04.256Z] [32minfo[39m: Registration initiated...
+[2025-06-09T15:35:05.693Z] [32minfo[39m: User saved successfully: 6846ff28890cc5033b0dd860
+[2025-06-09T15:35:10.324Z] [32minfo[39m: Email sent: 250 2.0.0 OK  1749483310 ffacd0b85a97d-3a53229e0dcsm10100625f8f.15 - gsmtp
+[2025-06-09T15:36:52.428Z] [32minfo[39m: ➡️ POST /api/auth/verify-account
+[2025-06-09T15:36:52.430Z] [32minfo[39m: 📦 Body: {"email":"elijahdev20@gmail.com","token":"598631"}
+[2025-06-09T15:36:53.105Z] [32minfo[39m: User verified successfully: 6846ff28890cc5033b0dd860
+[2025-06-09T15:37:15.471Z] [32minfo[39m: ➡️ POST /api/auth/login
+[2025-06-09T15:37:15.472Z] [32minfo[39m: 📦 Body: {"email":"elijahdev20@gmail.com","password":"1234567890"}
+[2025-06-09T15:37:15.498Z] [32minfo[39m: Login endpoint hit...
+[2025-06-09T15:37:48.972Z] [32minfo[39m: ➡️ GET /api/user
+[2025-06-09T15:37:48.979Z] [33mwarn[39m: Token verification failed: jwt malformed
+[2025-06-09T15:38:22.108Z] [32minfo[39m: ➡️ GET /api/user
+[2025-06-09T15:38:22.114Z] [33mwarn[39m: Token verification failed: jwt malformed
+[2025-06-09T15:41:58.752Z] [32minfo[39m: Server is running on port 3000
+[2025-06-09T15:41:58.815Z] [32minfo[39m: ✅ Connected to Redis
+[2025-06-09T15:42:06.506Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-01.miqou6z.mongodb.net
+[2025-06-09T15:42:15.498Z] [32minfo[39m: ➡️ POST /api/auth/login
+[2025-06-09T15:42:15.500Z] [32minfo[39m: 📦 Body: {"email":"elijahdev20@gmail.com","password":"1234567890"}
+[2025-06-09T15:42:15.516Z] [32minfo[39m: Login endpoint hit...
+[2025-06-09T15:42:44.436Z] [32minfo[39m: ➡️ GET /api/user
+[2025-06-09T15:42:44.468Z] [31merror[39m: Cannot access 'token' before initialization
+[2025-06-09T15:44:55.101Z] [32minfo[39m: Server is running on port 3000
+[2025-06-09T15:44:55.247Z] [32minfo[39m: ✅ Connected to Redis
+[2025-06-09T15:44:57.985Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-09T15:45:08.279Z] [32minfo[39m: ➡️ GET /api/user
+[2025-06-09T15:45:08.302Z] [32minfo[39m: Token received for verification: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODQ2ZmYyODg5MGNjNTAzM2IwZGQ4NjAiLCJ1c2VybmFtZSI6IkVsaTEwIiwiZW1haWwiOiJlbGlqYWhkZXYyMEBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NDk0ODM3MzYsImV4cCI6MTc0OTQ4NDAzNn0.HGS3p6FiAtj3Z4XrruM3dJRYsAQheHu8SI-pLTn23KI
+[2025-06-09T15:45:08.326Z] [32minfo[39m: GET /users - Fetching all users...
+[2025-06-09T15:45:39.318Z] [32minfo[39m: ➡️ POST /api/auth/reset-token
+[2025-06-09T15:45:39.321Z] [32minfo[39m: 📦 Body: {"email":"elijahfx43@gmail.com"}
+[2025-06-09T15:45:39.330Z] [32minfo[39m: Password reset OTP requested...
+[2025-06-09T15:45:39.801Z] [31merror[39m: User validation failed: lastName: Path `lastName` is required., firstName: Path `firstName` is required.
+[2025-06-09T15:47:49.826Z] [32minfo[39m: ➡️ POST /api/auth/reset-token
+[2025-06-09T15:47:49.827Z] [32minfo[39m: 📦 Body: {"email":"elijahfx43@gmail.com"}
+[2025-06-09T15:47:49.832Z] [32minfo[39m: Password reset OTP requested...
+[2025-06-09T15:47:50.474Z] [31merror[39m: User validation failed: lastName: Path `lastName` is required., firstName: Path `firstName` is required.
+[2025-06-09T15:50:49.423Z] [32minfo[39m: ➡️ POST /api/auth/reset-token
+[2025-06-09T15:50:49.424Z] [32minfo[39m: 📦 Body: {"email":"elijahdev20@gmail.com"}
+[2025-06-09T15:50:49.428Z] [32minfo[39m: Password reset OTP requested...
+[2025-06-09T15:51:47.411Z] [32minfo[39m: ➡️ POST /api/auth/reset-token
+[2025-06-09T15:51:47.412Z] [32minfo[39m: 📦 Body: {"email":"elijahfx43@gmail.com"}
+[2025-06-09T15:51:47.416Z] [32minfo[39m: Password reset OTP requested...
+[2025-06-09T15:51:47.589Z] [31merror[39m: User validation failed: lastName: Path `lastName` is required., firstName: Path `firstName` is required.
+[2025-06-09T15:52:36.297Z] [32minfo[39m: Server is running on port 3000
+[2025-06-09T15:52:36.355Z] [32minfo[39m: ✅ Connected to Redis
+[2025-06-09T15:52:39.248Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-09T15:52:53.605Z] [32minfo[39m: ➡️ POST /api/auth/reset-token
+[2025-06-09T15:52:53.608Z] [32minfo[39m: 📦 Body: {"email":"elijahfx43@gmail.com"}
+[2025-06-09T15:52:53.650Z] [32minfo[39m: Password reset OTP requested...
+[2025-06-09T15:52:53.886Z] [31merror[39m: User validation failed: lastName: Path `lastName` is required., firstName: Path `firstName` is required.
+[2025-06-09T15:53:50.543Z] [32minfo[39m: Server is running on port 3000
+[2025-06-09T15:53:50.579Z] [32minfo[39m: ✅ Connected to Redis
+[2025-06-09T15:53:54.105Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-02.miqou6z.mongodb.net
+[2025-06-09T15:54:37.652Z] [32minfo[39m: ➡️ POST /api/auth/reset-token
+[2025-06-09T15:54:37.654Z] [32minfo[39m: 📦 Body: {"email":"elijahdev20@gmail.com"}
+[2025-06-09T15:54:37.738Z] [32minfo[39m: Password reset OTP requested...
+[2025-06-09T15:57:37.807Z] [32minfo[39m: Server is running on port 3000
+[2025-06-09T15:57:37.904Z] [32minfo[39m: ✅ Connected to Redis
+[2025-06-09T15:57:40.098Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-09T15:59:19.960Z] [31merror[39m: Expected ':' after property name in JSON at position 88 (line 5 column 1)
+[2025-06-09T15:59:57.093Z] [32minfo[39m: ➡️ PUT /api/auth/reset-password
+[2025-06-09T15:59:57.095Z] [32minfo[39m: 📦 Body: {"newPassword":"123456789Pe*","otp":"865061","email":"elijahdev20@gmail.com"}
+[2025-06-09T15:59:57.111Z] [32minfo[39m: Password reset with OTP initiated...
+[2025-06-09T16:00:20.811Z] [32minfo[39m: ➡️ POST /api/auth/reset-token
+[2025-06-09T16:00:20.814Z] [32minfo[39m: 📦 Body: {"email":"elijahdev20@gmail.com"}
+[2025-06-09T16:00:20.902Z] [32minfo[39m: Password reset OTP requested...
+[2025-06-09T16:01:31.608Z] [32minfo[39m: ➡️ PUT /api/auth/reset-password
+[2025-06-09T16:01:31.610Z] [32minfo[39m: 📦 Body: {"newPassword":"123456789Pe*","otp":"781397","email":"elijahdev20@gmail.com"}
+[2025-06-09T16:01:31.615Z] [32minfo[39m: Password reset with OTP initiated...
+[2025-06-09T16:05:26.981Z] [32minfo[39m: Server is running on port 3000
+[2025-06-09T16:05:27.041Z] [32minfo[39m: ✅ Connected to Redis
+[2025-06-09T16:05:29.962Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-09T16:05:41.059Z] [32minfo[39m: ➡️ POST /api/auth/reset-token
+[2025-06-09T16:05:41.061Z] [32minfo[39m: 📦 Body: {"email":"elijahdev20@gmail.com"}
+[2025-06-09T16:05:41.118Z] [32minfo[39m: Password reset OTP requested...
+[2025-06-09T16:06:46.141Z] [31merror[39m: queryA ETIMEOUT smtp.gmail.com
+[2025-06-09T16:08:05.729Z] [32minfo[39m: Server is running on port 3000
+[2025-06-09T16:08:05.777Z] [32minfo[39m: ✅ Connected to Redis
+[2025-06-09T16:08:12.055Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-01.miqou6z.mongodb.net
+[2025-06-09T16:08:55.830Z] [32minfo[39m: ➡️ POST /api/auth/reset-token
+[2025-06-09T16:08:55.831Z] [32minfo[39m: 📦 Body: {"email":"elijahdev20@gmail.com"}
+[2025-06-09T16:08:55.848Z] [32minfo[39m: Password reset OTP requested...
+[2025-06-09T16:10:46.934Z] [32minfo[39m: ➡️ PUT /api/auth/reset-password
+[2025-06-09T16:10:46.937Z] [32minfo[39m: 📦 Body: {"newPassword":"123456789Pe*","otp":"918059","email":"elijahdev20@gmail.com"}
+[2025-06-09T16:10:46.943Z] [32minfo[39m: Password reset with OTP initiated...
+[2025-06-09T16:10:46.955Z] [32minfo[39m: Reset attempt for email: elijahdev20@gmail.com with OTP: 918059
+[2025-06-09T16:10:47.209Z] [32minfo[39m: User found, OTP expires at: Mon Jun 09 2025 18:08:56 GMT+0100 (West Africa Standard Time)
+[2025-06-09T16:33:25.106Z] [32minfo[39m: Server is running on port 3000
+[2025-06-09T16:33:25.242Z] [32minfo[39m: ✅ Connected to Redis
+[2025-06-09T16:33:31.741Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-09T16:33:39.588Z] [32minfo[39m: ➡️ POST /api/auth/register-username
+[2025-06-09T16:33:39.591Z] [32minfo[39m: 📦 Body: {"username":"James10"}
+[2025-06-09T16:33:40.567Z] [32minfo[39m: username initiated...
+[2025-06-09T16:34:06.265Z] [32minfo[39m: ➡️ POST /api/auth/register-username
+[2025-06-09T16:34:06.268Z] [32minfo[39m: 📦 Body: {"username":"Gideon10"}
+[2025-06-09T16:34:06.298Z] [32minfo[39m: username initiated...
+[2025-06-09T16:35:11.331Z] [32minfo[39m: ➡️ POST /api/auth/register
+[2025-06-09T16:35:11.364Z] [32minfo[39m: Registration initiated...
+[2025-06-09T16:40:10.876Z] [32minfo[39m: Server is running on port 3000
+[2025-06-09T16:40:11.011Z] [32minfo[39m: ✅ Connected to Redis
+[2025-06-09T16:40:13.492Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-01.miqou6z.mongodb.net
+[2025-06-09T16:41:45.736Z] [32minfo[39m: Server is running on port 3000
+[2025-06-09T16:41:45.776Z] [32minfo[39m: ✅ Connected to Redis
+[2025-06-09T16:41:50.011Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-09T16:42:17.314Z] [32minfo[39m: ➡️ POST /api/auth/register
+[2025-06-09T16:42:17.378Z] [32minfo[39m: User registration initiated
+[2025-06-09T16:42:44.238Z] [32minfo[39m: ➡️ POST /api/auth/register-username
+[2025-06-09T16:42:44.240Z] [32minfo[39m: 📦 Body: {"username":"Gideon10"}
+[2025-06-09T16:42:44.245Z] [32minfo[39m: Username registration initiated
+[2025-06-09T16:42:53.005Z] [32minfo[39m: ➡️ POST /api/auth/register-username
+[2025-06-09T16:42:53.007Z] [32minfo[39m: 📦 Body: {"username":"Gideon1"}
+[2025-06-09T16:42:53.014Z] [32minfo[39m: Username registration initiated
+[2025-06-09T16:43:13.865Z] [32minfo[39m: ➡️ POST /api/auth/register
+[2025-06-09T16:43:13.876Z] [32minfo[39m: User registration initiated
+[2025-06-09T16:47:51.666Z] [32minfo[39m: Server is running on port 3000
+[2025-06-09T16:47:51.829Z] [32minfo[39m: ✅ Connected to Redis
+[2025-06-09T16:47:56.190Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-09T16:48:11.548Z] [32minfo[39m: ➡️ POST /api/auth/register
+[2025-06-09T16:48:11.609Z] [32minfo[39m: Registration initiated...
+[2025-06-09T16:48:13.231Z] [32minfo[39m: User saved successfully: 6847104cc22cfc676a159460
+[2025-06-09T16:48:18.167Z] [32minfo[39m: Email sent: 250 2.0.0 OK  1749487698 3f1490d57ef6-e81a419f907sm2374342276.50 - gsmtp

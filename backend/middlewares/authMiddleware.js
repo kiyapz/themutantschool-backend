@@ -1,7 +1,6 @@
 import jwt from "jsonwebtoken";
 import { logger } from "../utils/logger.js";
 import { asyncErrorHandler } from "./asyncHandler.js";
-
 export const authMiddleware = asyncErrorHandler(async (req, res, next) => {
   const authHeader = req.headers["authorization"];
 
@@ -14,6 +13,7 @@ export const authMiddleware = asyncErrorHandler(async (req, res, next) => {
   }
 
   const token = authHeader.split(" ")[1];
+  logger.info(`Token received for verification: ${token}`);
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);

@@ -37,3 +37,12 @@
 [2025-06-09T15:03:39.654Z] [31merror[39m: User validation failed: lastName: Path `lastName` is required., firstName: Path `firstName` is required.
 [2025-06-09T15:05:46.993Z] [31merror[39m: User validation failed: lastName: Path `lastName` is required., firstName: Path `firstName` is required.
 [2025-06-09T15:07:12.781Z] [31merror[39m: User validation failed: lastName: Path `lastName` is required., firstName: Path `firstName` is required.
+[2025-06-09T15:09:39.013Z] [31merror[39m: User validation failed: lastName: Path `lastName` is required., firstName: Path `firstName` is required.
+[2025-06-09T15:11:02.647Z] [31merror[39m: User validation failed: lastName: Path `lastName` is required., firstName: Path `firstName` is required.
+[2025-06-09T15:42:44.468Z] [31merror[39m: Cannot access 'token' before initialization
+[2025-06-09T15:45:39.801Z] [31merror[39m: User validation failed: lastName: Path `lastName` is required., firstName: Path `firstName` is required.
+[2025-06-09T15:47:50.474Z] [31merror[39m: User validation failed: lastName: Path `lastName` is required., firstName: Path `firstName` is required.
+[2025-06-09T15:51:47.589Z] [31merror[39m: User validation failed: lastName: Path `lastName` is required., firstName: Path `firstName` is required.
+[2025-06-09T15:52:53.886Z] [31merror[39m: User validation failed: lastName: Path `lastName` is required., firstName: Path `firstName` is required.
+[2025-06-09T15:59:19.960Z] [31merror[39m: Expected ':' after property name in JSON at position 88 (line 5 column 1)
+[2025-06-09T16:06:46.141Z] [31merror[39m: queryA ETIMEOUT smtp.gmail.com
