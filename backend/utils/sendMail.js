@@ -29,7 +29,7 @@ export const sendVerificationEmail = async (email, verificationToken) => {
 };
 
 //reset password
-export const sendResetEmail = async (email, resetLink) => {
+export const sendResetEmail = async (email, otp) => {
   try {
     const transporter = nodemailer.createTransport({
       service: "gmail",
@@ -43,7 +43,7 @@ export const sendResetEmail = async (email, resetLink) => {
       from: process.env.EMAIL_USER,
       to: email,
       subject: "Reset Your Password",
-      html: resetPasswordHtml(resetLink),
+      html: resetPasswordHtml(otp),
     };
 
     const info = await transporter.sendMail(mailOptions);

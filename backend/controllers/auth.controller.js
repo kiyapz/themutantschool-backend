@@ -2,25 +2,58 @@ import { uploadsToCloudinary } from "../config/cloudinary.js";
 import { asyncErrorHandler } from "../middlewares/asyncHandler.js";
 import { RefreshToken } from "../models/refreshToken.model.js";
 import { User } from "../models/user.model.js";
+import { UserName } from "../models/userName.model.js";
 import { generateTokens } from "../utils/generateTokens.js";
 import { logger } from "../utils/logger.js";
 import { sendResetEmail, sendVerificationEmail } from "../utils/sendMail.js";
 import { validateLogin, validationRegistration } from "../utils/validation.js";
 import validator from "validator";
 
-// Create a new user
+// Helper to generate 6-digit OTP token
+const generateOTP = () =>
+  Math.floor(100000 + Math.random() * 900000).toString();
+
+// Helper for token expiry time (1 hour from now)
+const tokenExpiry = () => Date.now() + 60 * 60 * 1000;
+
+// Centralized error response for validation errors
+const handleValidationError = (res, error) =>
+  res.status(400).json({ success: false, message: error.details[0].message });
+
+// Centralized generic response for password reset request
+const genericPasswordResetResponse = (res) =>
+  res
+    .status(200)
+    .json({ message: "If the email exists, an OTP has been sent." });
+
+//--------username registration-----------------
+export const userName = asyncErrorHandler(async (req, res) => {
+  logger.info("username initiated...");
+  const { username } = req.body;
+
+  const userExist = await UserName.findOne({ username });
+  if (userExist) {
+    return res
+      .status(400)
+      .json({ success: false, message: "User already exists" });
+  }
+
+  const newUsername = new UserName({ username });
+  await newUsername.save();
+
+  return res.status(201).json({
+    success: true,
+    message: "User name created successfully",
+    newUsername,
+    userNameId: newUsername._id,
+  });
+});
+
 export const signUpUser = asyncErrorHandler(async (req, res) => {
   logger.info("Registration initiated...");
 
-  // Validate input schema
-  // const { error } = validationRegistration(req.body);
-  // if (error) {
-  //   logger.warn("Validation error:", error.details[0].message);
-  //   return res.status(400).json({
-  //     success: false,
-  //     message: error.details[0].message,
-  //   });
-  // }
+  const { error } = validationRegistration(req.body);
+  if (error) return handleValidationError(res, error);
 
   const {
     email,
@@ -31,25 +64,27 @@ export const signUpUser = asyncErrorHandler(async (req, res) => {
     role = "student",
   } = req.body;
 
-  // Check if user already exists
-  const existingUser = await User.findOne({ $or: [{ email }, { username }] });
-  if (existingUser) {
+  if (await User.exists({ $or: [{ email }, { username }] })) {
     logger.warn("User already exists:", email || username);
-    return res.status(400).json({
+    return res
+      .status(400)
+      .json({ success: false, message: "User already exists" });
+  }
+
+  // Get username document
+  const usernameExist = await UserName.findOne({ username });
+  if (!usernameExist) {
+    return res.status(404).json({
       success: false,
-      message: "User already exists",
+      message: "User name not found",
     });
   }
 
-  // Upload file to Cloudinary
-  let url = "";
-  let publicId = "";
-
+  let avatar = { url: "", publicId: "" };
   if (req.file) {
     try {
       const result = await uploadsToCloudinary(req.file.path);
-      url = result.secure_url;
-      publicId = result.public_id;
+      avatar = { url: result.secure_url, publicId: result.public_id };
     } catch (err) {
       logger.error("Cloudinary upload error:", err.message);
       return res.status(500).json({
@@ -59,32 +94,26 @@ export const signUpUser = asyncErrorHandler(async (req, res) => {
     }
   }
 
-  // Generate verification token
-  const verificationToken = Math.floor(
-    100000 + Math.random() * 900000
-  ).toString();
-  const verificationExpires = Date.now() + 1 * 60 * 60 * 1000; // 1 hour
+  const verificationToken = generateOTP();
+  const verificationTokenExpiresAt = tokenExpiry();
 
-  // Create and save new user
   const user = new User({
     email,
     firstName,
     lastName,
-    username,
+    username: usernameExist._id,
     password,
-    avatar: { url, publicId },
+    avatar,
     verificationToken,
-    verificationTokenExpiresAt: verificationExpires,
+    verificationTokenExpiresAt,
     role,
   });
 
   await user.save();
   logger.info(`User saved successfully: ${user._id}`);
 
-  // Send verification email
   await sendVerificationEmail(email, verificationToken);
 
-  // Generate tokens
   const { accessToken, refreshToken } = await generateTokens(user);
 
   return res.status(201).json({
@@ -92,50 +121,42 @@ export const signUpUser = asyncErrorHandler(async (req, res) => {
     message: "User registered successfully",
     accessToken,
     refreshToken,
-    data: user,
+    data: user, // consider sanitizing here before sending
   });
 });
 
-// Verify user account
+// -------- Verify Account --------
 export const verifyAccount = asyncErrorHandler(async (req, res) => {
-  if (!req.body) {
-    return res.status(400).json({
-      success: false,
-      message: "Request body is missing",
-    });
+  const { email, token } = req.body || {};
+  if (!email || !token) {
+    return res
+      .status(400)
+      .json({ success: false, message: "Email and token are required" });
   }
-  const { email, token } = req.body;
 
-  // Find the user
   const user = await User.findOne({ email });
   if (!user) {
     logger.warn("Verification failed: User not found");
-    return res.status(404).json({
-      success: false,
-      message: "User not found",
-    });
+    return res.status(404).json({ success: false, message: "User not found" });
   }
 
-  // Check if already verified
   if (user.isVerified) {
     logger.info("User already verified");
-    return res.status(400).json({
-      success: false,
-      message: "Account already verified",
-    });
+    return res
+      .status(400)
+      .json({ success: false, message: "Account already verified" });
   }
 
-  // Check if token is valid and not expired
-  const tokenExpired = user.verificationTokenExpiresAt < Date.now();
-  if (user.verificationToken !== token || tokenExpired) {
+  if (
+    user.verificationToken !== token ||
+    user.verificationTokenExpiresAt < Date.now()
+  ) {
     logger.warn("Invalid or expired verification token");
-    return res.status(400).json({
-      success: false,
-      message: "Invalid or expired token",
-    });
+    return res
+      .status(400)
+      .json({ success: false, message: "Invalid or expired token" });
   }
 
-  // Mark as verified
   user.isVerified = true;
   user.verificationToken = "";
   user.verificationTokenExpiresAt = null;
@@ -143,37 +164,29 @@ export const verifyAccount = asyncErrorHandler(async (req, res) => {
 
   logger.info(`User verified successfully: ${user._id}`);
 
-  return res.status(200).json({
-    success: true,
-    message: "Account verified successfully",
-  });
+  return res
+    .status(200)
+    .json({ success: true, message: "Account verified successfully" });
 });
 
-// Login User
+// -------- Login User --------
 export const loginUser = asyncErrorHandler(async (req, res) => {
   logger.info("Login endpoint hit...");
+
   const { error } = validateLogin(req.body);
-  if (error) {
-    logger.warn("Validation error:", error.details[0].message);
-    return res.status(400).json({
-      success: false,
-      message: error.details[0].message,
-    });
-  }
+  if (error) return handleValidationError(res, error);
 
   const { email, password } = req.body;
   const user = await User.findOne({ email });
-  if (!user) {
+  if (!user)
     return res.status(404).json({ success: false, message: "User not found" });
-  }
 
-  const isPassword = await user.comparePassword(password);
-  if (!isPassword) {
+  const isPasswordValid = await user.comparePassword(password);
+  if (!isPasswordValid) {
     logger.warn("Invalid credentials");
-    return res.status(400).json({
-      success: false,
-      message: "Invalid credentials",
-    });
+    return res
+      .status(400)
+      .json({ success: false, message: "Invalid credentials" });
   }
 
   const { accessToken, refreshToken } = await generateTokens(user);
@@ -186,118 +199,110 @@ export const loginUser = asyncErrorHandler(async (req, res) => {
     userId: user._id,
   });
 });
-// Refresh Token
+
+// -------- Refresh Token --------
 export const userRefreshToken = asyncErrorHandler(async (req, res) => {
   logger.info("Refresh token endpoint hit...");
-  const { refreshToken } = req.body;
 
+  const { refreshToken } = req.body;
   if (!refreshToken) {
     logger.warn("Refresh token is missing");
-    return res.status(400).json({
-      success: false,
-      message: "Refresh token is missing",
-    });
+    return res
+      .status(400)
+      .json({ success: false, message: "Refresh token is missing" });
   }
 
   const storedToken = await RefreshToken.findOne({ token: refreshToken });
-
   if (!storedToken || storedToken.expiredAt < new Date()) {
     logger.warn("Invalid or expired token");
-    return res.status(401).json({
-      success: false,
-      message: "Invalid or expired token",
-    });
+    return res
+      .status(401)
+      .json({ success: false, message: "Invalid or expired token" });
   }
 
   const user = await User.findById(storedToken.user);
   if (!user) {
     logger.warn("User not found for refresh token");
-    return res.status(404).json({
-      success: false,
-      message: "User not found",
-    });
+    return res.status(404).json({ success: false, message: "User not found" });
   }
 
-  const { accessToken: newAccess, refreshToken: newRefreshToken } =
-    await generateTokens(user);
+  const { accessToken, refreshToken: newRefreshToken } = await generateTokens(
+    user
+  );
 
-  // Delete the old token
   await RefreshToken.deleteOne({ _id: storedToken._id });
 
-  return res.status(200).json({
-    accessToken: newAccess,
-    refreshToken: newRefreshToken,
-  });
+  return res.status(200).json({ accessToken, refreshToken: newRefreshToken });
 });
-// Logout User
+
+// -------- Logout User --------
 export const logOut = asyncErrorHandler(async (req, res) => {
   logger.info("Logout endpoint hit...");
-  const { refreshToken } = req.body;
 
+  const { refreshToken } = req.body;
   if (!refreshToken) {
     logger.warn("Refresh token is missing");
-    return res.status(400).json({
-      success: false,
-      message: "Refresh token is missing",
-    });
+    return res
+      .status(400)
+      .json({ success: false, message: "Refresh token is missing" });
   }
 
-  // 💡 FIX: Use the RefreshToken model here
   await RefreshToken.deleteOne({ token: refreshToken });
 
   logger.info("Refresh token deleted successfully");
 
-  return res.status(200).json({
-    success: true,
-    message: "User logged out successfully",
-  });
+  return res
+    .status(200)
+    .json({ success: true, message: "User logged out successfully" });
 });
 
-//request password token
+// -------- Request Password Reset OTP --------
+export const requestPasswordResetOTP = asyncErrorHandler(async (req, res) => {
+  logger.info("Password reset OTP requested...");
 
-export const resetPasswordToken = asyncErrorHandler(async (req, res) => {
-  logger.info("reset token initiated...");
   const { email } = req.body;
-
   const user = await User.findOne({ email });
 
-  if (!user) {
-    return res.status(400).json({ message: "User does not exist" });
-  }
+  if (!user) return genericPasswordResetResponse(res);
 
-  // Generate token and expiry
-  const resetToken = Math.floor(100000 + Math.random() * 900000).toString(); // 6-digit token
-  const resetTokenExpiresAt = Date.now() + 1 * 60 * 60 * 1000; // 1 hour from now
+  const resetOTP = generateOTP();
+  const resetPasswordExpiresAt = tokenExpiry();
 
-  // Save token and expiry to user
-  user.resetPasswordToken = resetToken;
-  user.resetPasswordExpiresAt = resetTokenExpiresAt;
+  // Option 1: save with validation skipped
+  user.resetPasswordToken = resetOTP;
+  user.resetPasswordExpiresAt = resetPasswordExpiresAt;
+  await user.save({ validateBeforeSave: false });
 
-  await user.save();
+  // Option 2: updateOne
+  // await User.updateOne({ _id: user._id }, {
+  //   resetPasswordToken: resetOTP,
+  //   resetPasswordExpiresAt: resetPasswordExpiresAt,
+  // });
 
-  // Build frontend reset URL
-  const resetLink = `${process.env.RESET_PASSWORD_URL}/reset-password/${resetToken}`;
+  await sendResetEmail(email, resetOTP);
 
-  // Send the email
-  await sendResetEmail(email, resetLink);
-
-  res.status(200).json({ message: "Reset password link sent to your email" });
+  return genericPasswordResetResponse(res);
 });
 
-//Reset Password
-export const resetPasword = asyncErrorHandler(async (req, res) => {
-  logger.info("reset password initiated...");
-  const { resetToken } = req.params;
-  const { newPassword } = req.body;
+// -------- Reset Password --------
+export const resetPassword = asyncErrorHandler(async (req, res) => {
+  logger.info("Password reset with OTP initiated...");
 
-  const user = await User.findOne({ resetPasswordToken: resetToken });
+  const { email, otp, newPassword } = req.body;
 
+  logger.info(`Reset attempt for email: ${email} with OTP: ${otp}`);
+
+  const user = await User.findOne({ email, resetPasswordToken: otp });
   if (!user) {
-    return res.status(400).json({ message: "Invalid or expired reset token" });
+    logger.warn(`Invalid OTP or email: OTP received ${otp}`);
+    return res.status(400).json({ message: "Invalid or expired OTP" });
   }
 
+  logger.info(`User found, OTP expires at: ${user.resetPasswordExpiresAt}`);
+
   if (user.resetPasswordExpiresAt < Date.now()) {
-    return res.status(400).json({ message: "Reset token has expired" });
+    logger.warn("OTP expired");
+    return res.status(400).json({ message: "OTP has expired" });
   }
 
   if (
@@ -314,11 +319,9 @@ export const resetPasword = asyncErrorHandler(async (req, res) => {
       .json({ message: "New password is not strong enough" });
   }
 
-  // Set new password (hashing will be done by pre-save hook)
   user.password = newPassword;
   user.resetPasswordToken = "";
   user.resetPasswordExpiresAt = null;
-
   await user.save();
 
   return res.status(200).json({ message: "Password reset successfully" });
