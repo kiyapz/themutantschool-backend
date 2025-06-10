@@ -130,3 +130,8 @@
 [2025-06-10T11:24:28.570Z] [31merror[39m: ❌ Redis error: connect ECONNREFUSED 127.0.0.1:15852
 [2025-06-10T11:24:29.538Z] [31merror[39m: ❌ Redis error: connect ECONNREFUSED 127.0.0.1:15852
 [2025-06-10T11:24:30.548Z] [31merror[39m: ❌ Redis error: connect ECONNREFUSED 127.0.0.1:15852
+[2025-06-10T14:23:59.615Z] [31merror[39m: Expected double-quoted property name in JSON at position 47 (line 4 column 1)
+[2025-06-10T14:57:35.716Z] [31merror[39m: E11000 duplicate key error collection: test.usernames index: username_1 dup key: { username: "Elijahdev" }
+[2025-06-10T15:00:30.522Z] [31merror[39m: E11000 duplicate key error collection: test.usernames index: username_1 dup key: { username: "Elijahdev" }
+[2025-06-10T15:11:55.775Z] [31merror[39m: UserName is not defined
+[2025-06-10T15:14:39.807Z] [31merror[39m: User validation failed: password: Path `password` is required., email: Path `email` is required., lastName: Path `lastName` is required., firstName: Path `firstName` is required.

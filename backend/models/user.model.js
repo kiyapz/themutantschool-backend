@@ -18,7 +18,6 @@ const userSchema = new mongoose.Schema(
       type: String,
       trim: true,
       unique: true,
-      required: true,
     },
     email: {
       type: String,
@@ -43,6 +42,30 @@ const userSchema = new mongoose.Schema(
     password: {
       type: String,
       required: true,
+    },
+    phone: {
+      type: String,
+    },
+
+    headline: {
+      type: {
+        type: String,
+      },
+    },
+    media: [
+      {
+        intro: {
+          type: String,
+        },
+        socials: [{ type: String }],
+      },
+
+      {
+        website: { type: String },
+      },
+    ],
+    bio: {
+      type: String,
     },
     role: {
       type: String,
