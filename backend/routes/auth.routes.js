@@ -8,6 +8,7 @@ import {
   requestPasswordResetOTP,
   resetPassword,
   userName,
+  verifyAcountToken,
 } from "../controllers/auth.controller.js";
 import { upload } from "../middlewares/uploads.js";
 
@@ -26,3 +27,5 @@ authRoutes.post("/logout", logOut);
 authRoutes.post("/reset-token", requestPasswordResetOTP);
 
 authRoutes.put("/reset-password", resetPassword);
+
+authRoutes.post("/verification-token", verifyAcountToken);

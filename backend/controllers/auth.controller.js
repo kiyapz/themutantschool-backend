@@ -28,14 +28,14 @@ const genericPasswordResetResponse = (res) =>
 
 //--------username registration-----------------
 export const userName = asyncErrorHandler(async (req, res) => {
-  logger.info("username initiated...");
+  logger.info("username registration initiated...");
   const { username } = req.body;
 
   const userExist = await UserName.findOne({ username });
   if (userExist) {
     return res
       .status(400)
-      .json({ success: false, message: "User already exists" });
+      .json({ success: false, message: "Username already taken" });
   }
 
   const newUsername = new UserName({ username });
@@ -43,41 +43,25 @@ export const userName = asyncErrorHandler(async (req, res) => {
 
   return res.status(201).json({
     success: true,
-    message: "User name created successfully",
+    message: "Username registered successfully",
     newUsername,
     userNameId: newUsername._id,
   });
 });
-
+//-------- registration-----------------
 export const signUpUser = asyncErrorHandler(async (req, res) => {
   logger.info("Registration initiated...");
 
   const { error } = validationRegistration(req.body);
   if (error) return handleValidationError(res, error);
 
-  const {
-    email,
-    firstName,
-    lastName,
-    username,
-    password,
-    role = "student",
-  } = req.body;
+  const { email, firstName, lastName, password, role = "student" } = req.body;
 
-  if (await User.exists({ $or: [{ email }, { username }] })) {
+  if (await User.exists({ email })) {
     logger.warn("User already exists:", email || username);
     return res
       .status(400)
       .json({ success: false, message: "User already exists" });
-  }
-
-  // Get username document
-  const usernameExist = await UserName.findOne({ username });
-  if (!usernameExist) {
-    return res.status(404).json({
-      success: false,
-      message: "User name not found",
-    });
   }
 
   let avatar = { url: "", publicId: "" };
@@ -101,8 +85,8 @@ export const signUpUser = asyncErrorHandler(async (req, res) => {
     email,
     firstName,
     lastName,
-    username: usernameExist._id,
     password,
+    username,
     avatar,
     verificationToken,
     verificationTokenExpiresAt,
@@ -188,6 +172,13 @@ export const loginUser = asyncErrorHandler(async (req, res) => {
       .status(400)
       .json({ success: false, message: "Invalid credentials" });
   }
+  if (user.isVerified === false) {
+    logger.warn("please verify your account");
+    return res.status(400).json({
+      success: false,
+      message: "Your account is not verified",
+    });
+  }
 
   const { accessToken, refreshToken } = await generateTokens(user);
 
@@ -197,6 +188,39 @@ export const loginUser = asyncErrorHandler(async (req, res) => {
     accessToken,
     refreshToken,
     userId: user._id,
+  });
+});
+
+// -------- resend verification  Token --------
+export const verifyAcountToken = asyncErrorHandler(async (req, res) => {
+  const { email } = req.body;
+
+  const user = await User.findOne({ email });
+  if (!user) {
+    logger.warn("User does not exist");
+    return res.status(404).json({ success: false, message: "User not found" });
+  }
+
+  if (user.isVerified) {
+    return res.status(400).json({
+      success: false,
+      message: "Account is already verified",
+    });
+  }
+
+  const newToken = generateOTP();
+  const newExpiry = tokenExpiry();
+
+  user.verificationToken = newToken;
+  user.verificationTokenExpiresAt = newExpiry;
+  await user.save();
+
+  await sendVerificationEmail(email, newToken);
+  logger.info(`Verification token resent to: ${email}`);
+
+  return res.status(200).json({
+    success: true,
+    message: "Verification token resent",
   });
 });
 
@@ -235,6 +259,7 @@ export const userRefreshToken = asyncErrorHandler(async (req, res) => {
   return res.status(200).json({ accessToken, refreshToken: newRefreshToken });
 });
 
+//
 // -------- Logout User --------
 export const logOut = asyncErrorHandler(async (req, res) => {
   logger.info("Logout endpoint hit...");
