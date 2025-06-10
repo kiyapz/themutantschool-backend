@@ -16,9 +16,9 @@ import swaggerUi from "swagger-ui-express";
 export const app = express();
 
 // 🚀 Redis Setup
-const redisClient = new Redis(process.env.REDIS_URL);
-redisClient.on("error", (err) => logger.error("❌ Redis error:", err));
-redisClient.on("connect", () => logger.info("✅ Connected to Redis"));
+// const redisClient = new Redis(process.env.REDIS_URL);
+// redisClient.on("error", (err) => logger.error("❌ Redis error:", err));
+// redisClient.on("connect", () => logger.info("✅ Connected to Redis"));
 
 // 🛡️ Security & Basic Middleware
 app.use(helmet());
@@ -62,45 +62,45 @@ app.use((req, res, next) => {
 });
 
 // 🚦 Global Rate Limiter Middleware
-const globalRateLimiter = new RateLimiterRedis({
-  storeClient: redisClient,
-  keyPrefix: "rl_global",
-  points: 5, // requests
-  duration: 1, // per second
-});
+// const globalRateLimiter = new RateLimiterRedis({
+//   storeClient: redisClient,
+//   keyPrefix: "rl_global",
+//   points: 5, // requests
+//   duration: 1, // per second
+// });
 
-const rateLimitMiddleware = (req, res, next) => {
-  globalRateLimiter
-    .consume(req.ip)
-    .then(() => next())
-    .catch(() => {
-      logger.warn(`🚫 Rate limit exceeded: ${req.ip}`);
-      res.status(429).json({
-        success: false,
-        message: "Too many requests. Please try again later.",
-      });
-    });
-};
+// const rateLimitMiddleware = (req, res, next) => {
+//   globalRateLimiter
+//     .consume(req.ip)
+//     .then(() => next())
+//     .catch(() => {
+//       logger.warn(`🚫 Rate limit exceeded: ${req.ip}`);
+//       res.status(429).json({
+//         success: false,
+//         message: "Too many requests. Please try again later.",
+//       });
+//     });
+// };
 
-app.use(rateLimitMiddleware);
+// app.use(rateLimitMiddleware);
 
-// 🔐 Sensitive Endpoint Rate Limiter
-const sensitiveEndpointLimiter = rateLimit({
-  windowMs: 10 * 60 * 1000, // 10 minutes
-  max: 10,
-  standardHeaders: true,
-  legacyHeaders: false,
-  store: new RateLimitRedisStore({
-    sendCommand: (...args) => redisClient.call(...args),
-  }),
-  handler: (req, res) => {
-    logger.warn(`🚫 Sensitive endpoint limit exceeded: ${req.ip}`);
-    res.status(429).json({
-      success: false,
-      message: "Too many requests. Please wait and try again.",
-    });
-  },
-});
+//  🔐 Sensitive Endpoint Rate Limiter
+// const sensitiveEndpointLimiter = rateLimit({
+//   windowMs: 10 * 60 * 1000, // 10 minutes
+//   max: 10,
+//   standardHeaders: true,
+//   legacyHeaders: false,
+//   store: new RateLimitRedisStore({
+//     sendCommand: (...args) => redisClient.call(...args),
+//   }),
+//   handler: (req, res) => {
+//     logger.warn(`🚫 Sensitive endpoint limit exceeded: ${req.ip}`);
+//     res.status(429).json({
+//       success: false,
+//       message: "Too many requests. Please wait and try again.",
+//     });
+//   },
+// });
 
 // Swagger config
 const swaggerOptions = {
@@ -126,7 +126,7 @@ const swaggerSpec = swaggerJSDoc(swaggerOptions);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // 🛣️ Routes
-app.use("/api/auth/register", sensitiveEndpointLimiter);
+// app.use("/api/auth/register", sensitiveEndpointLimiter);
 app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
 
