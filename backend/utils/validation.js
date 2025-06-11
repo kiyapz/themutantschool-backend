@@ -12,6 +12,17 @@ export const validationRegistration = (data) => {
   return schema.validate(data);
 };
 
+export const validationInstitutionRegistration = (data) => {
+  const schema = joi.object({
+    name: joi.string().min(3).max(50).required(),
+    institutionType: joi.string().min(3).max(50).required(),
+    email: joi.string().email().required(),
+    password: joi.string().min(6).required(),
+    userNameId: joi.string().required(),
+  });
+  return schema.validate(data);
+};
+
 export const validateLogin = (data) => {
   const schema = joi.object({
     email: joi.string().email().required(),

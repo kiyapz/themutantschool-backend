@@ -1,61 +1,54 @@
-import { uploadsToCloudinary } from "../../config/cloudinary.js";
+import { logger } from "../../utils/logger.js";
 import { asyncErrorHandler } from "../../middlewares/asyncHandler.js";
-import { RefreshToken } from "../../models/refreshToken.model.js";
-import { User } from "../../models/usersModels/user.model.js";
+import { Institution } from "../../models/usersModels/institution.model.js";
 import { UserName } from "../../models/usersModels/userName.model.js";
-import { generateTokens } from "../../utils/generateTokens.js";
+import {
+  validationInstitutionRegistration,
+  validateLogin,
+} from "../../utils/validation.js";
 import {
   generateOTP,
-  genericPasswordResetResponse,
-  handleValidationError,
   tokenExpiry,
+  handleValidationError,
+  genericPasswordResetResponse,
 } from "../../utils/helpers/helpers.js";
-import { logger } from "../../utils/logger.js";
-import { sendResetEmail, sendVerificationEmail } from "../../utils/sendMail.js";
-import {
-  validateLogin,
-  validationRegistration,
-} from "../../utils/validation.js";
+import { generateTokens } from "../../utils/generateTokens.js";
+import { sendVerificationEmail, sendResetEmail } from "../../utils/sendMail.js";
 import validator from "validator";
+import { RefreshToken } from "../../models/refreshToken.model.js";
 
-//--------username registration-----------------
-export const userName = asyncErrorHandler(async (req, res) => {
-  logger.info("username registration initiated...");
-  const { username } = req.body;
+export const registerInstitution = asyncErrorHandler(async (req, res) => {
+  logger.info("Institution registration initiated...");
 
-  const userExist = await UserName.findOne({ username });
-  if (userExist) {
-    return res
-      .status(400)
-      .json({ success: false, message: "Username already taken" });
-  }
-
-  const newUsername = new UserName({ username });
-  await newUsername.save();
-
-  return res.status(201).json({
-    success: true,
-    message: "Username registered successfully",
-    newUsername,
-    userNameId: newUsername._id,
-  });
-});
-//-------- registration-----------------
-
-export const signUpUser = asyncErrorHandler(async (req, res) => {
-  logger.info("Registration initiated...");
-
-  const { error } = validationRegistration(req.body);
+  // Validate request body
+  const { error } = validationInstitutionRegistration(req.body);
   if (error) return handleValidationError(res, error);
 
   const {
+    name,
     email,
-    firstName,
-    lastName,
     password,
-    role = "student",
+    institutionType = "other",
     userNameId,
   } = req.body;
+
+  //check req
+  if (!req.body) {
+    return res.status(400).json({
+      success: false,
+      message: "Missing request body. Ensure Content-Type is application/json",
+    });
+  }
+
+  // Check for duplicate institution email
+  const institutionExist = await Institution.findOne({ email });
+  if (institutionExist) {
+    logger.warn(`Institution already exists: ${email}`);
+    return res.status(409).json({
+      success: false,
+      message: "Institution with this email already exists.",
+    });
+  }
 
   // Validate username existence
   const usernameDoc = await UserName.findById(userNameId);
@@ -66,55 +59,36 @@ export const signUpUser = asyncErrorHandler(async (req, res) => {
     });
   }
 
-  if (await User.exists({ email })) {
-    logger.warn("User already exists:", email);
-    return res
-      .status(400)
-      .json({ success: false, message: "User already exists" });
-  }
-
-  let avatar = { url: "", publicId: "" };
-  if (req.file) {
-    try {
-      const result = await uploadsToCloudinary(req.file.path);
-      avatar = { url: result.secure_url, publicId: result.public_id };
-    } catch (err) {
-      logger.error("Cloudinary upload error:", err.message);
-      return res.status(500).json({
-        success: false,
-        message: "Image upload failed. Please try again.",
-      });
-    }
-  }
-
+  // Generate verification token
   const verificationToken = generateOTP();
   const verificationTokenExpiresAt = tokenExpiry();
 
-  const user = new User({
+  // Create new institution
+  const newInstitution = new Institution({
+    name,
     email,
-    firstName,
-    lastName,
     password,
     username: usernameDoc._id,
-    avatar,
+    institutionType,
     verificationToken,
     verificationTokenExpiresAt,
-    role,
   });
 
-  await user.save();
-  logger.info(`User saved successfully: ${user._id}`);
+  await newInstitution.save();
+  logger.info(`Institution created: ${newInstitution._id}`);
 
+  // Send verification email
   await sendVerificationEmail(email, verificationToken);
 
-  const { accessToken, refreshToken } = await generateTokens(user);
+  // Generate tokens
+  const { accessToken, refreshToken } = await generateTokens(newInstitution);
 
   return res.status(201).json({
     success: true,
-    message: "User registered successfully",
+    message: "Institution registered successfully",
     accessToken,
     refreshToken,
-    data: user,
+    data: newInstitution,
   });
 });
 
@@ -127,7 +101,7 @@ export const verifyAccount = asyncErrorHandler(async (req, res) => {
       .json({ success: false, message: "Email and token are required" });
   }
 
-  const user = await User.findOne({ email });
+  const user = await Institution.findOne({ email });
   if (!user) {
     logger.warn("Verification failed: User not found");
     return res.status(404).json({ success: false, message: "User not found" });
@@ -170,7 +144,7 @@ export const loginUser = asyncErrorHandler(async (req, res) => {
   if (error) return handleValidationError(res, error);
 
   const { email, password } = req.body;
-  const user = await User.findOne({ email });
+  const user = await Institution.findOne({ email });
   if (!user)
     return res.status(404).json({ success: false, message: "User not found" });
 
@@ -201,10 +175,10 @@ export const loginUser = asyncErrorHandler(async (req, res) => {
 });
 
 // -------- resend verification  Token --------
-export const verifyAcountToken = asyncErrorHandler(async (req, res) => {
+export const resendVerifyAcountToken = asyncErrorHandler(async (req, res) => {
   const { email } = req.body;
 
-  const user = await User.findOne({ email });
+  const user = await Institution.findOne({ email });
   if (!user) {
     logger.warn("User does not exist");
     return res.status(404).json({ success: false, message: "User not found" });
@@ -234,60 +208,97 @@ export const verifyAcountToken = asyncErrorHandler(async (req, res) => {
 });
 
 // -------- Refresh Token --------
-export const userRefreshToken = asyncErrorHandler(async (req, res) => {
-  logger.info("Refresh token endpoint hit...");
+// export const instituteRefreshToken = asyncErrorHandler(async (req, res) => {
+//   logger.info("Refresh token endpoint hit...");
 
-  const { refreshToken } = req.body;
-  if (!refreshToken) {
-    logger.warn("Refresh token is missing");
-    return res
-      .status(400)
-      .json({ success: false, message: "Refresh token is missing" });
-  }
+//   const { refreshToken } = req.body;
+//   if (!refreshToken) {
+//     logger.warn("Refresh token is missing");
+//     return res
+//       .status(400)
+//       .json({ success: false, message: "Refresh token is required" });
+//   }
 
-  const storedToken = await RefreshToken.findOne({ token: refreshToken });
-  if (!storedToken || storedToken.expiredAt < new Date()) {
-    logger.warn("Invalid or expired token");
-    return res
-      .status(401)
-      .json({ success: false, message: "Invalid or expired token" });
-  }
+//   // Check if the token exists and is not expired
+//   const storedToken = await RefreshToken.findOne({ token: refreshToken });
+//   if (!storedToken) {
+//     logger.warn("Invalid refresh token");
+//     return res
+//       .status(401)
+//       .json({ success: false, message: "Invalid refresh token" });
+//   }
 
-  const user = await User.findById(storedToken.user);
-  if (!user) {
-    logger.warn("User not found for refresh token");
-    return res.status(404).json({ success: false, message: "User not found" });
-  }
+//   if (storedToken.expiredAt < new Date()) {
+//     logger.warn("Expired refresh token");
+//     await RefreshToken.deleteOne({ _id: storedToken._id }); // Clean up expired tokens
+//     return res.status(401).json({
+//       success: false,
+//       message: "Refresh token has expired, please log in again",
+//     });
+//   }
 
-  const { accessToken, refreshToken: newRefreshToken } = await generateTokens(
-    user
-  );
+//   // Find user associated with the token
+//   const user = await Institution.findById(storedToken.user);
+//   if (!user) {
+//     logger.warn("User not found for refresh token");
+//     await RefreshToken.deleteOne({ _id: storedToken._id }); // Clean up orphan tokens
+//     return res.status(404).json({ success: false, message: "User not found" });
+//   }
 
-  await RefreshToken.deleteOne({ _id: storedToken._id });
+//   // Generate new access and refresh tokens
+//   const { accessToken, refreshToken: newRefreshToken } = await generateTokens(
+//     user
+//   );
 
-  return res.status(200).json({ accessToken, refreshToken: newRefreshToken });
-});
+//   // Delete the old refresh token and store the new one
+//   await RefreshToken.deleteOne({ _id: storedToken._id });
+//   await RefreshToken.create({
+//     token: newRefreshToken,
+//     user: user._id,
+//     expiredAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+//   });
 
-//
+//   return res.status(200).json({
+//     success: true,
+//     accessToken,
+//     refreshToken: newRefreshToken,
+//   });
+// });
+
 // -------- Logout User --------
 export const logOut = asyncErrorHandler(async (req, res) => {
   logger.info("Logout endpoint hit...");
 
-  const { refreshToken } = req.body;
-  if (!refreshToken) {
-    logger.warn("Refresh token is missing");
+  try {
+    const { refreshToken } = req.body;
+    if (!refreshToken) {
+      logger.warn("Refresh token is missing");
+      return res
+        .status(400)
+        .json({ success: false, message: "Refresh token is required" });
+    }
+
+    const tokenExists = await RefreshToken.findOne({ token: refreshToken });
+    if (!tokenExists) {
+      logger.warn("Invalid refresh token");
+      return res
+        .status(401)
+        .json({ success: false, message: "Invalid or expired refresh token" });
+    }
+
+    await RefreshToken.deleteOne({ token: refreshToken });
+
+    logger.info("Refresh token deleted successfully");
+
     return res
-      .status(400)
-      .json({ success: false, message: "Refresh token is missing" });
+      .status(200)
+      .json({ success: true, message: "User logged out successfully" });
+  } catch (error) {
+    logger.error("Error during logout:", error);
+    return res
+      .status(500)
+      .json({ success: false, message: "Internal server error" });
   }
-
-  await RefreshToken.deleteOne({ token: refreshToken });
-
-  logger.info("Refresh token deleted successfully");
-
-  return res
-    .status(200)
-    .json({ success: true, message: "User logged out successfully" });
 });
 
 // -------- Request Password Reset OTP --------
@@ -295,7 +306,7 @@ export const requestPasswordResetOTP = asyncErrorHandler(async (req, res) => {
   logger.info("Password reset OTP requested...");
 
   const { email } = req.body;
-  const user = await User.findOne({ email });
+  const user = await Institution.findOne({ email });
 
   if (!user) return genericPasswordResetResponse(res);
 
@@ -306,12 +317,6 @@ export const requestPasswordResetOTP = asyncErrorHandler(async (req, res) => {
   user.resetPasswordToken = resetOTP;
   user.resetPasswordExpiresAt = resetPasswordExpiresAt;
   await user.save({ validateBeforeSave: false });
-
-  // Option 2: updateOne
-  // await User.updateOne({ _id: user._id }, {
-  //   resetPasswordToken: resetOTP,
-  //   resetPasswordExpiresAt: resetPasswordExpiresAt,
-  // });
 
   await sendResetEmail(email, resetOTP);
 
@@ -326,7 +331,7 @@ export const resetPassword = asyncErrorHandler(async (req, res) => {
 
   logger.info(`Reset attempt for email: ${email} with OTP: ${otp}`);
 
-  const user = await User.findOne({ email, resetPasswordToken: otp });
+  const user = await Institution.findOne({ email, resetPasswordToken: otp });
   if (!user) {
     logger.warn(`Invalid OTP or email: OTP received ${otp}`);
     return res.status(400).json({ message: "Invalid or expired OTP" });

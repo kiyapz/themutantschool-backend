@@ -1,4 +1,6 @@
 import mongoose from "mongoose";
+import { logger } from "../../utils/logger.js";
+import argon2 from "argon2";
 
 const institutionSchema = new mongoose.Schema(
   {
@@ -8,7 +10,7 @@ const institutionSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
-    institutionName: {
+    name: {
       type: String,
       unique: true,
       required: true,
@@ -24,8 +26,8 @@ const institutionSchema = new mongoose.Schema(
     },
     institutionType: {
       type: String,
-      enum: ["School", "College", "Academy", "Coaching Center", "other"],
-      default: "other",
+      enum: ["School", "College", "Academy", "Coaching Center", "others"],
+      default: "others",
     },
     phone: String,
     avatar: {
@@ -55,9 +57,6 @@ const institutionSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
-
-export const Institution = mongoose.model("Institution", institutionSchema);
-
 // Hash password before saving
 institutionSchema.pre("save", async function (next) {
   if (this.isModified("password")) {
@@ -80,6 +79,6 @@ institutionSchema.methods.comparePassword = async function (userPassword) {
   }
 };
 
-userSchema.index({ email: "text" });
+institutionSchema.index({ email: "text" });
 
-export const AcademyModel = mongoose.model("AcademyModel", academySchema);
+export const Institution = mongoose.model("Institution", institutionSchema);

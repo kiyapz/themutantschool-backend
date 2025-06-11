@@ -12,6 +12,7 @@ const refreshTokenSchema = new mongoose.Schema(
       ref: "User",
       required: true,
     },
+    userType: { type: String, enum: ["User", "Institution"], required: true },
     expiredAt: {
       type: Date,
       required: true,

@@ -136,3 +136,20 @@
 [2025-06-10T15:11:55.775Z] [31merror[39m: UserName is not defined
 [2025-06-10T15:14:39.807Z] [31merror[39m: User validation failed: password: Path `password` is required., email: Path `email` is required., lastName: Path `lastName` is required., firstName: Path `firstName` is required.
 [2025-06-11T07:42:22.675Z] [31merror[39m: bcrypt is not defined
+[2025-06-11T11:59:06.418Z] [31merror[39m: Cannot destructure property 'name' of 'req.body' as it is undefined.
+[2025-06-11T12:05:23.627Z] [31merror[39m: Institution validation failed: name: Path `name` is required.
+[2025-06-11T12:07:59.895Z] [31merror[39m: logger is not defined
+[2025-06-11T12:09:47.731Z] [31merror[39m: logger is not defined
+[2025-06-11T12:13:23.799Z] [31merror[39m: argon2 is not defined
+[2025-06-11T13:25:46.882Z] [31merror[39m: validateLogin is not defined
+[2025-06-11T13:29:52.932Z] [31merror[39m: Can't find /api/institution/verify-account on the server
+[2025-06-11T13:53:11.732Z] [31merror[39m: sendResetEmail is not defined
+[2025-06-11T13:57:05.525Z] [31merror[39m: Can't find /api/institution/reset-password on the server
+[2025-06-11T14:01:31.903Z] [31merror[39m: Can't find /api/institution/refresh-token on the server
+[2025-06-11T14:02:29.362Z] [31merror[39m: Can't find /api/institution/refresh-token on the server
+[2025-06-11T14:04:58.897Z] [31merror[39m: Can't find /api/institution/refresh-token on the server
+[2025-06-11T14:06:08.178Z] [31merror[39m: E11000 duplicate key error collection: test.refreshtokens index: token_1 dup key: { token: "c42430e6e45a20b8d97db28328061255a1cc831d6232cbbd80ac7f33171058780bcc44977c1fa201" }
+[2025-06-11T14:31:43.385Z] [31merror[39m: Plan executor error during findAndModify :: caused by :: E11000 duplicate key error collection: test.refreshtokens index: token_1 dup key: { token: "cfbd0ef196efe1de42ac9c7936a20b74b28b11887430838e2eeec2d1102df7547d5cbac1a732581b" }
+[2025-06-11T14:37:47.371Z] [31merror[39m: E11000 duplicate key error collection: test.refreshtokens index: token_1 dup key: { token: "7f06971d2977958b44b240205c46854a67cee436725694fde6b1fcb314b74d12e84df1c56480235c" }
+[2025-06-11T14:39:48.089Z] [31merror[39m: Plan executor error during findAndModify :: caused by :: E11000 duplicate key error collection: test.refreshtokens index: token_1 dup key: { token: "0744bf22f1eaf5c3d42ca109dc5f1638688c69242f7c4a9d572ae402a8e40f3936d9c3a6ce160bfd" }
+[2025-06-11T15:50:28.855Z] [31merror[39m: sendResetEmail is not defined
