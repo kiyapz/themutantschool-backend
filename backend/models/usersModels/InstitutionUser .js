@@ -1,6 +1,7 @@
+// models/user.js
 import mongoose from "mongoose";
 import argon2 from "argon2";
-import { logger } from "../utils/logger.js";
+import { logger } from "../../utils/logger.js";
 
 const userSchema = new mongoose.Schema(
   {
@@ -15,8 +16,9 @@ const userSchema = new mongoose.Schema(
       required: true,
     },
     username: {
-      type: String,
-      trim: true,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "UserName",
+      required: true,
       unique: true,
     },
     email: {
@@ -25,68 +27,32 @@ const userSchema = new mongoose.Schema(
       unique: true,
       trim: true,
     },
-    gender: {
-      type: String,
-
-      trim: true,
-    },
-    country: {
-      type: String,
-      trim: true,
-    },
-    dob: {
-      type: Date,
-
-      trim: true,
-    },
     password: {
       type: String,
       required: true,
     },
-    phone: {
-      type: String,
-    },
-
-    headline: {
-      type: {
-        type: String,
-      },
-    },
-    media: [
-      {
-        intro: {
-          type: String,
-        },
-        socials: [{ type: String }],
-      },
-
-      {
-        website: { type: String },
-      },
-    ],
-    bio: {
-      type: String,
-    },
     role: {
       type: String,
-      enum: ["admin", "instructor", "student", "affiliate"],
+      enum: ["admin", "instructor", "student"],
       default: "student",
     },
-    avatar: {
-      url: {
-        type: String,
-      },
-      publicId: {
-        type: String,
-      },
+    institution: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Institution",
+      required: false,
     },
-    verificationToken: {
-      type: String,
-      default: "",
+    phone: String,
+    avatar: {
+      url: String,
+      publicId: String,
     },
     isVerified: {
       type: Boolean,
       default: false,
+    },
+    verificationToken: {
+      type: String,
+      default: "",
     },
     verificationTokenExpiresAt: {
       type: Date,
@@ -117,13 +83,9 @@ userSchema.pre("save", async function (next) {
   next();
 });
 
-// Password comparison method
+// Compare password
 userSchema.methods.comparePassword = async function (userPassword) {
-  try {
-    return await argon2.verify(this.password, userPassword);
-  } catch (error) {
-    throw error;
-  }
+  return argon2.verify(this.password, userPassword);
 };
 
 userSchema.index({ email: "text" });

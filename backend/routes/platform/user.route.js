@@ -4,10 +4,10 @@ import {
   getAllUsers,
   getUserById,
   updateUserProfile,
-} from "../controllers/user.controller.js";
-import { upload } from "../middlewares/uploads.js";
-import { isAdmin } from "../middlewares/protectedRoutes.js";
-import { authMiddleware } from "../middlewares/authMiddleware.js";
+} from "../../controllers/platform/user.controller.js";
+import { upload } from "../../middlewares/uploads.js";
+import { isAdmin } from "../../middlewares/protectedRoutes.js";
+import { authMiddleware } from "../../middlewares/authMiddleware.js";
 
 export const userRoutes = express.Router();
 

@@ -5,7 +5,7 @@ import {
   resetPasswordToken,
   resetPasword,
 } from "../controllers/auth.controller.js";
-import { User } from "../models/user.model.js";
+import { User } from "../models/usersModels/user.model.js";
 import { sendResetEmail } from "../utils/sendMail.js";
 
 // Optional: Set global timeout for all tests (10 seconds)

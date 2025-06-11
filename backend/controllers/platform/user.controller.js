@@ -1,10 +1,10 @@
-import { User } from "../models/user.model.js";
-import { asyncErrorHandler } from "../middlewares/asyncHandler.js";
-import { logger } from "../utils/logger.js";
+import { User } from "../../models/usersModels/user.model.js";
+import { asyncErrorHandler } from "../../middlewares/asyncHandler.js";
+import { logger } from "../../utils/logger.js";
 import {
   uploadsToCloudinary,
   deleteFromCloudinary,
-} from "../config/cloudinary.js";
+} from "../../config/cloudinary.js";
 import fs from "fs";
 
 // Get all users

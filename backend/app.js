@@ -8,8 +8,8 @@ import RateLimitRedisStore from "rate-limit-redis";
 import { logger } from "./utils/logger.js";
 import { errorHandler } from "./middlewares/errorHandler.js";
 import { notFoundHandler } from "./middlewares/apiErrors.js";
-import { authRoutes } from "./routes/auth.routes.js";
-import { userRoutes } from "./routes/user.route.js";
+import { authRoutes } from "./routes/platform/auth.routes.js";
+import { userRoutes } from "./routes/platform/user.route.js";
 import swaggerJSDoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
 

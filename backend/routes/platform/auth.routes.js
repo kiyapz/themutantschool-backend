@@ -9,8 +9,8 @@ import {
   resetPassword,
   userName,
   verifyAcountToken,
-} from "../controllers/auth.controller.js";
-import { upload } from "../middlewares/uploads.js";
+} from "../../controllers/platform/auth.controller.js";
+import { upload } from "../../middlewares/uploads.js";
 
 export const authRoutes = express.Router();
 authRoutes.post("/register-username", userName);

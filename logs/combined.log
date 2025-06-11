@@ -975,3 +975,33 @@
 [2025-06-10T15:17:12.635Z] [32minfo[39m: ➡️ POST /api/auth/register-username
 [2025-06-10T15:17:12.636Z] [32minfo[39m: 📦 Body: {"username":"Elijahdev10"}
 [2025-06-10T15:17:12.642Z] [32minfo[39m: username registration initiated...
+[2025-06-11T07:10:34.419Z] [32minfo[39m: Server is running on port 3000
+[2025-06-11T07:10:45.930Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-11T07:23:48.002Z] [32minfo[39m: Server is running on port 3000
+[2025-06-11T07:24:11.957Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-11T07:27:14.415Z] [32minfo[39m: ➡️ POST /api/auth/register-username
+[2025-06-11T07:27:14.421Z] [32minfo[39m: 📦 Body: {"username":"Elijahdev10"}
+[2025-06-11T07:27:14.492Z] [32minfo[39m: username registration initiated...
+[2025-06-11T07:28:38.744Z] [32minfo[39m: ➡️ POST /api/auth/register
+[2025-06-11T07:28:38.773Z] [32minfo[39m: Registration initiated...
+[2025-06-11T07:29:05.086Z] [32minfo[39m: ➡️ POST /api/auth/register
+[2025-06-11T07:29:05.124Z] [32minfo[39m: Registration initiated...
+[2025-06-11T07:32:43.439Z] [32minfo[39m: Server is running on port 3000
+[2025-06-11T07:32:47.778Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-11T07:33:39.311Z] [32minfo[39m: ➡️ POST /api/auth/register
+[2025-06-11T07:33:39.339Z] [32minfo[39m: Registration initiated...
+[2025-06-11T07:34:51.271Z] [32minfo[39m: Server is running on port 3000
+[2025-06-11T07:34:54.041Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-01.miqou6z.mongodb.net
+[2025-06-11T07:35:06.914Z] [32minfo[39m: ➡️ POST /api/auth/register
+[2025-06-11T07:35:06.948Z] [32minfo[39m: Registration initiated...
+[2025-06-11T07:41:39.681Z] [32minfo[39m: Server is running on port 3000
+[2025-06-11T07:41:42.545Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-11T07:42:21.543Z] [32minfo[39m: ➡️ POST /api/auth/register
+[2025-06-11T07:42:21.627Z] [32minfo[39m: Registration initiated...
+[2025-06-11T07:42:22.675Z] [31merror[39m: bcrypt is not defined
+[2025-06-11T07:44:51.986Z] [32minfo[39m: Server is running on port 3000
+[2025-06-11T07:44:54.786Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-01.miqou6z.mongodb.net
+[2025-06-11T07:45:00.900Z] [32minfo[39m: ➡️ POST /api/auth/register
+[2025-06-11T07:45:00.937Z] [32minfo[39m: Registration initiated...
+[2025-06-11T07:45:02.761Z] [32minfo[39m: User saved successfully: 684933fd01c481a01dac4fc0
+[2025-06-11T07:45:05.645Z] [32minfo[39m: Email sent: 250 2.0.0 OK  1749627906 ffacd0b85a97d-3a53229ddebsm14569220f8f.17 - gsmtp
