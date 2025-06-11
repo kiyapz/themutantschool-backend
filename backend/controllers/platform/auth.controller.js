@@ -1,30 +1,22 @@
-import { uploadsToCloudinary } from "../config/cloudinary.js";
-import { asyncErrorHandler } from "../middlewares/asyncHandler.js";
-import { RefreshToken } from "../models/refreshToken.model.js";
-import { User } from "../models/user.model.js";
-import { UserName } from "../models/userName.model.js";
-import { generateTokens } from "../utils/generateTokens.js";
-import { logger } from "../utils/logger.js";
-import { sendResetEmail, sendVerificationEmail } from "../utils/sendMail.js";
-import { validateLogin, validationRegistration } from "../utils/validation.js";
+import { uploadsToCloudinary } from "../../config/cloudinary.js";
+import { asyncErrorHandler } from "../../middlewares/asyncHandler.js";
+import { RefreshToken } from "../../models/refreshToken.model.js";
+import { User } from "../../models/usersModels/user.model.js";
+import { UserName } from "../../models/usersModels/userName.model.js";
+import { generateTokens } from "../../utils/generateTokens.js";
+import {
+  generateOTP,
+  genericPasswordResetResponse,
+  handleValidationError,
+  tokenExpiry,
+} from "../../utils/helpers/helpers.js";
+import { logger } from "../../utils/logger.js";
+import { sendResetEmail, sendVerificationEmail } from "../../utils/sendMail.js";
+import {
+  validateLogin,
+  validationRegistration,
+} from "../../utils/validation.js";
 import validator from "validator";
-
-// Helper to generate 6-digit OTP token
-const generateOTP = () =>
-  Math.floor(100000 + Math.random() * 900000).toString();
-
-// Helper for token expiry time (1 hour from now)
-const tokenExpiry = () => Date.now() + 60 * 60 * 1000;
-
-// Centralized error response for validation errors
-const handleValidationError = (res, error) =>
-  res.status(400).json({ success: false, message: error.details[0].message });
-
-// Centralized generic response for password reset request
-const genericPasswordResetResponse = (res) =>
-  res
-    .status(200)
-    .json({ message: "If the email exists, an OTP has been sent." });
 
 //--------username registration-----------------
 export const userName = asyncErrorHandler(async (req, res) => {
@@ -49,16 +41,33 @@ export const userName = asyncErrorHandler(async (req, res) => {
   });
 });
 //-------- registration-----------------
+
 export const signUpUser = asyncErrorHandler(async (req, res) => {
   logger.info("Registration initiated...");
 
   const { error } = validationRegistration(req.body);
   if (error) return handleValidationError(res, error);
 
-  const { email, firstName, lastName, password, role = "student" } = req.body;
+  const {
+    email,
+    firstName,
+    lastName,
+    password,
+    role = "student",
+    userNameId,
+  } = req.body;
+
+  // Validate username existence
+  const usernameDoc = await UserName.findById(userNameId);
+  if (!usernameDoc) {
+    return res.status(404).json({
+      success: false,
+      message: "Username not found. Please register a username first.",
+    });
+  }
 
   if (await User.exists({ email })) {
-    logger.warn("User already exists:", email || username);
+    logger.warn("User already exists:", email);
     return res
       .status(400)
       .json({ success: false, message: "User already exists" });
@@ -86,7 +95,7 @@ export const signUpUser = asyncErrorHandler(async (req, res) => {
     firstName,
     lastName,
     password,
-    username,
+    username: usernameDoc._id,
     avatar,
     verificationToken,
     verificationTokenExpiresAt,
@@ -105,7 +114,7 @@ export const signUpUser = asyncErrorHandler(async (req, res) => {
     message: "User registered successfully",
     accessToken,
     refreshToken,
-    data: user, // consider sanitizing here before sending
+    data: user,
   });
 });
 

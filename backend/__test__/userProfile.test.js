@@ -35,13 +35,13 @@ jest.mock("../config/cloudinary.js", () => ({
 }));
 
 // === IMPORT ACTUAL MODULES ===
-import { User } from "../models/user.model.js";
+import { User } from "../models/usersModels/user.model.js";
 import {
   getAllUsers,
   getUserById,
   updateUserProfile,
   deleteUser,
-} from "../controllers/user.controller.js";
+} from "../controllers/platform/user.controller.js";
 import {
   uploadsToCloudinary,
   deleteFromCloudinary,

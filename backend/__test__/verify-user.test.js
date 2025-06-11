@@ -1,7 +1,7 @@
 import express from "express";
 import request from "supertest";
 
-import { User } from "../models/user.model.js";
+import { User } from "../models/usersModels/user.model.js";
 import { verifyAccount } from "../controllers/auth.controller.js";
 
 // Create app

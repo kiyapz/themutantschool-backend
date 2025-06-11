@@ -975,3 +975,248 @@
 [2025-06-10T15:17:12.635Z] [32minfo[39m: ➡️ POST /api/auth/register-username
 [2025-06-10T15:17:12.636Z] [32minfo[39m: 📦 Body: {"username":"Elijahdev10"}
 [2025-06-10T15:17:12.642Z] [32minfo[39m: username registration initiated...
+[2025-06-11T07:10:34.419Z] [32minfo[39m: Server is running on port 3000
+[2025-06-11T07:10:45.930Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-11T07:23:48.002Z] [32minfo[39m: Server is running on port 3000
+[2025-06-11T07:24:11.957Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-11T07:27:14.415Z] [32minfo[39m: ➡️ POST /api/auth/register-username
+[2025-06-11T07:27:14.421Z] [32minfo[39m: 📦 Body: {"username":"Elijahdev10"}
+[2025-06-11T07:27:14.492Z] [32minfo[39m: username registration initiated...
+[2025-06-11T07:28:38.744Z] [32minfo[39m: ➡️ POST /api/auth/register
+[2025-06-11T07:28:38.773Z] [32minfo[39m: Registration initiated...
+[2025-06-11T07:29:05.086Z] [32minfo[39m: ➡️ POST /api/auth/register
+[2025-06-11T07:29:05.124Z] [32minfo[39m: Registration initiated...
+[2025-06-11T07:32:43.439Z] [32minfo[39m: Server is running on port 3000
+[2025-06-11T07:32:47.778Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-11T07:33:39.311Z] [32minfo[39m: ➡️ POST /api/auth/register
+[2025-06-11T07:33:39.339Z] [32minfo[39m: Registration initiated...
+[2025-06-11T07:34:51.271Z] [32minfo[39m: Server is running on port 3000
+[2025-06-11T07:34:54.041Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-01.miqou6z.mongodb.net
+[2025-06-11T07:35:06.914Z] [32minfo[39m: ➡️ POST /api/auth/register
+[2025-06-11T07:35:06.948Z] [32minfo[39m: Registration initiated...
+[2025-06-11T07:41:39.681Z] [32minfo[39m: Server is running on port 3000
+[2025-06-11T07:41:42.545Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-11T07:42:21.543Z] [32minfo[39m: ➡️ POST /api/auth/register
+[2025-06-11T07:42:21.627Z] [32minfo[39m: Registration initiated...
+[2025-06-11T07:42:22.675Z] [31merror[39m: bcrypt is not defined
+[2025-06-11T07:44:51.986Z] [32minfo[39m: Server is running on port 3000
+[2025-06-11T07:44:54.786Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-01.miqou6z.mongodb.net
+[2025-06-11T07:45:00.900Z] [32minfo[39m: ➡️ POST /api/auth/register
+[2025-06-11T07:45:00.937Z] [32minfo[39m: Registration initiated...
+[2025-06-11T07:45:02.761Z] [32minfo[39m: User saved successfully: 684933fd01c481a01dac4fc0
+[2025-06-11T07:45:05.645Z] [32minfo[39m: Email sent: 250 2.0.0 OK  1749627906 ffacd0b85a97d-3a53229ddebsm14569220f8f.17 - gsmtp
+[2025-06-11T10:27:02.210Z] [32minfo[39m: Server is running on port 3000
+[2025-06-11T10:27:07.902Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-11T11:44:23.036Z] [32minfo[39m: Server is running on port 3000
+[2025-06-11T11:44:33.467Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-11T11:55:33.342Z] [32minfo[39m: Server is running on port 3000
+[2025-06-11T11:55:38.128Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-01.miqou6z.mongodb.net
+[2025-06-11T11:56:03.930Z] [32minfo[39m: ➡️ POST /api/auth/register-username
+[2025-06-11T11:56:03.934Z] [32minfo[39m: 📦 Body: {"username":"KIYAPS"}
+[2025-06-11T11:56:03.937Z] [32minfo[39m: username registration initiated...
+[2025-06-11T11:59:06.380Z] [32minfo[39m: ➡️ POST /api/institution/register
+[2025-06-11T11:59:06.384Z] [32minfo[39m: Institution registration initiated...
+[2025-06-11T11:59:06.418Z] [31merror[39m: Cannot destructure property 'name' of 'req.body' as it is undefined.
+[2025-06-11T12:05:23.137Z] [32minfo[39m: ➡️ POST /api/institution/register
+[2025-06-11T12:05:23.139Z] [32minfo[39m: 📦 Body: {"name":"KIYAPS","email":"elijahfx43@gmail.com","password":"1234567890","institutionType":"Academy","userNameId":"68496ed449a0c3832b649ec0"}
+[2025-06-11T12:05:23.149Z] [32minfo[39m: Institution registration initiated...
+[2025-06-11T12:05:23.627Z] [31merror[39m: Institution validation failed: name: Path `name` is required.
+[2025-06-11T12:07:48.777Z] [32minfo[39m: Server is running on port 3000
+[2025-06-11T12:07:50.974Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-01.miqou6z.mongodb.net
+[2025-06-11T12:07:59.350Z] [32minfo[39m: ➡️ POST /api/institution/register
+[2025-06-11T12:07:59.378Z] [32minfo[39m: 📦 Body: {"name":"KIYAPS","email":"elijahfx43@gmail.com","password":"1234567890","institutionType":"Academy","userNameId":"68496ed449a0c3832b649ec0"}
+[2025-06-11T12:07:59.383Z] [32minfo[39m: Institution registration initiated...
+[2025-06-11T12:07:59.895Z] [31merror[39m: logger is not defined
+[2025-06-11T12:09:38.529Z] [32minfo[39m: Server is running on port 3000
+[2025-06-11T12:09:41.593Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-11T12:09:46.885Z] [32minfo[39m: ➡️ POST /api/institution/register
+[2025-06-11T12:09:46.886Z] [32minfo[39m: 📦 Body: {"name":"KIYAPS","email":"elijahfx43@gmail.com","password":"1234567890","institutionType":"Academy","userNameId":"68496ed449a0c3832b649ec0"}
+[2025-06-11T12:09:46.892Z] [32minfo[39m: Institution registration initiated...
+[2025-06-11T12:09:47.731Z] [31merror[39m: logger is not defined
+[2025-06-11T12:13:08.692Z] [32minfo[39m: Server is running on port 3000
+[2025-06-11T12:13:11.351Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-11T12:13:23.347Z] [32minfo[39m: ➡️ POST /api/institution/register
+[2025-06-11T12:13:23.349Z] [32minfo[39m: 📦 Body: {"name":"KIYAPS","email":"elijahfx43@gmail.com","password":"1234567890","institutionType":"Academy","userNameId":"68496ed449a0c3832b649ec0"}
+[2025-06-11T12:13:23.355Z] [32minfo[39m: Institution registration initiated...
+[2025-06-11T12:13:23.799Z] [33mwarn[39m: argon2 is not defined
+[2025-06-11T12:13:23.799Z] [31merror[39m: argon2 is not defined
+[2025-06-11T12:15:00.086Z] [32minfo[39m: Server is running on port 3000
+[2025-06-11T12:15:02.205Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-11T12:15:05.929Z] [32minfo[39m: ➡️ POST /api/institution/register
+[2025-06-11T12:15:05.931Z] [32minfo[39m: 📦 Body: {"name":"KIYAPS","email":"elijahfx43@gmail.com","password":"1234567890","institutionType":"Academy","userNameId":"68496ed449a0c3832b649ec0"}
+[2025-06-11T12:15:05.934Z] [32minfo[39m: Institution registration initiated...
+[2025-06-11T12:15:07.044Z] [32minfo[39m: Institution created: 6849734a91650eea0a69bc14
+[2025-06-11T12:15:10.622Z] [32minfo[39m: Email sent: 250 2.0.0 OK  1749644111 00721157ae682-710f9a0fc34sm19711737b3.97 - gsmtp
+[2025-06-11T12:30:08.937Z] [32minfo[39m: Server is running on port 3000
+[2025-06-11T12:30:13.928Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-11T12:30:40.964Z] [32minfo[39m: ➡️ POST /api/auth/register-username
+[2025-06-11T12:30:40.994Z] [32minfo[39m: 📦 Body: {"username":"KIYAPS"}
+[2025-06-11T12:30:40.997Z] [32minfo[39m: username registration initiated...
+[2025-06-11T12:31:23.756Z] [32minfo[39m: ➡️ POST /api/institution/register
+[2025-06-11T12:31:23.759Z] [32minfo[39m: 📦 Body: {"name":"KIYAPS","email":"elijahfx43@gmail.com","password":"1234567890","institutionType":"Academy","userNameId":"684976f1a5adc35513bd1c6e"}
+[2025-06-11T12:31:23.762Z] [32minfo[39m: Institution registration initiated...
+[2025-06-11T12:31:25.101Z] [32minfo[39m: Institution created: 6849771ca5adc35513bd1c72
+[2025-06-11T12:31:28.540Z] [32minfo[39m: Email sent: 250 2.0.0 OK  1749645089 a640c23a62f3a-ade343eeea1sm779347866b.74 - gsmtp
+[2025-06-11T13:25:26.631Z] [32minfo[39m: Server is running on port 3000
+[2025-06-11T13:25:32.289Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-11T13:25:46.782Z] [32minfo[39m: ➡️ POST /api/institution/login
+[2025-06-11T13:25:46.823Z] [32minfo[39m: 📦 Body: {"email":"elijahfx43@gmail.com","password":"1234567890"}
+[2025-06-11T13:25:46.826Z] [32minfo[39m: Login endpoint hit...
+[2025-06-11T13:25:46.882Z] [31merror[39m: validateLogin is not defined
+[2025-06-11T13:28:13.823Z] [32minfo[39m: Server is running on port 3000
+[2025-06-11T13:28:16.797Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-11T13:28:21.804Z] [32minfo[39m: ➡️ POST /api/institution/login
+[2025-06-11T13:28:21.807Z] [32minfo[39m: 📦 Body: {"email":"elijahfx43@gmail.com","password":"1234567890"}
+[2025-06-11T13:28:21.812Z] [32minfo[39m: Login endpoint hit...
+[2025-06-11T13:28:22.704Z] [33mwarn[39m: please verify your account
+[2025-06-11T13:29:52.927Z] [32minfo[39m: ➡️ POST /api/institution/verify-account
+[2025-06-11T13:29:52.928Z] [32minfo[39m: 📦 Body: {"email":"elijahfx43@gmail.com","token":"128340"}
+[2025-06-11T13:29:52.932Z] [31merror[39m: Can't find /api/institution/verify-account on the server
+[2025-06-11T13:30:28.198Z] [32minfo[39m: ➡️ POST /api/institution/verify-token
+[2025-06-11T13:30:28.200Z] [32minfo[39m: 📦 Body: {"email":"elijahfx43@gmail.com","token":"128340"}
+[2025-06-11T13:30:29.433Z] [32minfo[39m: User verified successfully: 6849771ca5adc35513bd1c72
+[2025-06-11T13:30:38.789Z] [32minfo[39m: ➡️ POST /api/institution/login
+[2025-06-11T13:30:38.791Z] [32minfo[39m: 📦 Body: {"email":"elijahfx43@gmail.com","password":"1234567890"}
+[2025-06-11T13:30:38.793Z] [32minfo[39m: Login endpoint hit...
+[2025-06-11T13:43:49.448Z] [32minfo[39m: Server is running on port 3000
+[2025-06-11T13:43:52.660Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-02.miqou6z.mongodb.net
+[2025-06-11T13:51:06.810Z] [32minfo[39m: ➡️ POST /api/institution/resend-token
+[2025-06-11T13:51:06.837Z] [32minfo[39m: 📦 Body: {"email":"elijahdev20@gmail.com"}
+[2025-06-11T13:51:07.192Z] [33mwarn[39m: User does not exist
+[2025-06-11T13:52:00.041Z] [32minfo[39m: ➡️ POST /api/institution/resend-token
+[2025-06-11T13:52:00.043Z] [32minfo[39m: 📦 Body: {"email":"elijahfx43@gmail.com"}
+[2025-06-11T13:53:11.274Z] [32minfo[39m: ➡️ POST /api/institution/password-token
+[2025-06-11T13:53:11.277Z] [32minfo[39m: 📦 Body: {"email":"elijahfx43@gmail.com"}
+[2025-06-11T13:53:11.281Z] [32minfo[39m: Password reset OTP requested...
+[2025-06-11T13:53:11.732Z] [31merror[39m: sendResetEmail is not defined
+[2025-06-11T13:54:38.118Z] [32minfo[39m: Server is running on port 3000
+[2025-06-11T13:54:40.205Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-02.miqou6z.mongodb.net
+[2025-06-11T13:54:45.832Z] [32minfo[39m: ➡️ POST /api/institution/password-token
+[2025-06-11T13:54:45.834Z] [32minfo[39m: 📦 Body: {"email":"elijahfx43@gmail.com"}
+[2025-06-11T13:54:45.837Z] [32minfo[39m: Password reset OTP requested...
+[2025-06-11T13:57:05.518Z] [32minfo[39m: ➡️ PUT /api/institution/reset-password
+[2025-06-11T13:57:05.520Z] [32minfo[39m: 📦 Body: {"newPassword":"123456789Pe*","otp":"203519","email":"elijahfx43@gmail.com"}
+[2025-06-11T13:57:05.525Z] [31merror[39m: Can't find /api/institution/reset-password on the server
+[2025-06-11T13:58:51.049Z] [32minfo[39m: Server is running on port 3000
+[2025-06-11T13:59:02.086Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-11T13:59:09.833Z] [32minfo[39m: ➡️ PUT /api/institution/reset-password
+[2025-06-11T13:59:09.835Z] [32minfo[39m: 📦 Body: {"newPassword":"123456789Pe*","otp":"203519","email":"elijahfx43@gmail.com"}
+[2025-06-11T13:59:09.839Z] [32minfo[39m: Password reset with OTP initiated...
+[2025-06-11T13:59:09.841Z] [32minfo[39m: Reset attempt for email: elijahfx43@gmail.com with OTP: 203519
+[2025-06-11T13:59:10.079Z] [32minfo[39m: User found, OTP expires at: Wed Jun 11 2025 15:54:46 GMT+0100 (West Africa Standard Time)
+[2025-06-11T13:59:24.489Z] [32minfo[39m: ➡️ POST /api/institution/login
+[2025-06-11T13:59:24.490Z] [32minfo[39m: 📦 Body: {"email":"elijahfx43@gmail.com","password":"1234567890"}
+[2025-06-11T13:59:24.494Z] [32minfo[39m: Login endpoint hit...
+[2025-06-11T13:59:25.282Z] [33mwarn[39m: Invalid credentials
+[2025-06-11T13:59:52.282Z] [32minfo[39m: ➡️ POST /api/institution/login
+[2025-06-11T13:59:52.285Z] [32minfo[39m: 📦 Body: {"email":"elijahfx43@gmail.com","password":"123456789Pe*"}
+[2025-06-11T13:59:52.286Z] [32minfo[39m: Login endpoint hit...
+[2025-06-11T14:01:31.896Z] [32minfo[39m: ➡️ POST /api/institution/refresh-token
+[2025-06-11T14:01:31.898Z] [32minfo[39m: 📦 Body: {"refreshToken":"dc955d6c7fff5c39259f934a94857a7901d5314a2d9fe5f46af1da6e50edff87ef3e709242a1df0f"}
+[2025-06-11T14:01:31.903Z] [31merror[39m: Can't find /api/institution/refresh-token on the server
+[2025-06-11T14:02:29.359Z] [32minfo[39m: ➡️ POST /api/institution/refresh-token
+[2025-06-11T14:02:29.360Z] [32minfo[39m: 📦 Body: {"refreshToken":"dc955d6c7fff5c39259f934a94857a7901d5314a2d9fe5f46af1da6e50edff87ef3e709242a1df0f"}
+[2025-06-11T14:02:29.362Z] [31merror[39m: Can't find /api/institution/refresh-token on the server
+[2025-06-11T14:04:16.619Z] [32minfo[39m: ➡️ POST /api/institution/login
+[2025-06-11T14:04:16.620Z] [32minfo[39m: 📦 Body: {"email":"elijahfx43@gmail.com","password":"123456789Pe*"}
+[2025-06-11T14:04:16.622Z] [32minfo[39m: Login endpoint hit...
+[2025-06-11T14:04:58.875Z] [32minfo[39m: ➡️ POST /api/institution/refresh-token
+[2025-06-11T14:04:58.895Z] [32minfo[39m: 📦 Body: {"refreshToken":"dc955d6c7fff5c39259f934a94857a7901d5314a2d9fe5f46af1da6e50edff87ef3e709242a1df0f"}
+[2025-06-11T14:04:58.897Z] [31merror[39m: Can't find /api/institution/refresh-token on the server
+[2025-06-11T14:05:52.615Z] [32minfo[39m: Server is running on port 3000
+[2025-06-11T14:05:54.988Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-11T14:06:07.184Z] [32minfo[39m: ➡️ POST /api/institution/refresh-token
+[2025-06-11T14:06:07.186Z] [32minfo[39m: 📦 Body: {"refreshToken":"2ba786e6ac7f5cdc4f0d378e1deb862b0bacabacc9c08485781dcbca26c2b1c2c7c2a3c674e50b68"}
+[2025-06-11T14:06:07.190Z] [32minfo[39m: Refresh token endpoint hit...
+[2025-06-11T14:06:08.178Z] [31merror[39m: E11000 duplicate key error collection: test.refreshtokens index: token_1 dup key: { token: "c42430e6e45a20b8d97db28328061255a1cc831d6232cbbd80ac7f33171058780bcc44977c1fa201" }
+[2025-06-11T14:29:04.030Z] [32minfo[39m: Server is running on port 3000
+[2025-06-11T14:29:11.921Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-11T14:30:39.023Z] [32minfo[39m: ➡️ POST /api/institution/refresh-token
+[2025-06-11T14:30:39.318Z] [32minfo[39m: 📦 Body: {"refreshToken":"2ba786e6ac7f5cdc4f0d378e1deb862b0bacabacc9c08485781dcbca26c2b1c2c7c2a3c674e50b68"}
+[2025-06-11T14:30:39.334Z] [32minfo[39m: Refresh token endpoint hit...
+[2025-06-11T14:30:39.797Z] [33mwarn[39m: Invalid refresh token
+[2025-06-11T14:31:16.159Z] [32minfo[39m: ➡️ POST /api/institution/login
+[2025-06-11T14:31:16.161Z] [32minfo[39m: 📦 Body: {"email":"elijahfx43@gmail.com","password":"123456789Pe*"}
+[2025-06-11T14:31:16.164Z] [32minfo[39m: Login endpoint hit...
+[2025-06-11T14:31:42.558Z] [32minfo[39m: ➡️ POST /api/institution/refresh-token
+[2025-06-11T14:31:42.560Z] [32minfo[39m: 📦 Body: {"refreshToken":"078a46d9f1e6fa196251eca0bf7730a5bfaefdc28cd7e84dfdf134c9aba8c0ee3cb262dbea5587b7"}
+[2025-06-11T14:31:42.562Z] [32minfo[39m: Refresh token endpoint hit...
+[2025-06-11T14:31:43.385Z] [31merror[39m: Plan executor error during findAndModify :: caused by :: E11000 duplicate key error collection: test.refreshtokens index: token_1 dup key: { token: "cfbd0ef196efe1de42ac9c7936a20b74b28b11887430838e2eeec2d1102df7547d5cbac1a732581b" }
+[2025-06-11T14:37:33.991Z] [32minfo[39m: Server is running on port 3000
+[2025-06-11T14:37:38.296Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-11T14:37:46.217Z] [32minfo[39m: ➡️ POST /api/institution/refresh-token
+[2025-06-11T14:37:46.246Z] [32minfo[39m: 📦 Body: {"refreshToken":"078a46d9f1e6fa196251eca0bf7730a5bfaefdc28cd7e84dfdf134c9aba8c0ee3cb262dbea5587b7"}
+[2025-06-11T14:37:46.256Z] [32minfo[39m: Refresh token endpoint hit...
+[2025-06-11T14:37:47.371Z] [31merror[39m: E11000 duplicate key error collection: test.refreshtokens index: token_1 dup key: { token: "7f06971d2977958b44b240205c46854a67cee436725694fde6b1fcb314b74d12e84df1c56480235c" }
+[2025-06-11T14:39:24.785Z] [32minfo[39m: Server is running on port 3000
+[2025-06-11T14:39:27.177Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-11T14:39:44.809Z] [32minfo[39m: ➡️ POST /api/institution/refresh-token
+[2025-06-11T14:39:44.969Z] [32minfo[39m: 📦 Body: {"refreshToken":"078a46d9f1e6fa196251eca0bf7730a5bfaefdc28cd7e84dfdf134c9aba8c0ee3cb262dbea5587b7"}
+[2025-06-11T14:39:44.974Z] [32minfo[39m: Refresh token endpoint hit...
+[2025-06-11T14:39:48.089Z] [31merror[39m: Plan executor error during findAndModify :: caused by :: E11000 duplicate key error collection: test.refreshtokens index: token_1 dup key: { token: "0744bf22f1eaf5c3d42ca109dc5f1638688c69242f7c4a9d572ae402a8e40f3936d9c3a6ce160bfd" }
+[2025-06-11T14:40:34.566Z] [32minfo[39m: ➡️ POST /api/auth/refresh-token
+[2025-06-11T14:40:34.570Z] [32minfo[39m: 📦 Body: {"refreshToken":"0d9a2cf4923aae78d55aa96eca39b229fb5a3ed5a1387953fd802702568fbf71fd12423c2328261e"}
+[2025-06-11T14:40:34.574Z] [32minfo[39m: Refresh token endpoint hit...
+[2025-06-11T14:40:34.841Z] [33mwarn[39m: Invalid or expired token
+[2025-06-11T14:44:38.704Z] [32minfo[39m: Server is running on port 3000
+[2025-06-11T14:44:40.783Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-02.miqou6z.mongodb.net
+[2025-06-11T14:44:58.334Z] [32minfo[39m: ➡️ POST /api/institution/login
+[2025-06-11T14:44:58.368Z] [32minfo[39m: 📦 Body: {"email":"elijahfx43@gmail.com","password":"123456789Pe*"}
+[2025-06-11T14:44:58.373Z] [32minfo[39m: Login endpoint hit...
+[2025-06-11T14:45:25.179Z] [32minfo[39m: ➡️ POST /api/auth/refresh-token
+[2025-06-11T14:45:25.181Z] [32minfo[39m: 📦 Body: {"refreshToken":"ca3b712d80681bd7a2cd272e40befd63af06a545a4125ebc9452f0dfe80abf65ddd168435c2a6e96"}
+[2025-06-11T14:45:25.187Z] [32minfo[39m: Refresh token endpoint hit...
+[2025-06-11T14:45:25.519Z] [33mwarn[39m: User not found for refresh token
+[2025-06-11T14:45:41.874Z] [32minfo[39m: ➡️ POST /api/institution/login
+[2025-06-11T14:45:41.876Z] [32minfo[39m: 📦 Body: {"email":"elijahfx43@gmail.com","password":"123456789Pe*"}
+[2025-06-11T14:45:41.881Z] [32minfo[39m: Login endpoint hit...
+[2025-06-11T14:45:57.990Z] [32minfo[39m: ➡️ POST /api/auth/refresh-token
+[2025-06-11T14:45:57.992Z] [32minfo[39m: 📦 Body: {"refreshToken":"c711608571c2a6acd0bf87cdb95b347c8856328078e6b548bae7af8df09166e27999afe623bfbcec"}
+[2025-06-11T14:45:57.994Z] [32minfo[39m: Refresh token endpoint hit...
+[2025-06-11T14:45:58.319Z] [33mwarn[39m: User not found for refresh token
+[2025-06-11T14:47:23.603Z] [32minfo[39m: Server is running on port 3000
+[2025-06-11T14:47:26.073Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-11T14:47:34.990Z] [32minfo[39m: ➡️ POST /api/auth/refresh-token
+[2025-06-11T14:47:34.992Z] [32minfo[39m: 📦 Body: {"refreshToken":"c711608571c2a6acd0bf87cdb95b347c8856328078e6b548bae7af8df09166e27999afe623bfbcec"}
+[2025-06-11T14:47:34.996Z] [32minfo[39m: Refresh token endpoint hit...
+[2025-06-11T14:47:35.373Z] [33mwarn[39m: User not found for refresh token
+[2025-06-11T14:48:42.721Z] [32minfo[39m: ➡️ POST /api/institution/login
+[2025-06-11T14:48:42.723Z] [32minfo[39m: 📦 Body: {"email":"elijahfx43@gmail.com","password":"123456789Pe*"}
+[2025-06-11T14:48:42.726Z] [32minfo[39m: Login endpoint hit...
+[2025-06-11T14:49:00.315Z] [32minfo[39m: ➡️ POST /api/auth/refresh-token
+[2025-06-11T14:49:00.317Z] [32minfo[39m: 📦 Body: {"refreshToken":"31aafbf15fcf0f252d09f8ad7a29ef2c9ebbd6bace6251c6206d96b66def4d91d15f7594becce53e"}
+[2025-06-11T14:49:00.319Z] [32minfo[39m: Refresh token endpoint hit...
+[2025-06-11T14:49:00.629Z] [33mwarn[39m: User not found for refresh token
+[2025-06-11T14:52:42.745Z] [32minfo[39m: Server is running on port 3000
+[2025-06-11T14:52:45.476Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-11T14:52:55.932Z] [32minfo[39m: ➡️ POST /api/auth/refresh-token
+[2025-06-11T14:52:55.935Z] [32minfo[39m: 📦 Body: {"refreshToken":"31aafbf15fcf0f252d09f8ad7a29ef2c9ebbd6bace6251c6206d96b66def4d91d15f7594becce53e"}
+[2025-06-11T14:52:55.939Z] [32minfo[39m: Refresh token endpoint hit...
+[2025-06-11T14:52:56.657Z] [33mwarn[39m: User not found for refresh token
+[2025-06-11T15:03:51.567Z] [32minfo[39m: Server is running on port 3000
+[2025-06-11T15:03:54.058Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-11T15:05:05.304Z] [32minfo[39m: ➡️ POST /api/auth/refresh-token
+[2025-06-11T15:05:05.307Z] [32minfo[39m: 📦 Body: {"refreshToken":"31aafbf15fcf0f252d09f8ad7a29ef2c9ebbd6bace6251c6206d96b66def4d91d15f7594becce53e"}
+[2025-06-11T15:05:05.310Z] [32minfo[39m: Refresh token endpoint hit...
+[2025-06-11T15:05:05.691Z] [33mwarn[39m: User not found for refresh token
+[2025-06-11T15:49:10.772Z] [32minfo[39m: Server is running on port 3000
+[2025-06-11T15:49:14.331Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-11T15:49:28.027Z] [32minfo[39m: ➡️ POST /api/institution/login
+[2025-06-11T15:49:28.051Z] [32minfo[39m: 📦 Body: {"email":"elijahfx43@gmail.com","password":"123456789Pe*"}
+[2025-06-11T15:49:28.058Z] [32minfo[39m: Institution login endpoint hit...
+[2025-06-11T15:49:45.551Z] [32minfo[39m: ➡️ POST /api/institution/login
+[2025-06-11T15:49:45.553Z] [32minfo[39m: 📦 Body: {"email":"elijahfx43@gmail.com","password":"123456789Pe*"}
+[2025-06-11T15:49:45.556Z] [32minfo[39m: Institution login endpoint hit...
+[2025-06-11T15:50:00.991Z] [32minfo[39m: ➡️ POST /api/auth/refresh-token
+[2025-06-11T15:50:00.993Z] [32minfo[39m: 📦 Body: {"refreshToken":"1fa5841548ae4cae26def5223b2ee8ab2b3d5801b74cfbfe285ada8e19d90238e176e21d22b66ac8"}
+[2025-06-11T15:50:01.011Z] [32minfo[39m: Refresh token endpoint hit...
+[2025-06-11T15:50:01.590Z] [33mwarn[39m: User not found for refresh token
+[2025-06-11T15:50:28.338Z] [32minfo[39m: ➡️ POST /api/institution/password-token
+[2025-06-11T15:50:28.340Z] [32minfo[39m: 📦 Body: {"email":"elijahfx43@gmail.com"}
+[2025-06-11T15:50:28.342Z] [32minfo[39m: Password reset OTP requested...
+[2025-06-11T15:50:28.855Z] [31merror[39m: sendResetEmail is not defined
+[2025-06-11T15:53:55.959Z] [32minfo[39m: Server is running on port 3000
+[2025-06-11T15:54:01.187Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-11T15:54:16.760Z] [32minfo[39m: ➡️ POST /api/institution/password-token
+[2025-06-11T15:54:16.762Z] [32minfo[39m: 📦 Body: {"email":"elijahfx43@gmail.com"}
+[2025-06-11T15:54:16.769Z] [32minfo[39m: Password reset OTP requested...

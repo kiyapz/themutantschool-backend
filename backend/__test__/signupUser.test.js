@@ -1,5 +1,5 @@
 import express from "express";
-import { User } from "../models/user.model.js";
+import { User } from "../models/usersModels/user.model.js";
 import { signUpUser } from "../controllers/auth.controller.js";
 import { uploadsToCloudinary } from "../config/cloudinary.js";
 import { generateTokens } from "../utils/generateTokens.js";
