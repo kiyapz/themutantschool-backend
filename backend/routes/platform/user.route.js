@@ -6,20 +6,29 @@ import {
   updateUserProfile,
 } from "../../controllers/platform/user.controller.js";
 import { upload } from "../../middlewares/uploads.js";
-import { isAdmin } from "../../middlewares/protectedRoutes.js";
-import { authMiddleware } from "../../middlewares/authMiddleware.js";
+import { authenticate } from "../../middlewares/authMiddleware.js";
+import { authorizeRoles } from "../../middlewares/protectedRoutes.js";
 
 export const userRoutes = express.Router();
 
-userRoutes.get("/", authMiddleware, isAdmin, getAllUsers);
+// Admin: Get all users
+userRoutes.get("/", authenticate("user"), authorizeRoles("admin"), getAllUsers);
 
-userRoutes.get("/:id", authMiddleware, getUserById);
+// Admin OR self: Get single user by ID
+userRoutes.get("/:id", authenticate("user"), getUserById);
 
+// Admin OR self: Update profile (with avatar upload)
 userRoutes.put(
   "/:id",
+  authenticate("user"),
   upload.single("file"),
-  authMiddleware,
   updateUserProfile
 );
 
-userRoutes.delete("/:id", deleteUser);
+// Admin only: Delete user
+userRoutes.delete(
+  "/:id",
+  authenticate("user"),
+  authorizeRoles("admin"),
+  deleteUser
+);

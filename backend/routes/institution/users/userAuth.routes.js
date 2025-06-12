@@ -8,11 +8,16 @@ import {
   resetInstitutionUserPassword,
   logoutInstitutionUser,
 } from "../../../controllers/institution/users/auth.controller.js";
+import { authenticate } from "../../../middlewares/authMiddleware.js";
 
 export const instituteUserAuthRoutes = express.Router();
 
 //Register user
-instituteUserAuthRoutes.post("/user/register", registerInstitutionUser);
+instituteUserAuthRoutes.post(
+  "/user/register",
+  authenticate("institution"),
+  registerInstitutionUser
+);
 //verify user
 instituteUserAuthRoutes.post("/user/verfiy-account", verifyInstitutionUser);
 //Login user

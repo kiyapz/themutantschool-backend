@@ -166,3 +166,10 @@
 [2025-06-12T14:05:20.062Z] [31merror[39m: Can't find /api/user-institution/all-users on the server
 [2025-06-12T14:06:09.885Z] [31merror[39m: Can't find /api/user-institution/all-users on the server
 [2025-06-12T14:11:32.294Z] [31merror[39m: Cannot convert undefined or null to object
+[2025-06-12T17:41:16.028Z] [31merror[39m: Cannot read properties of undefined (reading 'password')
+[2025-06-12T17:48:08.997Z] [31merror[39m: Cannot read properties of undefined (reading 'password')
+[2025-06-12T17:51:06.016Z] [31merror[39m: Cannot read properties of undefined (reading 'firstName')
+[2025-06-12T17:56:07.110Z] [31merror[39m: Cannot convert undefined or null to object
+[2025-06-12T18:08:30.887Z] [31merror[39m: Cannot convert undefined or null to object
+[2025-06-12T18:15:13.481Z] [31merror[39m: Cannot convert undefined or null to object
+[2025-06-12T18:21:13.243Z] [31merror[39m: Cannot convert undefined or null to object

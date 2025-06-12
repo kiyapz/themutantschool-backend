@@ -40,6 +40,9 @@ export const getSingleUser = asyncErrorHandler(async (req, res) => {
   }
 
   const user = await InstitutionUser.findById(id).select("-password");
+  if (req.user.role !== "admin" && req.user._id.toString() !== id) {
+    return res.status(403).json({ message: "Access denied" });
+  }
   if (!user) return notFoundResponse(res);
 
   logger.info(`User with ID: ${id} fetched successfully`);
@@ -59,8 +62,11 @@ export const updatedUser = asyncErrorHandler(async (req, res) => {
     logger.warn(`Invalid ObjectId: ${id}`);
     return res.status(400).json({ success: false, message: "Invalid user ID" });
   }
-
   const existingUser = await InstitutionUser.findById(id);
+  // Allow the user themselves
+  if (req.existingUser._id.toString() !== id) {
+    return res.status(403).json({ message: "Access denied" });
+  }
   if (!existingUser) return notFoundResponse(res);
 
   // Handle avatar upload
@@ -119,6 +125,10 @@ export const deleteUser = asyncErrorHandler(async (req, res) => {
   }
 
   const user = await InstitutionUser.findByIdAndDelete(id);
+  // Allow only admins or the user themselves
+  if (req.user.role !== "admin" && req.user._id.toString() !== id) {
+    return res.status(403).json({ message: "Access denied" });
+  }
   if (!user) return notFoundResponse(res);
 
   if (user.avatar?.publicId) {
