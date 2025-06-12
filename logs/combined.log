@@ -1220,3 +1220,147 @@
 [2025-06-11T15:54:16.760Z] [32minfo[39m: ➡️ POST /api/institution/password-token
 [2025-06-11T15:54:16.762Z] [32minfo[39m: 📦 Body: {"email":"elijahfx43@gmail.com"}
 [2025-06-11T15:54:16.769Z] [32minfo[39m: Password reset OTP requested...
+[2025-06-12T11:11:48.212Z] [32minfo[39m: Server is running on port 3000
+[2025-06-12T11:11:53.271Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-02.miqou6z.mongodb.net
+[2025-06-12T11:12:12.967Z] [32minfo[39m: ➡️ GET /api/institution
+[2025-06-12T11:12:12.975Z] [32minfo[39m: Fetching all institutions...
+[2025-06-12T11:13:45.707Z] [32minfo[39m: ➡️ GET /api/institution/6849771ca5adc35513bd1c72
+[2025-06-12T11:13:45.712Z] [32minfo[39m: Fetching institution with ID: 6849771ca5adc35513bd1c72
+[2025-06-12T11:14:47.671Z] [32minfo[39m: ➡️ PUT /api/institution/6849771ca5adc35513bd1c72
+[2025-06-12T11:14:47.678Z] [32minfo[39m: Updating institution with ID: 6849771ca5adc35513bd1c72
+[2025-06-12T11:14:48.090Z] [31merror[39m: Cannot convert undefined or null to object
+[2025-06-12T11:16:55.797Z] [32minfo[39m: ➡️ PUT /api/institution/6849771ca5adc35513bd1c72
+[2025-06-12T11:16:56.321Z] [32minfo[39m: Updating institution with ID: 6849771ca5adc35513bd1c72
+[2025-06-12T11:16:56.598Z] [32minfo[39m: Processing new avatar...
+[2025-06-12T11:17:00.492Z] [32minfo[39m: Uploaded to Cloudinary: https://res.cloudinary.com/drxiejhsy/image/upload/v1749727020/rafg8iffow1yp6srj43s.jpg
+[2025-06-12T11:18:18.454Z] [32minfo[39m: ➡️ POST /api/auth/register-username
+[2025-06-12T11:18:18.455Z] [32minfo[39m: 📦 Body: {"username":"Vendor"}
+[2025-06-12T11:18:18.457Z] [32minfo[39m: username registration initiated...
+[2025-06-12T11:19:18.139Z] [32minfo[39m: ➡️ POST /api/institution/register
+[2025-06-12T11:19:18.141Z] [32minfo[39m: 📦 Body: {"name":"Vendor","email":"elijahdev20@gmail.com","password":"1234567890","institutionType":"Academy","userNameId":"684ab77a15c644ef98435868"}
+[2025-06-12T11:19:18.144Z] [32minfo[39m: Institution registration initiated...
+[2025-06-12T11:19:22.827Z] [32minfo[39m: Institution created: 684ab7b615c644ef9843586c
+[2025-06-12T11:19:27.182Z] [32minfo[39m: Email sent: 250 2.0.0 OK  1749727168 5b1f17b1804b1-4532e14f283sm17683745e9.27 - gsmtp
+[2025-06-12T11:19:34.282Z] [32minfo[39m: ➡️ POST /api/institution/register
+[2025-06-12T11:19:34.283Z] [32minfo[39m: 📦 Body: {"name":"Vendor","email":"elijahdev20@gmail.com","password":"1234567890","institutionType":"Academy","userNameId":"684ab77a15c644ef98435868"}
+[2025-06-12T11:19:34.284Z] [32minfo[39m: Institution registration initiated...
+[2025-06-12T11:19:34.650Z] [33mwarn[39m: Institution already exists: elijahdev20@gmail.com
+[2025-06-12T11:19:45.110Z] [32minfo[39m: ➡️ GET /api/institution
+[2025-06-12T11:19:45.112Z] [32minfo[39m: Fetching all institutions...
+[2025-06-12T11:20:36.091Z] [32minfo[39m: ➡️ GET /api/institution/684ab7b615c644ef9843586c
+[2025-06-12T11:20:36.093Z] [32minfo[39m: Fetching institution with ID: 684ab7b615c644ef9843586c
+[2025-06-12T11:20:53.854Z] [32minfo[39m: ➡️ PUT /api/institution/684ab7b615c644ef9843586c
+[2025-06-12T11:20:53.987Z] [32minfo[39m: Updating institution with ID: 684ab7b615c644ef9843586c
+[2025-06-12T11:20:54.610Z] [32minfo[39m: Processing new avatar...
+[2025-06-12T11:21:17.978Z] [32minfo[39m: Uploaded to Cloudinary: https://res.cloudinary.com/drxiejhsy/image/upload/v1749727276/pmghy4twpeadebl3lwlb.jpg
+[2025-06-12T11:21:59.460Z] [32minfo[39m: ➡️ DELETE /api/institution/684ab7b615c644ef9843586c
+[2025-06-12T11:21:59.462Z] [32minfo[39m: Deleting institution with ID: 684ab7b615c644ef9843586c
+[2025-06-12T11:22:04.457Z] [32minfo[39m: Deleted from Cloudinary: pmghy4twpeadebl3lwlb
+[2025-06-12T11:22:11.841Z] [32minfo[39m: ➡️ PUT /api/institution/684ab7b615c644ef9843586c
+[2025-06-12T11:22:11.944Z] [32minfo[39m: Updating institution with ID: 684ab7b615c644ef9843586c
+[2025-06-12T11:22:12.470Z] [33mwarn[39m: Institution not found
+[2025-06-12T11:22:34.305Z] [32minfo[39m: ➡️ GET /api/institution/684ab7b615c644ef9843586c
+[2025-06-12T11:22:34.306Z] [32minfo[39m: Fetching institution with ID: 684ab7b615c644ef9843586c
+[2025-06-12T11:22:34.854Z] [33mwarn[39m: Institution not found
+[2025-06-12T11:22:40.082Z] [32minfo[39m: ➡️ GET /api/institution
+[2025-06-12T11:22:40.087Z] [32minfo[39m: Fetching all institutions...
+[2025-06-12T11:57:50.939Z] [32minfo[39m: Server is running on port 3000
+[2025-06-12T11:57:59.121Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-12T11:59:40.195Z] [32minfo[39m: ➡️ POST /api/auth/register-username
+[2025-06-12T11:59:40.292Z] [32minfo[39m: 📦 Body: {"username":"James"}
+[2025-06-12T11:59:40.301Z] [32minfo[39m: username registration initiated...
+[2025-06-12T12:03:48.315Z] [32minfo[39m: ➡️ GET /api/institution
+[2025-06-12T12:03:48.319Z] [32minfo[39m: Fetching all institutions...
+[2025-06-12T12:04:07.880Z] [32minfo[39m: ➡️ POST /api/institution/user/register
+[2025-06-12T12:04:07.882Z] [32minfo[39m: 📦 Body: {"firstName":"James","lastName":"Mathew","email":"elijahdev20@gmail.com","password":"1234567890","role":"admin","userNameId":"684ac12c15a13fc55de5a60c","institutionId":"6849771ca5adc35513bd1c72"}
+[2025-06-12T12:04:07.887Z] [31merror[39m: Can't find /api/institution/user/register on the server
+[2025-06-12T12:05:34.026Z] [32minfo[39m: ➡️ POST /api/institution/user/register
+[2025-06-12T12:05:34.027Z] [32minfo[39m: 📦 Body: {"firstName":"James","lastName":"Mathew","email":"elijahdev20@gmail.com","password":"1234567890","role":"admin","userNameId":"684ac12c15a13fc55de5a60c","institutionId":"6849771ca5adc35513bd1c72"}
+[2025-06-12T12:05:34.029Z] [31merror[39m: Can't find /api/institution/user/register on the server
+[2025-06-12T12:48:25.673Z] [32minfo[39m: Server is running on port 3000
+[2025-06-12T12:48:30.100Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-12T12:49:00.796Z] [32minfo[39m: ➡️ POST /api/institution/user/register
+[2025-06-12T12:49:00.797Z] [32minfo[39m: 📦 Body: {"firstName":"James","lastName":"Mathew","email":"elijahdev20@gmail.com","password":"1234567890","role":"admin","userNameId":"684ac12c15a13fc55de5a60c","institutionId":"6849771ca5adc35513bd1c72"}
+[2025-06-12T12:49:13.258Z] [32minfo[39m: Email sent: 250 2.0.0 OK  1749732554 ffacd0b85a97d-3a5619767f7sm1904324f8f.6 - gsmtp
+[2025-06-12T12:49:13.261Z] [31merror[39m: generateTokens is not defined
+[2025-06-12T12:50:05.507Z] [32minfo[39m: Server is running on port 3000
+[2025-06-12T12:50:09.090Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-12T12:50:16.812Z] [32minfo[39m: ➡️ POST /api/institution/user/register
+[2025-06-12T12:50:16.814Z] [32minfo[39m: 📦 Body: {"firstName":"James","lastName":"Mathew","email":"elijahdev20@gmail.com","password":"1234567890","role":"admin","userNameId":"684ac12c15a13fc55de5a60c","institutionId":"6849771ca5adc35513bd1c72"}
+[2025-06-12T12:51:03.014Z] [32minfo[39m: ➡️ POST /api/auth/register-username
+[2025-06-12T12:51:03.015Z] [32minfo[39m: 📦 Body: {"username":"Adam"}
+[2025-06-12T12:51:03.018Z] [32minfo[39m: username registration initiated...
+[2025-06-12T12:51:53.147Z] [32minfo[39m: ➡️ POST /api/institution/user/register
+[2025-06-12T12:51:53.149Z] [32minfo[39m: 📦 Body: {"firstName":"Abel","lastName":"Jonah","email":"elijafx43@gmail.com","password":"1234567890","role":"admin","userNameId":"684acd37794b735e136afc5e","institutionId":"6849771ca5adc35513bd1c72"}
+[2025-06-12T12:51:57.067Z] [32minfo[39m: Email sent: 250 2.0.0 OK  1749732718 ffacd0b85a97d-3a5619768c0sm1940188f8f.14 - gsmtp
+[2025-06-12T12:54:09.642Z] [32minfo[39m: ➡️ POST /api/institution/user/verfiy-account
+[2025-06-12T12:54:09.644Z] [32minfo[39m: 📦 Body: {"email":"elijahfx43@gmail.com","token":"603845"}
+[2025-06-12T12:55:01.413Z] [32minfo[39m: ➡️ POST /api/institution/user/verfiy-account
+[2025-06-12T12:55:01.414Z] [32minfo[39m: 📦 Body: {"email":"elijafx43@gmail.com","token":"603845"}
+[2025-06-12T12:55:06.254Z] [32minfo[39m: ➡️ POST /api/institution/user/verfiy-account
+[2025-06-12T12:55:06.256Z] [32minfo[39m: 📦 Body: {"email":"elijafx43@gmail.com","token":"603845"}
+[2025-06-12T12:56:42.686Z] [32minfo[39m: ➡️ POST /api/institutionuser/login
+[2025-06-12T12:56:42.687Z] [32minfo[39m: 📦 Body: {"email":"elijafx43@gmail.com","password":"123456789Pe*"}
+[2025-06-12T12:56:42.689Z] [31merror[39m: Can't find /api/institutionuser/login on the server
+[2025-06-12T12:56:54.170Z] [32minfo[39m: ➡️ POST /api/institution/user/login
+[2025-06-12T12:56:54.172Z] [32minfo[39m: 📦 Body: {"email":"elijafx43@gmail.com","password":"123456789Pe*"}
+[2025-06-12T12:57:04.113Z] [32minfo[39m: ➡️ POST /api/institution/user/login
+[2025-06-12T12:57:04.114Z] [32minfo[39m: 📦 Body: {"email":"elijafx43@gmail.com","password":"1234567890"}
+[2025-06-12T12:58:44.880Z] [32minfo[39m: ➡️ POST /api/institution/user/request-password-reset-token
+[2025-06-12T12:58:44.882Z] [32minfo[39m: 📦 Body: {"email":"elijahfx43@gmail.com"}
+[2025-06-12T12:59:57.061Z] [32minfo[39m: ➡️ POST /api/institution/user/resend-verification-token
+[2025-06-12T12:59:57.063Z] [32minfo[39m: 📦 Body: {"email":"elijahfx43@gmail.com"}
+[2025-06-12T13:00:06.939Z] [32minfo[39m: ➡️ POST /api/institution/user/resend-verification-token
+[2025-06-12T13:00:06.942Z] [32minfo[39m: 📦 Body: {"email":"elijafx43@gmail.com"}
+[2025-06-12T13:01:02.447Z] [32minfo[39m: ➡️ POST /api/institution/user/logout
+[2025-06-12T13:01:02.448Z] [32minfo[39m: 📦 Body: {"refreshToken":"0d9a2cf4923aae78d55aa96eca39b229fb5a3ed5a1387953fd802702568fbf71fd12423c2328261e"}
+[2025-06-12T13:01:29.745Z] [32minfo[39m: ➡️ POST /api/institution/user/logout
+[2025-06-12T13:01:29.746Z] [32minfo[39m: 📦 Body: {"refreshToken":"7eefc376a9ac796dc8a9b695c55b4ca266ff5aa43f3ca104ff10bf757978447b9fa64ece80791d69"}
+[2025-06-12T13:15:12.730Z] [32minfo[39m: Server is running on port 3000
+[2025-06-12T13:15:38.823Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-12T13:18:32.881Z] [32minfo[39m: Server is running on port 3000
+[2025-06-12T13:18:36.358Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-12T13:26:28.303Z] [32minfo[39m: Server is running on port 3000
+[2025-06-12T13:26:31.133Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-12T13:32:40.128Z] [32minfo[39m: Server is running on port 3000
+[2025-06-12T13:32:42.652Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-12T13:38:47.737Z] [32minfo[39m: Server is running on port 3000
+[2025-06-12T13:38:49.824Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-12T13:44:28.937Z] [32minfo[39m: ➡️ GET /api/institution/users
+[2025-06-12T13:44:28.942Z] [32minfo[39m: Fetching institution with ID: users
+[2025-06-12T13:44:29.032Z] [31merror[39m: Cast to ObjectId failed for value "users" (type string) at path "_id" for model "Institution"
+[2025-06-12T13:50:25.771Z] [32minfo[39m: Server is running on port 3000
+[2025-06-12T13:50:29.680Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-12T13:50:33.724Z] [32minfo[39m: ➡️ GET /api/institution/users
+[2025-06-12T13:50:33.731Z] [32minfo[39m: Fetching institution with ID: users
+[2025-06-12T13:50:33.786Z] [31merror[39m: Cast to ObjectId failed for value "users" (type string) at path "_id" for model "Institution"
+[2025-06-12T13:51:09.525Z] [32minfo[39m: ➡️ GET /api/institution/users
+[2025-06-12T13:51:09.528Z] [32minfo[39m: Fetching institution with ID: users
+[2025-06-12T13:51:09.531Z] [31merror[39m: Cast to ObjectId failed for value "users" (type string) at path "_id" for model "Institution"
+[2025-06-12T14:00:46.489Z] [32minfo[39m: Server is running on port 3000
+[2025-06-12T14:00:49.336Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-12T14:01:03.361Z] [32minfo[39m: ➡️ GET /api/institution/users
+[2025-06-12T14:01:03.368Z] [32minfo[39m: Fetching institution with ID: users
+[2025-06-12T14:01:03.395Z] [31merror[39m: Cast to ObjectId failed for value "users" (type string) at path "_id" for model "Institution"
+[2025-06-12T14:03:35.168Z] [32minfo[39m: Server is running on port 3000
+[2025-06-12T14:03:39.800Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-12T14:03:47.885Z] [32minfo[39m: ➡️ GET /api/institution/all-users
+[2025-06-12T14:03:47.891Z] [32minfo[39m: Fetching institution with ID: all-users
+[2025-06-12T14:03:47.933Z] [31merror[39m: Cast to ObjectId failed for value "all-users" (type string) at path "_id" for model "Institution"
+[2025-06-12T14:05:10.899Z] [32minfo[39m: Server is running on port 3000
+[2025-06-12T14:05:13.609Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-12T14:05:20.058Z] [32minfo[39m: ➡️ GET /api/user-institution/all-users
+[2025-06-12T14:05:20.062Z] [31merror[39m: Can't find /api/user-institution/all-users on the server
+[2025-06-12T14:06:09.883Z] [32minfo[39m: ➡️ GET /api/user-institution/all-users
+[2025-06-12T14:06:09.885Z] [31merror[39m: Can't find /api/user-institution/all-users on the server
+[2025-06-12T14:09:35.017Z] [32minfo[39m: Server is running on port 3000
+[2025-06-12T14:09:37.267Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-12T14:09:41.086Z] [32minfo[39m: ➡️ GET /api/user-institution/all-users
+[2025-06-12T14:09:41.090Z] [32minfo[39m: Fetching all users...
+[2025-06-12T14:09:41.403Z] [32minfo[39m: Fetched 2 users
+[2025-06-12T14:10:54.290Z] [32minfo[39m: ➡️ GET /api/user-institution/user/684accbe8263cfc07964f011
+[2025-06-12T14:10:54.293Z] [32minfo[39m: Fetching user with ID: 684accbe8263cfc07964f011
+[2025-06-12T14:10:54.572Z] [32minfo[39m: User with ID: 684accbe8263cfc07964f011 fetched successfully
+[2025-06-12T14:11:32.117Z] [32minfo[39m: ➡️ PUT /api/user-institution/user/684accbe8263cfc07964f011
+[2025-06-12T14:11:32.122Z] [32minfo[39m: Updating user with ID: 684accbe8263cfc07964f011
+[2025-06-12T14:11:32.294Z] [31merror[39m: Cannot convert undefined or null to object

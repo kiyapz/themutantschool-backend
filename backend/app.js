@@ -7,6 +7,9 @@ import { notFoundHandler } from "./middlewares/apiErrors.js";
 import { authRoutes } from "./routes/platform/auth.routes.js";
 import { userRoutes } from "./routes/platform/user.route.js";
 import { instituteRoutes } from "./routes/institution/auth.routes.js";
+import { instituteUserRoutes } from "./routes/institution/user.routes.js";
+import { instituteUserAuthRoutes } from "./routes/institution/users/userAuth.routes.js";
+import { userInstutionRoutes } from "./routes/institution/users/userInstitution.routes.js";
 
 export const app = express();
 
@@ -54,6 +57,9 @@ app.use((req, res, next) => {
 app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/institution", instituteRoutes);
+app.use("/api/institution", instituteUserRoutes);
+app.use("/api/institution", instituteUserAuthRoutes);
+app.use("/api/user-institution", userInstutionRoutes);
 //  404 Handler
 app.use(notFoundHandler);
 
