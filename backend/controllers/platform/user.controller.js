@@ -6,117 +6,139 @@ import {
   deleteFromCloudinary,
 } from "../../config/cloudinary.js";
 import fs from "fs";
+import mongoose from "mongoose";
 
-// Get all users
+// 🧑‍🤝‍🧑 Get all users (admin only)
 export const getAllUsers = asyncErrorHandler(async (req, res) => {
   logger.info("GET /users - Fetching all users...");
   const users = await User.find({}).select("-password");
 
-  if (!users || users.length === 0) {
+  if (!users.length) {
     return res.status(404).json({
       success: false,
       message: "No users found",
     });
   }
 
-  return res.status(200).json({
+  res.status(200).json({
     success: true,
     message: "Users fetched successfully",
     data: users,
   });
 });
 
-// Get user by ID
+// 🔍 Get user by ID (admin or self)
 export const getUserById = asyncErrorHandler(async (req, res) => {
-  logger.info(`GET /users/${req.params.id} - Fetching user by ID...`);
-  const user = await User.findById(req.params.id).select("-password");
+  const { id } = req.params;
+  logger.info(`GET /users/${id} - Fetching user by ID...`);
 
-  if (!user) {
-    return res.status(404).json({
-      success: false,
-      message: "User not found",
-    });
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({ success: false, message: "Invalid user ID" });
   }
 
-  return res.status(200).json({
+  const user = await User.findById(id).select("-password");
+
+  if (!user) {
+    return res.status(404).json({ success: false, message: "User not found" });
+  }
+
+  // Access control: admin or self
+  if (req.user.role !== "admin" && req.user._id.toString() !== id) {
+    return res.status(403).json({ message: "Access denied" });
+  }
+
+  res.status(200).json({
     success: true,
     message: "User fetched successfully",
     data: user,
   });
 });
 
-// Update user profile
+// PUT /users/:id - Update user profile (admin or self)// PUT /users/:id - Update user profile (admin or self)
+// PUT /users/:id - Update user profile (admin or self)
 export const updateUserProfile = asyncErrorHandler(async (req, res) => {
-  logger.info(`PUT /users/${req.params.id} - Updating user profile...`);
+  const { id } = req.params;
+  logger.info(`Updating user profile with ID: ${id}`);
 
-  const user = await User.findById(req.params.id);
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({ success: false, message: "Invalid user ID" });
+  }
+
+  const user = await User.findById(id);
   if (!user) {
-    return res.status(404).json({
-      success: false,
-      message: "User not found",
-    });
+    return res.status(404).json({ success: false, message: "User not found" });
   }
 
-  if (req.body.password) {
-    return res.status(400).json({
-      success: false,
-      message: "Use the dedicated password update endpoint",
-    });
+  // Access control (admin or self)
+  if (req.user.role !== "admin" && req.user._id.toString() !== id) {
+    return res.status(403).json({ message: "Access denied" });
   }
 
-  const fieldsToUpdate = [
-    "firstName",
-    "lastName",
-    "username",
-    "email",
-    "gender",
-    "country",
-    "dob",
-  ];
-
-  fieldsToUpdate.forEach((field) => {
-    if (req.body[field] !== undefined) {
-      user[field] = req.body[field];
-    }
-  });
-
+  // Handle avatar upload
   if (req.file) {
+    logger.info("Processing new avatar...");
+
     if (user.avatar?.publicId) {
-      await deleteFromCloudinary(user.avatar.publicId);
+      try {
+        await deleteFromCloudinary(user.avatar.publicId);
+      } catch (err) {
+        logger.error("Error deleting old avatar:", err.message);
+      }
     }
 
-    const result = await uploadsToCloudinary(req.file.path);
-    user.avatar = {
-      url: result.secure_url,
-      publicId: result.public_id,
-    };
+    try {
+      const uploadResult = await uploadsToCloudinary(req.file.path);
+      fs.unlinkSync(req.file.path);
 
-    fs.unlinkSync(req.file.path);
+      req.body.avatar = {
+        url: uploadResult.secure_url,
+        publicId: uploadResult.public_id,
+      };
+    } catch (uploadError) {
+      logger.error("Avatar upload failed:", uploadError.message);
+      return res
+        .status(500)
+        .json({ success: false, message: "Avatar upload failed" });
+    }
   }
 
-  await user.save();
+  // Prevent _id or password from being overwritten accidentally
+  delete req.body._id;
+  delete req.body.password;
 
-  return res.status(200).json({
+  const updatedUser = await User.findByIdAndUpdate(id, req.body, {
+    new: true,
+    runValidators: true,
+  }).select("-password");
+
+  res.status(200).json({
     success: true,
     message: "User profile updated successfully",
-    data: user,
+    data: updatedUser,
   });
 });
 
-// Delete user
+// ❌ Delete user (admin or self)
 export const deleteUser = asyncErrorHandler(async (req, res) => {
-  logger.info(`DELETE /users/${req.params.id} - Deleting user...`);
+  const { id } = req.params;
+  logger.info(`DELETE /users/${id} - Deleting user...`);
 
-  const user = await User.findByIdAndDelete(req.params.id);
-
-  if (!user) {
-    return res.status(404).json({
-      success: false,
-      message: "User not found",
-    });
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({ success: false, message: "Invalid user ID" });
   }
 
-  return res.status(200).json({
+  const user = await User.findById(id);
+  if (!user) {
+    return res.status(404).json({ success: false, message: "User not found" });
+  }
+
+  if (req.user.role !== "admin" && req.user._id.toString() !== id) {
+    return res.status(403).json({ message: "Access denied" });
+  }
+
+  await user.deleteOne();
+
+  res.status(200).json({
     success: true,
     message: "User deleted successfully",
   });
