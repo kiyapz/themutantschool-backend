@@ -17,26 +17,28 @@ export const app = express();
 app.use(helmet());
 app.use(cors());
 app.use(express.json());
-// Allowed front-end URL(s)
-const allowedOrigins = [process.env.FRONTEND_URL];
 
-// CORS options object
+const allowedOrigins = [
+  process.env.FRONTEND_LOCAL_URL,
+  process.env.FRONTEND_URL,
+];
+
 const corsOptions = {
   origin: function (origin, callback) {
     if (!origin) {
-      // Allow requests with no origin (like Postman, curl)
+      // Allow requests without origin (like Postman, curl)
       return callback(null, true);
     }
-    if (allowedOrigins.indexOf(origin) !== -1) {
-      // Origin allowed
+
+    if (allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
-      // Origin not allowed
       callback(new Error("Not allowed by CORS"));
     }
   },
-  credentials: true, // if you need to support cookies/auth
-  optionsSuccessStatus: 200, // For legacy browser support
+  credentials: true, // Enable sending cookies or credentials
+  optionsSuccessStatus: 200,
+  exposedHeaders: ["Authorization"], // Expose the Authorization header in response if needed
 };
 
 // Apply CORS middleware globally

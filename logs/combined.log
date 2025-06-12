@@ -1559,3 +1559,21 @@
 [2025-06-12T18:21:12.860Z] [32minfo[39m: ➡️ PUT /api/user/684b074be47bf37ce5e18766
 [2025-06-12T18:21:13.075Z] [32minfo[39m: Updating user profile with ID: 684b074be47bf37ce5e18766
 [2025-06-12T18:21:13.243Z] [31merror[39m: Cannot convert undefined or null to object
+[2025-06-12T18:23:17.837Z] [32minfo[39m: Server is running on port 3000
+[2025-06-12T18:23:21.497Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-12T18:23:35.269Z] [32minfo[39m: ➡️ PUT /api/user/684b074be47bf37ce5e18766
+[2025-06-12T18:23:35.606Z] [32minfo[39m: Updating user profile with ID: 684b074be47bf37ce5e18766
+[2025-06-12T18:23:35.881Z] [31merror[39m: Cannot convert undefined or null to object
+[2025-06-12T18:25:56.013Z] [32minfo[39m: ➡️ POST /api/auth/login
+[2025-06-12T18:25:56.015Z] [32minfo[39m: 📦 Body: {"email":"elijahdev20@gmail.com","password":"1234567890"}
+[2025-06-12T18:25:56.018Z] [32minfo[39m: Login endpoint hit...
+[2025-06-12T18:26:18.271Z] [32minfo[39m: ➡️ GET /api/user/684b074be47bf37ce5e18766
+[2025-06-12T18:26:18.542Z] [32minfo[39m: GET /users/684b074be47bf37ce5e18766 - Fetching user by ID...
+[2025-06-12T18:27:39.333Z] [32minfo[39m: ➡️ PUT /api/user/684b074be47bf37ce5e18766
+[2025-06-12T18:27:46.924Z] [32minfo[39m: ➡️ POST /api/auth/login
+[2025-06-12T18:27:46.925Z] [32minfo[39m: 📦 Body: {"email":"elijahdev20@gmail.com","password":"1234567890"}
+[2025-06-12T18:27:46.927Z] [32minfo[39m: Login endpoint hit...
+[2025-06-12T18:28:09.768Z] [32minfo[39m: ➡️ PUT /api/user/684b074be47bf37ce5e18766
+[2025-06-12T18:28:10.737Z] [32minfo[39m: Updating user profile with ID: 684b074be47bf37ce5e18766
+[2025-06-12T18:28:11.022Z] [32minfo[39m: Processing new avatar...
+[2025-06-12T18:28:15.334Z] [32minfo[39m: Uploaded to Cloudinary: https://res.cloudinary.com/drxiejhsy/image/upload/v1749752895/iaawtjspvls9gzu70bhp.jpg
