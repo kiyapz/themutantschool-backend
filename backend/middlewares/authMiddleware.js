@@ -2,13 +2,11 @@ import jwt from "jsonwebtoken";
 import { User } from "../models/usersModels/user.model.js";
 import { Institution } from "../models/usersModels/institution.model.js";
 import { InstitutionUser } from "../models/usersModels/InstitutionUser .js";
-
 export const authenticate = (model = "user") => {
   return async (req, res, next) => {
     const authHeader = req.headers.authorization;
-
     if (!authHeader?.startsWith("Bearer ")) {
-      console.log("🚫 No Bearer token found in Authorization header");
+      console.log("🚫 No Bearer token found");
       return res.status(401).json({ message: "Unauthorized. Token missing." });
     }
 
@@ -21,7 +19,6 @@ export const authenticate = (model = "user") => {
       console.log("🧩 Model being authenticated:", model);
 
       let user;
-
       if (model === "user") {
         user = await User.findById(decoded.userId).select("-password");
         console.log("🔎 User found:", user);

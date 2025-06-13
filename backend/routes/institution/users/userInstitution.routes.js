@@ -25,6 +25,6 @@ userInstutionRoutes.put(
 );
 userInstutionRoutes.delete(
   "/user/:id",
-  authenticate("institutionUser"),
+  authenticate("institution"),
   deleteUser
 );

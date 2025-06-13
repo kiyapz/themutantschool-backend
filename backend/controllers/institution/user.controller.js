@@ -48,6 +48,10 @@ export const updateInstitution = asyncErrorHandler(async (req, res) => {
   const { id } = req.params;
   logger.info(`Updating institution with ID: ${id}`);
 
+  // Debug logs to check incoming data
+  console.log("DEBUG - req.body:", req.body);
+  console.log("DEBUG - req.file:", req.file);
+
   const institution = await Institution.findById(id);
   if (!institution) return notFoundResponse(res);
 
@@ -67,11 +71,15 @@ export const updateInstitution = asyncErrorHandler(async (req, res) => {
       }
     }
 
-    // Upload new avatar
+    // Upload new avatar to Cloudinary
     try {
       const uploadResult = await uploadsToCloudinary(req.file.path);
       fs.unlinkSync(req.file.path);
 
+      // Ensure req.body is an object before adding avatar field
+      if (!req.body || typeof req.body !== "object") {
+        req.body = {};
+      }
       req.body.avatar = {
         url: uploadResult.secure_url,
         publicId: uploadResult.public_id,
@@ -84,10 +92,16 @@ export const updateInstitution = asyncErrorHandler(async (req, res) => {
     }
   }
 
-  // Prevent password or _id from being overwritten accidentally
-  delete req.body.password;
-  delete req.body._id;
+  // Make sure req.body is an object before deleting sensitive fields
+  if (!req.body || typeof req.body !== "object") {
+    req.body = {};
+  }
 
+  // Prevent password or _id from being overwritten accidentally
+  // delete req.body.password;
+  // delete req.body._id;
+
+  // Perform the update
   const updatedInstitution = await Institution.findByIdAndUpdate(id, req.body, {
     new: true,
     runValidators: true,
