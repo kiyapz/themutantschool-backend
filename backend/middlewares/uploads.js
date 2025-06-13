@@ -1,18 +1,7 @@
 import multer from "multer";
-import path from "path";
 
-// Set our multer storage
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "uploads/");
-  },
-  filename: function (req, file, cb) {
-    cb(
-      null,
-      file.fieldname + "-" + Date.now() + path.extname(file.originalname)
-    );
-  },
-});
+// Use memory storage instead of disk
+const storage = multer.memoryStorage();
 
 // File filter function
 const checkFileFilter = (req, file, cb) => {
@@ -22,15 +11,15 @@ const checkFileFilter = (req, file, cb) => {
   ) {
     cb(null, true);
   } else {
-    cb(new Error("Please upload an image or video"));
+    cb(new Error("Only image and video files are allowed!"));
   }
 };
 
-// Middleware
+// Multer middleware
 export const upload = multer({
-  storage: storage,
+  storage,
   fileFilter: checkFileFilter,
   limits: {
-    fileSize: 50 * 1024 * 1024,
+    fileSize: 50 * 1024 * 1024, // 50 MB limit
   },
 });
