@@ -1,6 +1,8 @@
+// updated uploadsToCloudinary.js
 import { v2 as cloudinary } from "cloudinary";
-import { logger } from "../utils/logger.js";
+import { Readable } from "stream";
 import dotenv from "dotenv";
+import { logger } from "../utils/logger.js";
 dotenv.config();
 
 cloudinary.config({
@@ -9,25 +11,42 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_SECRET,
 });
 
-export const uploadsToCloudinary = async (filePath) => {
-  try {
-    const result = await cloudinary.uploader.upload(filePath, {
-      resource_type: "auto",
-    });
+const bufferToStream = (buffer) => {
+  const readable = new Readable();
+  readable.push(buffer);
+  readable.push(null);
+  return readable;
+};
 
-    if (!result || !result.secure_url) {
-      throw new Error("Cloudinary upload failed: secure_url missing");
-    }
+export const uploadsToCloudinary = (fileBuffer, folder = "uploads") => {
+  return new Promise((resolve, reject) => {
+    const stream = cloudinary.uploader.upload_stream(
+      {
+        folder,
+        resource_type: "auto",
+      },
+      (error, result) => {
+        if (error) {
+          logger.error("Cloudinary upload error:", error.message);
+          return reject(error);
+        }
 
-    logger.info(`Uploaded to Cloudinary: ${result.secure_url}`);
-    return {
-      secure_url: result.secure_url,
-      public_id: result.public_id,
-    };
-  } catch (err) {
-    logger.error("Cloudinary upload error:", err.message);
-    throw err; // Let it propagate to the controller
-  }
+        if (!result?.secure_url) {
+          return reject(
+            new Error("Cloudinary upload failed: secure_url missing")
+          );
+        }
+
+        logger.info(`Uploaded to Cloudinary: ${result.secure_url}`);
+        resolve({
+          secure_url: result.secure_url,
+          public_id: result.public_id,
+        });
+      }
+    );
+
+    bufferToStream(fileBuffer).pipe(stream);
+  });
 };
 
 export const deleteFromCloudinary = async (publicId) => {

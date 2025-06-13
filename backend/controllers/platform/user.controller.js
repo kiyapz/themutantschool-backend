@@ -87,8 +87,7 @@ export const updateUserProfile = asyncErrorHandler(async (req, res) => {
     }
 
     try {
-      const uploadResult = await uploadsToCloudinary(req.file.path);
-      fs.unlinkSync(req.file.path);
+      const uploadResult = await uploadsToCloudinary(req.file.buffer); // ✅ use buffer
 
       req.body.avatar = {
         url: uploadResult.secure_url,
@@ -102,7 +101,7 @@ export const updateUserProfile = asyncErrorHandler(async (req, res) => {
     }
   }
 
-  // Prevent _id or password from being overwritten accidentally
+  // Prevent _id or password from being overwritten
   delete req.body._id;
   delete req.body.password;
 
