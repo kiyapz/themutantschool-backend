@@ -1,4 +1,3 @@
-// utils/tokenUtils.js
 import jwt from "jsonwebtoken";
 import crypto from "crypto";
 import { RefreshToken } from "../models/refreshToken.model.js";
@@ -7,20 +6,23 @@ export const generateTokens = async (userOrInstitution) => {
   try {
     const payload = {
       userId: userOrInstitution._id,
-      username: userOrInstitution.username,
       email: userOrInstitution.email,
       role:
         userOrInstitution.role || userOrInstitution.institutionType || "user",
+      model: userOrInstitution.role ? "user" : "institution",
     };
 
+    // Log who the access token is being generated for
+    console.log(
+      `🔐 Generating access token for: model=${payload.model}, id=${payload.userId}, email=${payload.email}, role=${payload.role}`
+    );
+
     const accessToken = jwt.sign(payload, process.env.JWT_SECRET, {
-      expiresIn: "5m",
+      expiresIn: "15m",
     });
 
     const refreshTokenValue = crypto.randomBytes(40).toString("hex");
-
-    const expiredAt = new Date();
-    expiredAt.setDate(expiredAt.getDate() + 1); // 1 day expiry
+    const expiredAt = new Date(Date.now() + 24 * 60 * 60 * 1000); // 1 day
 
     await RefreshToken.create({
       token: refreshTokenValue,

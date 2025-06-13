@@ -1577,3 +1577,259 @@
 [2025-06-12T18:28:10.737Z] [32minfo[39m: Updating user profile with ID: 684b074be47bf37ce5e18766
 [2025-06-12T18:28:11.022Z] [32minfo[39m: Processing new avatar...
 [2025-06-12T18:28:15.334Z] [32minfo[39m: Uploaded to Cloudinary: https://res.cloudinary.com/drxiejhsy/image/upload/v1749752895/iaawtjspvls9gzu70bhp.jpg
+[2025-06-13T09:27:49.933Z] [32minfo[39m: Server is running on port 3000
+[2025-06-13T09:28:19.441Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-13T09:29:23.955Z] [32minfo[39m: ➡️ POST /api/auth/register-username
+[2025-06-13T09:29:24.024Z] [32minfo[39m: 📦 Body: {"username":"KIYAPS"}
+[2025-06-13T09:29:24.028Z] [32minfo[39m: username registration initiated...
+[2025-06-13T10:05:38.802Z] [32minfo[39m: ➡️ POST /api/institution/register
+[2025-06-13T10:05:38.835Z] [32minfo[39m: 📦 Body: {"name":"KIYAPS","email":"elijahfx43@gmail.com","password":"1234567890","institutionType":"Academy","userNameId":"684bef76ffed4b9de62358ed"}
+[2025-06-13T10:05:38.852Z] [32minfo[39m: Institution registration initiated...
+[2025-06-13T10:05:40.488Z] [32minfo[39m: Institution created: 684bf7f3ffed4b9de62358f1
+[2025-06-13T10:05:44.934Z] [32minfo[39m: Email sent: 250 2.0.0 OK  1749809146 00721157ae682-711520599f9sm5894897b3.15 - gsmtp
+[2025-06-13T10:06:42.508Z] [32minfo[39m: ➡️ POST /api/institution/verify-token
+[2025-06-13T10:06:42.509Z] [32minfo[39m: 📦 Body: {"email":"elijahfx43@gmail.com","token":"926733"}
+[2025-06-13T10:06:42.515Z] [31merror[39m: Can't find /api/institution/verify-token on the server
+[2025-06-13T10:07:42.931Z] [32minfo[39m: ➡️ POST /api/institution/verify-account
+[2025-06-13T10:07:42.935Z] [32minfo[39m: 📦 Body: {"email":"elijahfx43@gmail.com","token":"926733"}
+[2025-06-13T10:07:44.999Z] [32minfo[39m: User verified successfully: 684bf7f3ffed4b9de62358f1
+[2025-06-13T10:08:11.609Z] [32minfo[39m: ➡️ POST /api/institution/login
+[2025-06-13T10:08:11.611Z] [32minfo[39m: 📦 Body: {"email":"elijahfx43@gmail.com","password":"123456789Pe*"}
+[2025-06-13T10:08:11.613Z] [32minfo[39m: Login endpoint hit...
+[2025-06-13T10:08:12.813Z] [33mwarn[39m: Invalid credentials
+[2025-06-13T10:08:43.274Z] [32minfo[39m: ➡️ POST /api/institution/login
+[2025-06-13T10:08:43.275Z] [32minfo[39m: 📦 Body: {"email":"elijahfx43@gmail.com","password":"1234567890"}
+[2025-06-13T10:08:43.276Z] [32minfo[39m: Login endpoint hit...
+[2025-06-13T10:09:17.040Z] [32minfo[39m: ➡️ POST /api/auth/logout
+[2025-06-13T10:09:17.042Z] [32minfo[39m: 📦 Body: {"refreshToken":"0d9a2cf4923aae78d55aa96eca39b229fb5a3ed5a1387953fd802702568fbf71fd12423c2328261e"}
+[2025-06-13T10:09:17.044Z] [32minfo[39m: Logout endpoint hit...
+[2025-06-13T10:09:17.243Z] [32minfo[39m: Refresh token deleted successfully
+[2025-06-13T10:09:40.333Z] [32minfo[39m: ➡️ POST /api/auth/logout
+[2025-06-13T10:09:40.334Z] [32minfo[39m: 📦 Body: {"refreshToken":"0d9a2cf4923aae78d55aa96eca39b229fb5a3ed5a1387953fd802702568fbf71fd12423c2328261e"}
+[2025-06-13T10:09:40.336Z] [32minfo[39m: Logout endpoint hit...
+[2025-06-13T10:09:41.037Z] [32minfo[39m: Refresh token deleted successfully
+[2025-06-13T10:11:00.938Z] [32minfo[39m: ➡️ POST /api/auth/logout
+[2025-06-13T10:11:00.939Z] [32minfo[39m: 📦 Body: {"refreshToken":""}
+[2025-06-13T10:11:00.940Z] [32minfo[39m: Logout endpoint hit...
+[2025-06-13T10:11:00.941Z] [33mwarn[39m: Refresh token is missing
+[2025-06-13T10:11:26.255Z] [32minfo[39m: ➡️ POST /api/auth/logout
+[2025-06-13T10:11:26.256Z] [32minfo[39m: 📦 Body: {"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODRiZjdmM2ZmZWQ0YjlkZTYyMzU4ZjEiLCJ1c2VybmFtZSI6IjY4NGJlZjc2ZmZlZDRiOWRlNjIzNThlZCIsImVtYWlsIjoiZWxpamFoZng0M0BnbWFpbC5jb20iLCJyb2xlIjoiQWNhZGVteSIsImlhdCI6MTc0OTgwOTMyMywiZXhwIjoxNzQ5ODA5NjIzfQ.4CTYuuqcLTmMftN3Huseron6rn1j6WNBqL53cYZXvSk"}
+[2025-06-13T10:11:26.258Z] [32minfo[39m: Logout endpoint hit...
+[2025-06-13T10:11:26.426Z] [32minfo[39m: Refresh token deleted successfully
+[2025-06-13T10:12:04.006Z] [32minfo[39m: ➡️ POST /api/institution/password-token
+[2025-06-13T10:12:04.007Z] [32minfo[39m: 📦 Body: {"email":"elijahfx43@gmail.com"}
+[2025-06-13T10:12:04.039Z] [32minfo[39m: Password reset OTP requested...
+[2025-06-13T10:14:53.515Z] [32minfo[39m: ➡️ PUT /api/institution/684bef76ffed4b9de62358ed
+[2025-06-13T10:15:27.897Z] [32minfo[39m: ➡️ PUT /api/institution/684bef76ffed4b9de62358ed
+[2025-06-13T10:15:37.916Z] [32minfo[39m: ➡️ POST /api/auth/register-username
+[2025-06-13T10:15:37.918Z] [32minfo[39m: 📦 Body: {"username":"KIYAPS"}
+[2025-06-13T10:15:37.919Z] [32minfo[39m: username registration initiated...
+[2025-06-13T10:15:51.746Z] [32minfo[39m: ➡️ POST /api/institution/login
+[2025-06-13T10:15:51.747Z] [32minfo[39m: 📦 Body: {"email":"elijahfx43@gmail.com","password":"1234567890"}
+[2025-06-13T10:15:51.748Z] [32minfo[39m: Login endpoint hit...
+[2025-06-13T10:16:19.436Z] [32minfo[39m: ➡️ PUT /api/institution/684bef76ffed4b9de62358ed
+[2025-06-13T10:16:20.220Z] [32minfo[39m: Updating institution with ID: 684bef76ffed4b9de62358ed
+[2025-06-13T10:16:20.641Z] [33mwarn[39m: Institution not found
+[2025-06-13T11:14:38.539Z] [32minfo[39m: Server is running on port 3000
+[2025-06-13T11:14:43.501Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-13T11:15:54.091Z] [32minfo[39m: ➡️ POST /api/institution/login
+[2025-06-13T11:15:54.092Z] [32minfo[39m: 📦 Body: {"email":"elijahfx43@gmail.com","password":"1234567890"}
+[2025-06-13T11:15:54.097Z] [32minfo[39m: Login endpoint hit...
+[2025-06-13T11:18:11.570Z] [32minfo[39m: ➡️ PUT /api/institution/684bef76ffed4b9de62358ed
+[2025-06-13T11:18:11.957Z] [32minfo[39m: Updating institution with ID: 684bef76ffed4b9de62358ed
+[2025-06-13T11:18:12.102Z] [33mwarn[39m: Institution not found
+[2025-06-13T11:24:13.477Z] [32minfo[39m: Server is running on port 3000
+[2025-06-13T11:24:26.629Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-02.miqou6z.mongodb.net
+[2025-06-13T11:26:42.186Z] [32minfo[39m: ➡️ POST /api/institution/login
+[2025-06-13T11:26:42.221Z] [32minfo[39m: 📦 Body: {"email":"elijahfx43@gmail.com","password":"1234567890"}
+[2025-06-13T11:26:42.228Z] [32minfo[39m: Login endpoint hit...
+[2025-06-13T11:27:17.693Z] [32minfo[39m: ➡️ POST /api/auth/register-username
+[2025-06-13T11:27:17.694Z] [32minfo[39m: 📦 Body: {"username":"NAV"}
+[2025-06-13T11:27:17.696Z] [32minfo[39m: username registration initiated...
+[2025-06-13T11:27:17.911Z] [31merror[39m: UserName validation failed: username: Username should be at least 4 characters
+[2025-06-13T11:27:38.267Z] [32minfo[39m: ➡️ POST /api/auth/register-username
+[2025-06-13T11:27:38.269Z] [32minfo[39m: 📦 Body: {"username":"NAVE"}
+[2025-06-13T11:27:38.270Z] [32minfo[39m: username registration initiated...
+[2025-06-13T11:28:37.905Z] [32minfo[39m: ➡️ POST /api/institution/register
+[2025-06-13T11:28:37.909Z] [32minfo[39m: 📦 Body: {"name":"NAVE","email":"elijahdev20@gmail.com","password":"1234567890","institutionType":"Academy","userNameId":"684c0b2a2d9f5620dc144fa2"}
+[2025-06-13T11:28:37.912Z] [32minfo[39m: Institution registration initiated...
+[2025-06-13T11:28:39.173Z] [32minfo[39m: Institution created: 684c0b662d9f5620dc144fa6
+[2025-06-13T11:28:43.913Z] [32minfo[39m: Email sent: 250 2.0.0 OK  1749814125 00721157ae682-711527b7920sm6020297b3.89 - gsmtp
+[2025-06-13T11:29:54.336Z] [32minfo[39m: ➡️ PUT /api/institution/684bef76ffed4b9de62358ed
+[2025-06-13T11:29:54.678Z] [32minfo[39m: Updating institution with ID: 684bef76ffed4b9de62358ed
+[2025-06-13T11:29:55.022Z] [33mwarn[39m: Institution not found
+[2025-06-13T11:45:10.432Z] [32minfo[39m: Server is running on port 3000
+[2025-06-13T11:45:13.791Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-13T11:47:49.657Z] [32minfo[39m: Server is running on port 3000
+[2025-06-13T11:47:52.806Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-13T11:48:17.312Z] [32minfo[39m: ➡️ POST /api/institution/login
+[2025-06-13T11:48:17.369Z] [32minfo[39m: 📦 Body: {"email":"elijahfx43@gmail.com","password":"1234567890"}
+[2025-06-13T11:48:17.376Z] [32minfo[39m: Login endpoint hit...
+[2025-06-13T11:49:06.068Z] [32minfo[39m: ➡️ PUT /api/institution/684bef76ffed4b9de62358ed
+[2025-06-13T11:49:06.379Z] [32minfo[39m: Updating institution with ID: 684bef76ffed4b9de62358ed
+[2025-06-13T11:49:06.533Z] [33mwarn[39m: Institution not found
+[2025-06-13T11:51:04.522Z] [32minfo[39m: ➡️ PUT /api/institution/684bf7f3ffed4b9de62358f1
+[2025-06-13T11:51:04.806Z] [32minfo[39m: Updating institution with ID: 684bf7f3ffed4b9de62358f1
+[2025-06-13T11:51:04.998Z] [31merror[39m: Cannot convert undefined or null to object
+[2025-06-13T12:18:33.624Z] [32minfo[39m: Server is running on port 3000
+[2025-06-13T12:18:42.985Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-13T12:19:32.709Z] [32minfo[39m: ➡️ PUT /api/institution/684bf7f3ffed4b9de62358f1
+[2025-06-13T12:20:06.351Z] [32minfo[39m: ➡️ POST /api/institution/login
+[2025-06-13T12:20:06.353Z] [32minfo[39m: 📦 Body: {"email":"elijahfx43@gmail.com","password":"1234567890"}
+[2025-06-13T12:20:06.359Z] [32minfo[39m: Login endpoint hit...
+[2025-06-13T12:20:38.683Z] [32minfo[39m: ➡️ PUT /api/institution/684bf7f3ffed4b9de62358f1
+[2025-06-13T12:20:39.077Z] [32minfo[39m: Updating institution with ID: 684bf7f3ffed4b9de62358f1
+[2025-06-13T12:21:02.692Z] [32minfo[39m: ➡️ PUT /api/institution/684bf7f3ffed4b9de62358f1
+[2025-06-13T12:21:03.581Z] [32minfo[39m: Updating institution with ID: 684bf7f3ffed4b9de62358f1
+[2025-06-13T12:23:20.837Z] [32minfo[39m: ➡️ PUT /api/institution/684bf7f3ffed4b9de62358f1
+[2025-06-13T12:23:24.733Z] [32minfo[39m: Updating institution with ID: 684bf7f3ffed4b9de62358f1
+[2025-06-13T12:23:25.839Z] [32minfo[39m: Processing new avatar...
+[2025-06-13T12:23:32.521Z] [32minfo[39m: Uploaded to Cloudinary: https://res.cloudinary.com/drxiejhsy/image/upload/v1749817412/zaddfjydaahxlablyeld.png
+[2025-06-13T12:24:10.640Z] [32minfo[39m: ➡️ PUT /api/institution/684bf7f3ffed4b9de62358f1
+[2025-06-13T12:24:11.126Z] [32minfo[39m: Updating institution with ID: 684bf7f3ffed4b9de62358f1
+[2025-06-13T12:24:11.290Z] [32minfo[39m: Processing new avatar...
+[2025-06-13T12:24:15.086Z] [32minfo[39m: Deleted from Cloudinary: zaddfjydaahxlablyeld
+[2025-06-13T12:24:16.987Z] [32minfo[39m: Uploaded to Cloudinary: https://res.cloudinary.com/drxiejhsy/image/upload/v1749817457/ocfxfdbkzq1ne0kleafb.png
+[2025-06-13T13:11:50.892Z] [32minfo[39m: Server is running on port 3000
+[2025-06-13T13:11:54.464Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-01.miqou6z.mongodb.net
+[2025-06-13T13:12:08.376Z] [32minfo[39m: ➡️ POST /api/institution/login
+[2025-06-13T13:12:08.408Z] [32minfo[39m: 📦 Body: {"email":"elijahfx43@gmail.com","password":"1234567890"}
+[2025-06-13T13:12:08.412Z] [32minfo[39m: Login endpoint hit...
+[2025-06-13T13:12:34.435Z] [32minfo[39m: ➡️ GET /api/institution/684bf7f3ffed4b9de62358f1
+[2025-06-13T13:12:34.842Z] [32minfo[39m: Fetching institution with ID: 684bf7f3ffed4b9de62358f1
+[2025-06-13T13:12:47.761Z] [32minfo[39m: ➡️ GET /api/institution/684bf7f3ffed4b9de62358f1
+[2025-06-13T13:12:54.335Z] [32minfo[39m: ➡️ GET /api/institution/684bf7f3ffed4b9de62358f1
+[2025-06-13T13:12:54.589Z] [32minfo[39m: Fetching institution with ID: 684bf7f3ffed4b9de62358f1
+[2025-06-13T13:13:25.395Z] [32minfo[39m: ➡️ GET /api/institution
+[2025-06-13T13:13:37.720Z] [32minfo[39m: ➡️ GET /api/institution
+[2025-06-13T13:14:03.679Z] [32minfo[39m: ➡️ POST /api/auth/login
+[2025-06-13T13:14:03.684Z] [32minfo[39m: 📦 Body: {"email":"elijahdev20@gmail.com","password":"1234567890"}
+[2025-06-13T13:14:03.686Z] [32minfo[39m: Login endpoint hit...
+[2025-06-13T13:14:31.293Z] [32minfo[39m: ➡️ GET /api/institution
+[2025-06-13T13:14:31.869Z] [32minfo[39m: Fetching all institutions...
+[2025-06-13T13:15:32.799Z] [32minfo[39m: ➡️ GET /api/institution
+[2025-06-13T13:15:37.899Z] [32minfo[39m: ➡️ GET /api/institution
+[2025-06-13T13:15:38.712Z] [32minfo[39m: Fetching all institutions...
+[2025-06-13T13:15:50.778Z] [32minfo[39m: ➡️ GET /api/institution/684bf7f3ffed4b9de62358f1
+[2025-06-13T13:15:53.011Z] [32minfo[39m: Fetching institution with ID: 684bf7f3ffed4b9de62358f1
+[2025-06-13T13:16:24.028Z] [32minfo[39m: ➡️ DELETE /api/institution/684bf7f3ffed4b9de62358f1
+[2025-06-13T13:16:35.578Z] [32minfo[39m: ➡️ DELETE /api/institution/684bf7f3ffed4b9de62358f1
+[2025-06-13T13:16:48.268Z] [32minfo[39m: ➡️ POST /api/institution/login
+[2025-06-13T13:16:48.269Z] [32minfo[39m: 📦 Body: {"email":"elijahfx43@gmail.com","password":"1234567890"}
+[2025-06-13T13:16:48.270Z] [32minfo[39m: Login endpoint hit...
+[2025-06-13T13:17:19.263Z] [32minfo[39m: ➡️ DELETE /api/institution/684bf7f3ffed4b9de62358f1
+[2025-06-13T13:17:19.920Z] [32minfo[39m: Deleting institution with ID: 684bf7f3ffed4b9de62358f1
+[2025-06-13T13:17:25.269Z] [32minfo[39m: Deleted from Cloudinary: ocfxfdbkzq1ne0kleafb
+[2025-06-13T13:17:37.277Z] [32minfo[39m: ➡️ GET /api/institution/684bf7f3ffed4b9de62358f1
+[2025-06-13T13:17:58.288Z] [32minfo[39m: ➡️ POST /api/institution/login
+[2025-06-13T13:17:58.289Z] [32minfo[39m: 📦 Body: {"email":"elijahfx43@gmail.com","password":"1234567890"}
+[2025-06-13T13:17:58.291Z] [32minfo[39m: Login endpoint hit...
+[2025-06-13T13:19:12.102Z] [32minfo[39m: ➡️ POST /api/auth/register-username
+[2025-06-13T13:19:12.104Z] [32minfo[39m: 📦 Body: {"username":"Adam"}
+[2025-06-13T13:19:12.106Z] [32minfo[39m: username registration initiated...
+[2025-06-13T13:19:26.796Z] [32minfo[39m: ➡️ POST /api/institution/user/register
+[2025-06-13T13:19:26.797Z] [32minfo[39m: 📦 Body: {"firstName":"Abel","lastName":"Jonah","email":"elijafx43@gmail.com","password":"1234567890","role":"admin","userNameId":"684acd37794b735e136afc5e","institutionId":"6849771ca5adc35513bd1c72"}
+[2025-06-13T13:19:44.316Z] [32minfo[39m: ➡️ POST /api/institution/register
+[2025-06-13T13:19:44.322Z] [32minfo[39m: 📦 Body: {"name":"KIYAPS","email":"elijahfx43@gmail.com","password":"1234567890","institutionType":"Academy","userNameId":"684bef76ffed4b9de62358ed"}
+[2025-06-13T13:19:44.362Z] [32minfo[39m: Institution registration initiated...
+[2025-06-13T13:19:46.136Z] [32minfo[39m: Institution created: 684c257162aced5b21c84e78
+[2025-06-13T13:19:52.987Z] [32minfo[39m: Email sent: 250 2.0.0 OK  1749820792 00721157ae682-7116e12f614sm1225127b3.105 - gsmtp
+[2025-06-13T13:20:28.091Z] [32minfo[39m: ➡️ POST /api/institution/user/register
+[2025-06-13T13:20:28.092Z] [32minfo[39m: 📦 Body: {"firstName":"Abel","lastName":"Jonah","email":"elijafx43@gmail.com","password":"1234567890","role":"admin","userNameId":"684acd37794b735e136afc5e","institutionId":"6849771ca5adc35513bd1c72"}
+[2025-06-13T13:20:29.145Z] [32minfo[39m: Register attempt for email: elijafx43@gmail.com
+[2025-06-13T13:20:29.570Z] [33mwarn[39m: Registration failed: Username ID 684acd37794b735e136afc5e not found
+[2025-06-13T13:21:16.436Z] [32minfo[39m: ➡️ POST /api/institution/user/register
+[2025-06-13T13:21:16.437Z] [32minfo[39m: 📦 Body: {"firstName":"Abel","lastName":"Jonah","email":"elijafx43@gmail.com","password":"1234567890","role":"admin","userNameId":"684c255062aced5b21c84e74","institutionId":"684c257162aced5b21c84e78"}
+[2025-06-13T13:21:17.028Z] [32minfo[39m: Register attempt for email: elijafx43@gmail.com
+[2025-06-13T13:21:19.645Z] [32minfo[39m: User registered: elijafx43@gmail.com (ID: 684c25ce62aced5b21c84e83)
+[2025-06-13T13:21:28.321Z] [32minfo[39m: Email sent: 250 2.0.0 OK  1749820889 00721157ae682-7115208a73esm6395227b3.35 - gsmtp
+[2025-06-13T13:21:28.322Z] [32minfo[39m: Verification email sent to elijafx43@gmail.com
+[2025-06-13T13:22:13.617Z] [32minfo[39m: ➡️ POST /api/institution/user/login
+[2025-06-13T13:22:13.619Z] [32minfo[39m: 📦 Body: {"email":"elijafx43@gmail.com","password":"1234567890"}
+[2025-06-13T13:22:13.624Z] [32minfo[39m: Login attempt for email: elijafx43@gmail.com
+[2025-06-13T13:22:14.307Z] [33mwarn[39m: Login failed: Account not verified for elijafx43@gmail.com
+[2025-06-13T13:22:53.242Z] [32minfo[39m: ➡️ POST /api/institution/verify-token
+[2025-06-13T13:22:53.243Z] [32minfo[39m: 📦 Body: {"email":"elijahfx43@gmail.com","token":"273799"}
+[2025-06-13T13:22:53.246Z] [31merror[39m: Can't find /api/institution/verify-token on the server
+[2025-06-13T13:23:44.860Z] [32minfo[39m: ➡️ POST /api/institution/verify-account
+[2025-06-13T13:23:44.861Z] [32minfo[39m: 📦 Body: {"email":"elijahfx43@gmail.com","token":"273799"}
+[2025-06-13T13:23:45.716Z] [32minfo[39m: User verified successfully: 684c257162aced5b21c84e78
+[2025-06-13T13:23:54.419Z] [32minfo[39m: ➡️ POST /api/institution/user/login
+[2025-06-13T13:23:54.422Z] [32minfo[39m: 📦 Body: {"email":"elijafx43@gmail.com","password":"1234567890"}
+[2025-06-13T13:23:54.432Z] [32minfo[39m: Login attempt for email: elijafx43@gmail.com
+[2025-06-13T13:23:55.133Z] [33mwarn[39m: Login failed: Account not verified for elijafx43@gmail.com
+[2025-06-13T13:24:04.712Z] [32minfo[39m: ➡️ POST /api/institution/verify-account
+[2025-06-13T13:24:04.713Z] [32minfo[39m: 📦 Body: {"email":"elijahfx43@gmail.com","token":"273799"}
+[2025-06-13T13:24:04.906Z] [32minfo[39m: User already verified
+[2025-06-13T13:24:13.646Z] [32minfo[39m: ➡️ POST /api/institution/user/login
+[2025-06-13T13:24:13.647Z] [32minfo[39m: 📦 Body: {"email":"elijafx43@gmail.com","password":"1234567890"}
+[2025-06-13T13:24:13.650Z] [32minfo[39m: Login attempt for email: elijafx43@gmail.com
+[2025-06-13T13:24:14.366Z] [33mwarn[39m: Login failed: Account not verified for elijafx43@gmail.com
+[2025-06-13T13:25:14.154Z] [32minfo[39m: ➡️ POST /api/institution/user/login
+[2025-06-13T13:25:14.156Z] [32minfo[39m: 📦 Body: {"email":"elijafx43@gmail.com","password":"1234567890"}
+[2025-06-13T13:25:14.159Z] [32minfo[39m: Login attempt for email: elijafx43@gmail.com
+[2025-06-13T13:25:14.757Z] [33mwarn[39m: Login failed: Account not verified for elijafx43@gmail.com
+[2025-06-13T13:25:51.565Z] [32minfo[39m: ➡️ POST /api/institution/user/resend-verification-token
+[2025-06-13T13:25:51.566Z] [32minfo[39m: 📦 Body: {"email":"elijafx43@gmail.com"}
+[2025-06-13T13:25:51.568Z] [32minfo[39m: Resend verification token requested for email: elijafx43@gmail.com
+[2025-06-13T13:25:54.754Z] [32minfo[39m: Email sent: 250 2.0.0 OK  1749821156 5b1f17b1804b1-4532e232219sm51675405e9.9 - gsmtp
+[2025-06-13T13:25:54.756Z] [32minfo[39m: Verification token resent to elijafx43@gmail.com
+[2025-06-13T13:29:07.158Z] [32minfo[39m: ➡️ POST /api/institution/user/verfiy-account
+[2025-06-13T13:29:07.160Z] [32minfo[39m: 📦 Body: {"email":"elijahfx43@gmail.com","token":"764592"}
+[2025-06-13T13:29:07.165Z] [32minfo[39m: Verification attempt for email: elijahfx43@gmail.com
+[2025-06-13T13:29:07.786Z] [33mwarn[39m: Verification failed: User not found with email elijahfx43@gmail.com
+[2025-06-13T13:29:38.917Z] [32minfo[39m: ➡️ POST /api/institution/user/verfiy-account
+[2025-06-13T13:29:38.918Z] [32minfo[39m: 📦 Body: {"email":"elijafx43@gmail.com","token":"764592"}
+[2025-06-13T13:29:38.920Z] [32minfo[39m: Verification attempt for email: elijafx43@gmail.com
+[2025-06-13T13:29:39.352Z] [33mwarn[39m: Verification failed: Invalid or expired token for elijafx43@gmail.com
+[2025-06-13T13:30:09.680Z] [32minfo[39m: ➡️ POST /api/auth/register-username
+[2025-06-13T13:30:09.681Z] [32minfo[39m: 📦 Body: {"username":"JOHN"}
+[2025-06-13T13:30:09.683Z] [32minfo[39m: username registration initiated...
+[2025-06-13T13:31:49.606Z] [32minfo[39m: ➡️ POST /api/institution/user/register
+[2025-06-13T13:31:49.608Z] [32minfo[39m: 📦 Body: {"firstName":"John","lastName":"Jonah","email":"elijafx43@gmail.com","password":"1234567890","role":"admin","userNameId":"684c27e262aced5b21c84e93","institutionId":"684c257162aced5b21c84e78"}
+[2025-06-13T13:31:49.905Z] [32minfo[39m: Register attempt for email: elijafx43@gmail.com
+[2025-06-13T13:31:50.143Z] [33mwarn[39m: Registration failed: User with email elijafx43@gmail.com already exists
+[2025-06-13T13:32:01.398Z] [32minfo[39m: ➡️ POST /api/institution/user/register
+[2025-06-13T13:32:01.399Z] [32minfo[39m: 📦 Body: {"firstName":"John","lastName":"Jonah","email":"elijahfx43@gmail.com","password":"1234567890","role":"admin","userNameId":"684c27e262aced5b21c84e93","institutionId":"684c257162aced5b21c84e78"}
+[2025-06-13T13:32:01.627Z] [32minfo[39m: Register attempt for email: elijahfx43@gmail.com
+[2025-06-13T13:32:02.892Z] [32minfo[39m: User registered: elijahfx43@gmail.com (ID: 684c285262aced5b21c84e9b)
+[2025-06-13T13:32:05.474Z] [32minfo[39m: Email sent: 250 2.0.0 OK  1749821526 ffacd0b85a97d-3a568b1bc97sm2396119f8f.68 - gsmtp
+[2025-06-13T13:32:05.475Z] [32minfo[39m: Verification email sent to elijahfx43@gmail.com
+[2025-06-13T13:32:50.025Z] [32minfo[39m: ➡️ POST /api/institution/user/verfiy-account
+[2025-06-13T13:32:50.026Z] [32minfo[39m: 📦 Body: {"email":"elijahfx43@gmail.com","token":"901456"}
+[2025-06-13T13:32:50.027Z] [32minfo[39m: Verification attempt for email: elijahfx43@gmail.com
+[2025-06-13T13:32:50.480Z] [32minfo[39m: Account verified successfully for elijahfx43@gmail.com
+[2025-06-13T13:33:10.019Z] [32minfo[39m: ➡️ POST /api/institution/user/login
+[2025-06-13T13:33:10.025Z] [32minfo[39m: 📦 Body: {"email":"elijahfx43@gmail.com","password":"1234567890"}
+[2025-06-13T13:33:10.032Z] [32minfo[39m: Login attempt for email: elijahfx43@gmail.com
+[2025-06-13T13:33:11.066Z] [32minfo[39m: Login successful for elijahfx43@gmail.com
+[2025-06-13T13:34:38.674Z] [32minfo[39m: ➡️ GET /api/user-institution/all-users
+[2025-06-13T13:35:33.490Z] [32minfo[39m: ➡️ POST /api/institution/user/login
+[2025-06-13T13:35:33.494Z] [32minfo[39m: 📦 Body: {"email":"elijahfx43@gmail.com","password":"1234567890"}
+[2025-06-13T13:35:33.497Z] [32minfo[39m: Login attempt for email: elijahfx43@gmail.com
+[2025-06-13T13:35:34.272Z] [32minfo[39m: Login successful for elijahfx43@gmail.com
+[2025-06-13T13:35:57.860Z] [32minfo[39m: ➡️ GET /api/user-institution/user/684c285262aced5b21c84e9b
+[2025-06-13T13:35:58.075Z] [32minfo[39m: Fetching user with ID: 684c285262aced5b21c84e9b
+[2025-06-13T13:35:58.272Z] [32minfo[39m: User with ID: 684c285262aced5b21c84e9b fetched successfully
+[2025-06-13T13:36:48.861Z] [32minfo[39m: ➡️ PUT /api/user-institution/user/684c285262aced5b21c84e9b
+[2025-06-13T13:36:58.023Z] [32minfo[39m: ➡️ POST /api/institution/user/login
+[2025-06-13T13:36:58.025Z] [32minfo[39m: 📦 Body: {"email":"elijahfx43@gmail.com","password":"1234567890"}
+[2025-06-13T13:36:58.028Z] [32minfo[39m: Login attempt for email: elijahfx43@gmail.com
+[2025-06-13T13:36:59.844Z] [32minfo[39m: Login successful for elijahfx43@gmail.com
+[2025-06-13T13:37:25.638Z] [32minfo[39m: ➡️ PUT /api/user-institution/user/684c285262aced5b21c84e9b
+[2025-06-13T13:37:25.975Z] [32minfo[39m: Updating user with ID: 684c285262aced5b21c84e9b
+[2025-06-13T13:37:26.343Z] [31merror[39m: Cannot read properties of undefined (reading '_id')
+[2025-06-13T13:38:27.847Z] [32minfo[39m: ➡️ PUT /api/user-institution/user/684c285262aced5b21c84e9b
+[2025-06-13T13:38:28.205Z] [32minfo[39m: Updating user with ID: 684c285262aced5b21c84e9b
+[2025-06-13T13:38:28.430Z] [31merror[39m: Cannot read properties of undefined (reading '_id')
+[2025-06-13T13:38:38.632Z] [32minfo[39m: ➡️ GET /api/user-institution/user/684c285262aced5b21c84e9b
+[2025-06-13T13:38:38.867Z] [32minfo[39m: Fetching user with ID: 684c285262aced5b21c84e9b
+[2025-06-13T13:38:39.056Z] [32minfo[39m: User with ID: 684c285262aced5b21c84e9b fetched successfully
+[2025-06-13T13:38:46.811Z] [32minfo[39m: ➡️ PUT /api/user-institution/user/684c285262aced5b21c84e9b
+[2025-06-13T13:38:46.995Z] [32minfo[39m: Updating user with ID: 684c285262aced5b21c84e9b
+[2025-06-13T13:38:47.186Z] [31merror[39m: Cannot read properties of undefined (reading '_id')
+[2025-06-13T13:47:22.428Z] [32minfo[39m: Server is running on port 3000
+[2025-06-13T13:47:26.149Z] [32minfo[39m: MongoDB connected successfully ac-cbnaqog-shard-00-00.miqou6z.mongodb.net
+[2025-06-13T13:47:31.492Z] [32minfo[39m: ➡️ PUT /api/user-institution/user/684c285262aced5b21c84e9b
+[2025-06-13T13:47:31.867Z] [32minfo[39m: Updating user with ID: 684c285262aced5b21c84e9b
+[2025-06-13T13:47:32.039Z] [31merror[39m: Cannot convert undefined or null to object

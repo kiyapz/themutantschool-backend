@@ -54,6 +54,7 @@ export const getSingleUser = asyncErrorHandler(async (req, res) => {
 });
 
 // PUT /user/:id
+// PUT /user/:id
 export const updatedUser = asyncErrorHandler(async (req, res) => {
   const { id } = req.params;
   logger.info(`Updating user with ID: ${id}`);
@@ -62,11 +63,8 @@ export const updatedUser = asyncErrorHandler(async (req, res) => {
     logger.warn(`Invalid ObjectId: ${id}`);
     return res.status(400).json({ success: false, message: "Invalid user ID" });
   }
+
   const existingUser = await InstitutionUser.findById(id);
-  // Allow the user themselves
-  if (req.existingUser._id.toString() !== id) {
-    return res.status(403).json({ message: "Access denied" });
-  }
   if (!existingUser) return notFoundResponse(res);
 
   // Handle avatar upload
@@ -97,9 +95,6 @@ export const updatedUser = asyncErrorHandler(async (req, res) => {
         .json({ success: false, message: "Avatar upload failed" });
     }
   }
-
-  delete req.body.password;
-  delete req.body._id;
 
   const updated = await InstitutionUser.findByIdAndUpdate(id, req.body, {
     new: true,
