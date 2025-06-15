@@ -87,7 +87,7 @@ export const updateUserProfile = asyncErrorHandler(async (req, res) => {
     }
 
     try {
-      const uploadResult = await uploadsToCloudinary(req.file.buffer); // ✅ use buffer
+      const uploadResult = await uploadsToCloudinary(req.file.buffer);
 
       req.body.avatar = {
         url: uploadResult.secure_url,
