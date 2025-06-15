@@ -73,19 +73,19 @@ export const signUpUser = asyncErrorHandler(async (req, res) => {
       .json({ success: false, message: "User already exists" });
   }
 
-  let avatar = { url: "", publicId: "" };
-  if (req.file) {
-    try {
-      const result = await uploadsToCloudinary(req.file.path);
-      avatar = { url: result.secure_url, publicId: result.public_id };
-    } catch (err) {
-      logger.error("Cloudinary upload error:", err.message);
-      return res.status(500).json({
-        success: false,
-        message: "Image upload failed. Please try again.",
-      });
-    }
-  }
+  // let avatar = { url: "", publicId: "" };
+  // if (req.file) {
+  //   try {
+  //     const result = await uploadsToCloudinary(req.file.path);
+  //     avatar = { url: result.secure_url, publicId: result.public_id };
+  //   } catch (err) {
+  //     logger.error("Cloudinary upload error:", err.message);
+  //     return res.status(500).json({
+  //       success: false,
+  //       message: "Image upload failed. Please try again.",
+  //     });
+  //   }
+  // }
 
   const verificationToken = generateOTP();
   const verificationTokenExpiresAt = tokenExpiry();

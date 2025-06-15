@@ -73,7 +73,7 @@ export const updateInstitution = asyncErrorHandler(async (req, res) => {
 
     // Upload new avatar to Cloudinary
     try {
-      const uploadResult = await uploadsToCloudinary(req.file.path);
+      const uploadResult = await uploadsToCloudinary(req.file.buffer);
       fs.unlinkSync(req.file.path);
 
       // Ensure req.body is an object before adding avatar field

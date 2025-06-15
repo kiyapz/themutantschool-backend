@@ -19,8 +19,8 @@ app.use(cors());
 app.use(express.json());
 
 const allowedOrigins = [
-  process.env.FRONTEND_LOCAL_URL,
-  process.env.FRONTEND_URL,
+  "http://localhost:3000",
+  "https://mutant-school.vercel.app",
 ];
 
 const corsOptions = {
