@@ -13,7 +13,7 @@ import {
 import { upload } from "../../middlewares/uploads.js";
 
 export const authRoutes = express.Router();
-authRoutes.post("/register-username", userName);
+authRoutes.get("/register-username", userName);
 authRoutes.post("/register", upload.single("file"), signUpUser);
 
 authRoutes.post("/verify-account", verifyAccount);

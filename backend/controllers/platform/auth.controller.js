@@ -20,30 +20,29 @@ import validator from "validator";
 
 //--------username registration-----------------
 export const userName = asyncErrorHandler(async (req, res) => {
-  logger.info("username registration initiated...");
-  const { username } = req.body;
+  const { username } = req.query;
 
-  const userExist = await UserName.findOne({ username });
-  if (userExist) {
+  if (!username || username.trim() === "") {
     return res
       .status(400)
-      .json({ success: false, message: "Username already taken" });
+      .json({ success: false, message: "Username is required" });
   }
 
-  const newUsername = new UserName({ username });
-  await newUsername.save();
+  const exists = await User.exists({ username });
 
-  return res.status(201).json({
-    success: true,
-    message: "Username registered successfully",
-    newUsername,
-    userNameId: newUsername._id,
-  });
+  if (exists) {
+    return res
+      .status(409)
+      .json({ success: false, message: "Username is already taken" });
+  }
+
+  return res
+    .status(200)
+    .json({ success: true, message: "Username is available" });
 });
-//-------- registration-----------------
-
+//-------- Registration -----------------
 export const signUpUser = asyncErrorHandler(async (req, res) => {
-  logger.info("Registration initiated...");
+  logger.info("Final registration step initiated...");
 
   const { error } = validationRegistration(req.body);
   if (error) return handleValidationError(res, error);
@@ -54,38 +53,23 @@ export const signUpUser = asyncErrorHandler(async (req, res) => {
     lastName,
     password,
     role = "student",
-    userNameId,
+    username,
   } = req.body;
 
-  // Validate username existence
-  const usernameDoc = await UserName.findById(userNameId);
-  if (!usernameDoc) {
-    return res.status(404).json({
-      success: false,
-      message: "Username not found. Please register a username first.",
-    });
-  }
-
+  // Email check
   if (await User.exists({ email })) {
-    logger.warn("User already exists:", email);
+    logger.warn("User already exists with email:", email);
     return res
       .status(400)
-      .json({ success: false, message: "User already exists" });
+      .json({ success: false, message: "Email already exists" });
   }
 
-  // let avatar = { url: "", publicId: "" };
-  // if (req.file) {
-  //   try {
-  //     const result = await uploadsToCloudinary(req.file.path);
-  //     avatar = { url: result.secure_url, publicId: result.public_id };
-  //   } catch (err) {
-  //     logger.error("Cloudinary upload error:", err.message);
-  //     return res.status(500).json({
-  //       success: false,
-  //       message: "Image upload failed. Please try again.",
-  //     });
-  //   }
-  // }
+  // Username check
+  if (await User.exists({ username })) {
+    return res
+      .status(400)
+      .json({ success: false, message: "Username already taken" });
+  }
 
   const verificationToken = generateOTP();
   const verificationTokenExpiresAt = tokenExpiry();
@@ -95,8 +79,7 @@ export const signUpUser = asyncErrorHandler(async (req, res) => {
     firstName,
     lastName,
     password,
-    username: usernameDoc._id,
-    avatar,
+    username,
     verificationToken,
     verificationTokenExpiresAt,
     role,

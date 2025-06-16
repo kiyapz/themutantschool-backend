@@ -16,9 +16,8 @@ const userSchema = new mongoose.Schema(
       required: true,
     },
     username: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "UserName",
-      required: true,
+      type: "String",
+
       unique: true,
     },
     email: {
