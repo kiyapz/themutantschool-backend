@@ -1,0 +1,10 @@
+# Environment variables
+.env
+
+# Dependencies
+node_modules/
+
+uploads
+logs
+.logs
+logs/
