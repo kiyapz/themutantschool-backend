@@ -1,11 +1,14 @@
 // models/User.js
 import mongoose from "mongoose";
-import argon2 from "argon2"; // ✅ Import argon2
-import logger from "../utils/logger.js"; // ✅ Replace with your actual logger or console
+import argon2 from "argon2";
+import logger from "../utils/logger.js";
 
 const userSchema = new mongoose.Schema(
   {
-    fullName: { type: String, trim: true },
+    firstName: { type: String, trim: true },
+    lastName: { type: String, trim: true },
+    username: { type: String, trim: true },
+
     email: {
       type: String,
       required: true,
@@ -17,10 +20,30 @@ const userSchema = new mongoose.Schema(
     role: {
       type: String,
       enum: ["student", "instructor", "affiliate", "admin"],
+      default: "student",
       required: true,
-      index: true, // ✅ Also index role here
+      index: true,
     },
-    isEmailVerified: { type: Boolean, default: false },
+    isVerified: {
+      type: Boolean,
+      default: false,
+    },
+    verificationToken: {
+      type: String,
+      default: "",
+    },
+    verificationTokenExpiresAt: {
+      type: Date,
+      default: Date.now,
+    },
+    resetPasswordToken: {
+      type: String,
+      default: "",
+    },
+    resetPasswordExpiresAt: {
+      type: Date,
+      default: Date.now,
+    },
     googleId: { type: String },
     institution: { type: mongoose.Schema.Types.ObjectId, ref: "Institution" },
     profile: {

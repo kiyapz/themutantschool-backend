@@ -1,7 +1,7 @@
 import nodemailer from "nodemailer";
-import { verificationHtml } from "./messages/verificationMessage.js";
+import { verificationHtml } from "./emailVerification.js";
 import { logger } from "./logger.js";
-import { resetPasswordHtml } from "./Emails/passwordResetToken.js";
+import { resetPasswordHtml } from "./passwordResetToken.js";
 export const sendVerificationEmail = async (email, verificationToken) => {
   try {
     const transporter = nodemailer.createTransport({
