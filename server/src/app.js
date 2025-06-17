@@ -3,6 +3,8 @@ import helmet from "helmet";
 import cors from "cors";
 import { logger } from "./utils/logger.js";
 import { errorHandler } from "./middlewares/error.middleware.js";
+import { authRoutes } from "./routes/auth.routes.js";
+import cookieParser from "cookie-parser";
 
 export const app = express();
 
@@ -31,6 +33,7 @@ app.use(cors(corsOptions));
 app.use(helmet());
 app.use(cors());
 app.use(express.json());
+app.use(cookieParser());
 
 const allowedOrigins = [
   "http://localhost:3000",
@@ -49,6 +52,7 @@ app.use((req, res, next) => {
   }
   next();
 });
-
+//routes
+app.use("/api/auth", authRoutes);
 // 🧯Global Error Handler
 app.use(errorHandler);

@@ -1,7 +1,7 @@
 // models/User.js
 import mongoose from "mongoose";
 import argon2 from "argon2";
-import logger from "../utils/logger.js";
+import { logger } from "../utils/logger.js";
 
 const userSchema = new mongoose.Schema(
   {
