@@ -5,6 +5,7 @@ import { logger } from "./utils/logger.js";
 import { errorHandler } from "./middlewares/error.middleware.js";
 import { authRoutes } from "./routes/auth.routes.js";
 import cookieParser from "cookie-parser";
+import { swaggerDocsHandler, swaggerUiHandler } from "./config/swagger.js";
 
 export const app = express();
 
@@ -54,5 +55,6 @@ app.use((req, res, next) => {
 });
 //routes
 app.use("/api/auth", authRoutes);
+app.use("/api-docs", swaggerUiHandler, swaggerDocsHandler);
 // 🧯Global Error Handler
 app.use(errorHandler);
