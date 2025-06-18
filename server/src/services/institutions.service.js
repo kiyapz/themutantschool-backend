@@ -4,6 +4,7 @@ import {
   uploadsToCloudinary,
 } from "../config/cloudinary.js";
 import { Institution } from "../models/Institution.model.js";
+import { User } from "../models/User.model.js";
 import { logger } from "../utils/logger.js";
 import mongoose from "mongoose";
 
@@ -89,4 +90,47 @@ export const deleteInstitutionById = async (id) => {
 
   await institution.deleteOne();
   return true;
+};
+
+/**
+ * Assign a user (student or instructor) to an institution
+ */
+export const assignUserToInstitution = async (institutionId, userId) => {
+  if (
+    !mongoose.Types.ObjectId.isValid(institutionId) ||
+    !mongoose.Types.ObjectId.isValid(userId)
+  ) {
+    throw new Error("Invalid institution or user ID");
+  }
+
+  const institution = await Institution.findById(institutionId);
+  if (!institution) throw new Error("Institution not found");
+
+  const user = await User.findById(userId);
+  if (!user) throw new Error("User not found");
+
+  // Assign institution to user
+  user.institution = institution._id;
+  await user.save();
+
+  // Push to correct list in institution
+  if (user.role === "student") {
+    if (!institution.students.includes(user._id)) {
+      institution.students.push(user._id);
+    }
+  } else if (user.role === "instructor") {
+    if (!institution.instructors.includes(user._id)) {
+      institution.instructors.push(user._id);
+    }
+  } else {
+    throw new Error("User must be a student or instructor to be assigned");
+  }
+
+  await institution.save();
+
+  return {
+    message: `${user.role} assigned to institution`,
+    institution,
+    user,
+  };
 };

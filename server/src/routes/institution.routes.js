@@ -1,12 +1,13 @@
-// routes/institution.routes.js
 import express from "express";
 import {
   getAllInstitutions,
   getInstitutionById,
   updateInstitutionProfile,
   deleteInstitution,
+  assignUser, // ✅ added here
 } from "../controllers/institution.controller.js";
 import { upload } from "../middlewares/upload.middleware.js";
+
 export const institutionProfileRoutes = express.Router();
 
 // Admin only route to get all institutions
@@ -24,3 +25,6 @@ institutionProfileRoutes.put(
 
 // Delete institution (admin or self)
 institutionProfileRoutes.delete("/:id", deleteInstitution);
+
+// ✅ Assign student or instructor
+institutionProfileRoutes.post("/assign-user", assignUser);
