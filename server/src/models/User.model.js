@@ -47,7 +47,10 @@ const userSchema = new mongoose.Schema(
     googleId: { type: String },
     institution: { type: mongoose.Schema.Types.ObjectId, ref: "Institution" },
     profile: {
-      avatar: String,
+      avatar: {
+        url: String,
+        publicId: String,
+      },
       bio: String,
       socialLinks: {
         website: String,

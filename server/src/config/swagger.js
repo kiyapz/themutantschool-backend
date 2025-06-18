@@ -11,11 +11,11 @@ const options = {
     },
     servers: [
       {
-        url: "http://localhost:3000/api",
+        url: "http://localhost:3000",
         description: "Local dev server",
       },
       {
-        url: "https://themutantschool-backend.onrender.com/api",
+        url: "https://themutantschool-backend.onrender.com",
         description: "Production (Render)",
       },
     ],
