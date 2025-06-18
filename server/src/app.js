@@ -6,6 +6,9 @@ import { errorHandler } from "./middlewares/error.middleware.js";
 import { authRoutes } from "./routes/auth.routes.js";
 import cookieParser from "cookie-parser";
 import { swaggerDocsHandler, swaggerUiHandler } from "./config/swagger.js";
+import { userRoutes } from "./routes/user.routes.js";
+import { institutionRoutes } from "./routes/authInstitution.routes.js";
+import { institutionProfileRoutes } from "./routes/institution.routes.js";
 
 export const app = express();
 
@@ -55,6 +58,9 @@ app.use((req, res, next) => {
 });
 //routes
 app.use("/api/auth", authRoutes);
+app.use("/api/user-profile", userRoutes);
+app.use("/api/institution", institutionRoutes);
+app.use("/api/institution-profile", institutionProfileRoutes);
 app.use("/api-docs", swaggerUiHandler, swaggerDocsHandler);
 // 🧯Global Error Handler
 app.use(errorHandler);
