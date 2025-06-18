@@ -15,7 +15,7 @@ export const validationRegistration = (data) => {
 export const validationInstitutionRegistration = (data) => {
   const schema = joi.object({
     name: joi.string().min(3).max(50).required(),
-    institutionType: joi.string().min(3).max(50).required(),
+    type: joi.string().min(3).max(50).required(),
     email: joi.string().email().required(),
     password: joi.string().min(6).required(),
     codename: joi.string().min(3).max(50).required(),

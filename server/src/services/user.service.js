@@ -9,25 +9,26 @@ import mongoose from "mongoose";
  * Get all users
  */
 export const getAllUsers = async () => {
-  const users = await User.find().select("-password");
-  return users;
+  const users = await User.find();
+  return users.map((user) => user.toPublic());
 };
 
 /**
  * Get user by ID
  */
+
 export const getUserById = async (id) => {
   if (!mongoose.Types.ObjectId.isValid(id)) {
     throw new Error("Invalid user ID");
   }
-
-  const user = await User.findById(id).select("-password");
-  return user;
+  const user = await User.findById(id);
+  if (!user) throw new Error("User not found");
+  return user.toPublic();
 };
-
 /**
  * Update user profile
  */
+
 export const updateUserProfile = async (id, body, file) => {
   if (!mongoose.Types.ObjectId.isValid(id)) {
     throw new Error("Invalid user ID");
@@ -38,20 +39,18 @@ export const updateUserProfile = async (id, body, file) => {
     throw new Error("User not found");
   }
 
-  // Handle avatar upload
   if (file) {
     logger.info("Uploading new avatar to Cloudinary...");
-
-    if (user.avatar?.publicId) {
+    if (user.profile?.avatar?.publicId) {
       try {
-        await deleteFromCloudinary(user.avatar.publicId);
+        await deleteFromCloudinary(user.profile.avatar.publicId);
       } catch (err) {
         logger.error("Failed to delete old avatar:", err.message);
       }
     }
 
     const uploaded = await uploadsToCloudinary(file.buffer);
-    body.avatar = {
+    body["profile.avatar"] = {
       url: uploaded.secure_url,
       publicId: uploaded.public_id,
     };
@@ -64,9 +63,11 @@ export const updateUserProfile = async (id, body, file) => {
   const updatedUser = await User.findByIdAndUpdate(id, body, {
     new: true,
     runValidators: true,
-  }).select("-password");
+  });
 
-  return updatedUser;
+  if (!updatedUser) throw new Error("User not found");
+
+  return updatedUser.toPublic();
 };
 
 /**

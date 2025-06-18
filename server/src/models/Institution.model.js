@@ -19,6 +19,7 @@ const institutionSchema = new mongoose.Schema(
       url: String,
       publicId: String,
     },
+
     address: String,
 
     isVerified: { type: Boolean, default: false },

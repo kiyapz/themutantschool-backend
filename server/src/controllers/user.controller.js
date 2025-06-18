@@ -15,17 +15,24 @@ export const getAllUsers = asyncHandler(async (req, res) => {
 });
 
 // 🔍 Get user by ID
+// 🔍 Get user by ID (self or admin)
 export const getUserById = asyncHandler(async (req, res) => {
   const { id } = req.params;
   logger.info(`Fetching user by ID: ${id}`);
 
   const user = await UserService.getUserById(id);
-
   if (!user) {
     return res.status(404).json({ success: false, message: "User not found" });
   }
 
-  if (req.user.role !== "admin" && req.user._id.toString() !== id) {
+  // Access control: allow self or admin
+  const isSelf = req.authUser?._id.toString() === id;
+  const isAdmin = req.userRole === "admin";
+
+  if (!isSelf && !isAdmin) {
+    logger.warn(
+      `Access denied for user ${req.authUser?._id} trying to access user ${id}`
+    );
     return res.status(403).json({ success: false, message: "Access denied" });
   }
 
@@ -36,11 +43,15 @@ export const getUserById = asyncHandler(async (req, res) => {
 export const updateUserProfile = asyncHandler(async (req, res) => {
   const { id } = req.params;
   logger.info(`Updating user profile with ID: ${id}`);
+  const isSelf = req.authUser?._id.toString() === id;
+  const isAdmin = req.userRole === "admin";
 
-  if (req.user.role !== "admin" && req.user._id.toString() !== id) {
-    return res.status(403).json({ message: "Access denied" });
+  if (!isSelf && !isAdmin) {
+    logger.warn(
+      `Access denied for user ${req.authUser?._id} trying to update user ${id}`
+    );
+    return res.status(403).json({ success: false, message: "Access denied" });
   }
-
   const updatedUser = await UserService.updateUserProfile(
     id,
     req.body,
@@ -58,10 +69,6 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
 export const deleteUser = asyncHandler(async (req, res) => {
   const { id } = req.params;
   logger.info(`Deleting user ID: ${id}`);
-
-  if (req.user.role !== "admin" && req.user._id.toString() !== id) {
-    return res.status(403).json({ message: "Access denied" });
-  }
 
   await UserService.deleteUserById(id);
 

@@ -46,18 +46,24 @@ const userSchema = new mongoose.Schema(
     },
     googleId: { type: String },
     institution: { type: mongoose.Schema.Types.ObjectId, ref: "Institution" },
+
     profile: {
       avatar: {
-        url: String,
-        publicId: String,
+        url: { type: String, default: "" },
+        publicId: { type: String, default: "" },
       },
-      bio: String,
+      bio: { type: String, default: "" },
       socialLinks: {
-        website: String,
-        twitter: String,
-        linkedin: String,
+        website: { type: String, default: "" },
+        twitter: { type: String, default: "" },
+        linkedin: { type: String, default: "" },
       },
+      // Ensure the whole profile object exists
+      _id: false,
+      type: Object,
+      default: {},
     },
+
     referralCode: { type: String, index: true },
   },
   {
@@ -81,6 +87,18 @@ userSchema.pre("save", async function (next) {
 // 🔐 Compare password
 userSchema.methods.comparePassword = async function (userPassword) {
   return argon2.verify(this.password, userPassword);
+};
+userSchema.methods.toPublic = function () {
+  const obj = this.toObject();
+
+  // Remove sensitive fields
+  delete obj.password;
+  delete obj.verificationToken;
+  delete obj.verificationTokenExpiresAt;
+  delete obj.resetPasswordToken;
+  delete obj.resetPasswordExpiresAt;
+
+  return obj;
 };
 
 // 📦 Export model

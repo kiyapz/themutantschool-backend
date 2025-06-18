@@ -47,7 +47,6 @@ export const registerUser = async (body) => {
 
   const verificationToken = generateOTP();
   const verificationTokenExpiresAt = tokenExpiry();
-
   const user = new User({
     email,
     firstName,
@@ -57,6 +56,18 @@ export const registerUser = async (body) => {
     verificationToken,
     verificationTokenExpiresAt,
     role,
+    profile: {
+      avatar: {
+        url: "",
+        publicId: "",
+      },
+      bio: "",
+      socialLinks: {
+        website: "",
+        twitter: "",
+        linkedin: "",
+      },
+    },
   });
 
   await user.save();
@@ -71,7 +82,7 @@ export const registerUser = async (body) => {
     message: "User registered successfully",
     accessToken,
     refreshToken,
-    data: user,
+    data: user.toPublic(),
   };
 };
 
@@ -111,25 +122,53 @@ export const loginUser = async (body) => {
     message: "Login successful",
     accessToken,
     refreshToken,
-    userId: user._id,
+
+    data: user.toPublic(),
   };
 };
 
-// Verify Account
+// ✅ Verify Account with descriptive error messages
 export const verifyAccount = async ({ email, token }) => {
   logger.info(`Verifying account for ${email}`);
   const user = await User.findOne({ email });
 
-  if (!user) return { status: 404, success: false, message: "User not found" };
-  if (user.isVerified)
-    return { status: 400, success: false, message: "Already verified" };
+  if (!user) {
+    return {
+      status: 404,
+      success: false,
+      message: "User not found. Please check the email address.",
+    };
+  }
 
-  if (
-    user.verificationToken !== token ||
-    user.verificationTokenExpiresAt < Date.now()
-  ) {
-    logger.warn(`Verification failed for ${email}`);
-    return { status: 400, success: false, message: "Invalid or expired token" };
+  if (user.isVerified) {
+    return {
+      status: 400,
+      success: false,
+      message: "This account is already verified. You can log in.",
+    };
+  }
+
+  const tokenExpired = user.verificationTokenExpiresAt < Date.now();
+  const tokenMismatch = user.verificationToken !== token;
+
+  if (tokenMismatch) {
+    logger.warn(`Verification failed: invalid token for ${email}`);
+    return {
+      status: 400,
+      success: false,
+      message:
+        "The verification token is invalid. Please double-check the token sent to your email.",
+    };
+  }
+
+  if (tokenExpired) {
+    logger.warn(`Verification failed: expired token for ${email}`);
+    return {
+      status: 400,
+      success: false,
+      message:
+        "The verification token has expired. Please request a new verification email.",
+    };
   }
 
   user.isVerified = true;
@@ -138,7 +177,11 @@ export const verifyAccount = async ({ email, token }) => {
   await user.save();
 
   logger.info(`Account verified for ${email}`);
-  return { status: 200, success: true, message: "Account verified" };
+  return {
+    status: 200,
+    success: true,
+    message: "Your account has been successfully verified.",
+  };
 };
 
 // Resend Verification
@@ -227,18 +270,43 @@ export const requestResetOTP = async (email) => {
   logger.info(`Reset OTP sent to ${email}`);
   return genericPasswordResetResponse();
 };
-
 // Reset Password
 export const resetPassword = async ({ email, otp, newPassword }) => {
   logger.info(`Resetting password for ${email}`);
-  const user = await User.findOne({ email, resetPasswordToken: otp });
+  const user = await User.findOne({ email });
 
-  if (!user || user.resetPasswordExpiresAt < Date.now()) {
-    logger.warn(`Password reset failed: Invalid or expired OTP for ${email}`);
-    return { status: 400, success: false, message: "Invalid or expired OTP" };
+  if (!user) {
+    return {
+      status: 404,
+      success: false,
+      message: "User not found. Please check the email address.",
+    };
   }
 
-  const valid = validator.isStrongPassword(newPassword, {
+  const tokenMismatch = user.resetPasswordToken !== otp;
+  const tokenExpired = user.resetPasswordExpiresAt < Date.now();
+
+  if (tokenMismatch) {
+    logger.warn(`Password reset failed: invalid OTP for ${email}`);
+    return {
+      status: 400,
+      success: false,
+      message:
+        "The reset token you entered is invalid. Please ensure you copied it correctly from the email.",
+    };
+  }
+
+  if (tokenExpired) {
+    logger.warn(`Password reset failed: expired OTP for ${email}`);
+    return {
+      status: 400,
+      success: false,
+      message:
+        "The reset token has expired. Please request a new password reset to receive a fresh token.",
+    };
+  }
+
+  const isStrong = validator.isStrongPassword(newPassword, {
     minLength: 6,
     minLowercase: 1,
     minUppercase: 1,
@@ -246,9 +314,14 @@ export const resetPassword = async ({ email, otp, newPassword }) => {
     minSymbols: 1,
   });
 
-  if (!valid) {
+  if (!isStrong) {
     logger.warn("Weak password provided during reset");
-    return { status: 400, success: false, message: "Weak password" };
+    return {
+      status: 400,
+      success: false,
+      message:
+        "Your new password is too weak. Please include at least one uppercase letter, one number, and one special character.",
+    };
   }
 
   user.password = newPassword;
@@ -257,5 +330,9 @@ export const resetPassword = async ({ email, otp, newPassword }) => {
   await user.save();
 
   logger.info(`Password reset successfully for ${email}`);
-  return { status: 200, success: true, message: "Password reset successfully" };
+  return {
+    status: 200,
+    success: true,
+    message: "Your password has been reset successfully. You can now log in.",
+  };
 };

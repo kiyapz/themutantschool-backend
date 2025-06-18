@@ -30,11 +30,6 @@ export const getInstitutionById = asyncHandler(async (req, res) => {
       .json({ success: false, message: "Institution not found" });
   }
 
-  // Access control: allow if admin or institution itself
-  if (req.user.role !== "admin" && req.user._id.toString() !== id) {
-    return res.status(403).json({ success: false, message: "Access denied" });
-  }
-
   res.status(200).json({ success: true, data: institution });
 });
 
@@ -42,11 +37,6 @@ export const getInstitutionById = asyncHandler(async (req, res) => {
 export const updateInstitutionProfile = asyncHandler(async (req, res) => {
   const { id } = req.params;
   logger.info(`Updating institution profile with ID: ${id}`);
-
-  // Access control: allow if admin or institution itself
-  if (req.user.role !== "admin" && req.user._id.toString() !== id) {
-    return res.status(403).json({ message: "Access denied" });
-  }
 
   const updatedInstitution = await InstitutionService.updateInstitutionProfile(
     id,
@@ -67,14 +57,37 @@ export const deleteInstitution = asyncHandler(async (req, res) => {
   logger.info(`Deleting institution ID: ${id}`);
 
   // Access control: allow if admin or institution itself
-  if (req.user.role !== "admin" && req.user._id.toString() !== id) {
-    return res.status(403).json({ message: "Access denied" });
-  }
 
   await InstitutionService.deleteInstitutionById(id);
 
   res.status(200).json({
     success: true,
     message: "Institution deleted successfully",
+  });
+});
+
+// ➕ Assign user to institution
+export const assignUser = asyncHandler(async (req, res) => {
+  const { institutionId, userId } = req.body;
+
+  logger.info(`Assigning user ${userId} to institution ${institutionId}`);
+
+  // Only admins or institution itself can assign users
+  if (req.user.role !== "admin" && req.user._id.toString() !== institutionId) {
+    return res.status(403).json({ message: "Access denied" });
+  }
+
+  const result = await InstitutionService.assignUserToInstitution(
+    institutionId,
+    userId
+  );
+
+  res.status(200).json({
+    success: true,
+    message: result.message,
+    data: {
+      institution: result.institution,
+      user: result.user,
+    },
   });
 });
