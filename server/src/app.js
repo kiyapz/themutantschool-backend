@@ -55,20 +55,14 @@ app.use("/api/auth", authRoutes);
 app.use("/api/user-profile", userRoutes);
 app.use("/api/institution", institutionRoutes);
 app.use("/api/institution-profile", institutionProfileRoutes);
-
 // ✅ Swagger JSON (always exposed)
 app.get("/api-docs.json", (req, res) => {
   res.setHeader("Content-Type", "application/json");
   res.send(swaggerSpec);
 });
 
-// ✅ Swagger UI (conditionally exposed)
-if (
-  process.env.NODE_ENV === "development" ||
-  process.env.ENABLE_API_DOCS_UI === "true"
-) {
-  app.use("/api-docs", swaggerUiHandler, swaggerDocsHandler);
-}
+// ✅ Swagger UI (always exposed to anyone)
+app.use("/api-docs", swaggerUiHandler, swaggerDocsHandler);
 
 // ✅ Global error handler
 app.use(errorHandler);
