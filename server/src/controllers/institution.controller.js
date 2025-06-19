@@ -65,15 +65,21 @@ export const deleteInstitution = asyncHandler(async (req, res) => {
     message: "Institution deleted successfully",
   });
 });
-
 // ➕ Assign user to institution
 export const assignUser = asyncHandler(async (req, res) => {
   const { institutionId, userId } = req.body;
 
   logger.info(`Assigning user ${userId} to institution ${institutionId}`);
 
-  // Only admins or institution itself can assign users
-  if (req.user.role !== "admin" && req.user._id.toString() !== institutionId) {
+  const actor = req.user || req.institution;
+
+  // 🔒 Role check: Only 'admin' or the institution itself
+  const isAdmin = actor?.role === "admin";
+  const isSameInstitution =
+    actor?._id?.toString() === institutionId &&
+    (actor?.role === "institution" || actor?.model === "Institution");
+
+  if (!isAdmin && !isSameInstitution) {
     return res.status(403).json({ message: "Access denied" });
   }
 

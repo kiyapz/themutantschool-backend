@@ -53,7 +53,9 @@ authRoutes.post("/register", AuthController.registerUser);
  *         application/json:
  *           schema:
  *             type: object
- *             required: [email, password]
+ *             required:
+ *               - email
+ *               - password
  *             properties:
  *               email:
  *                 type: string
@@ -61,11 +63,9 @@ authRoutes.post("/register", AuthController.registerUser);
  *                 type: string
  *     responses:
  *       200:
- *         description: Login successful
- *       400:
- *         description: Invalid credentials or not verified
- *       404:
- *         description: User not found
+ *         description: Login successful (accessToken in header, refreshToken in cookie)
+ *       401:
+ *         description: Invalid credentials
  */
 authRoutes.post("/login", AuthController.loginUser);
 
@@ -91,7 +91,7 @@ authRoutes.post("/login", AuthController.loginUser);
  *       200:
  *         description: Account verified
  *       400:
- *         description: Already verified or token expired
+ *         description: Invalid token or already verified
  */
 authRoutes.post("/verify", AuthController.verifyAccount);
 
@@ -139,7 +139,7 @@ authRoutes.post("/resend-verification", AuthController.resendVerification);
  *       200:
  *         description: Username is available
  *       409:
- *         description: Username is already taken
+ *         description: Username already taken
  */
 authRoutes.post("/check-username", AuthController.checkUsername);
 
@@ -147,18 +147,10 @@ authRoutes.post("/check-username", AuthController.checkUsername);
  * @swagger
  * /auth/refresh-token:
  *   post:
- *     summary: Get a new access token using refresh token
+ *     summary: Get new access token using refresh token cookie
  *     tags: [Auth]
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             required: [refreshToken]
- *             properties:
- *               refreshToken:
- *                 type: string
+ *     security:
+ *       - cookieAuth: []
  *     responses:
  *       200:
  *         description: Token refreshed
@@ -171,18 +163,10 @@ authRoutes.post("/refresh-token", AuthController.refreshToken);
  * @swagger
  * /auth/logout:
  *   post:
- *     summary: Logout user
+ *     summary: Logout user (clears refresh token)
  *     tags: [Auth]
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             required: [refreshToken]
- *             properties:
- *               refreshToken:
- *                 type: string
+ *     security:
+ *       - cookieAuth: []
  *     responses:
  *       200:
  *         description: User logged out
@@ -207,7 +191,7 @@ authRoutes.post("/logout", AuthController.logout);
  *                 type: string
  *     responses:
  *       200:
- *         description: If the email exists, an OTP has been sent
+ *         description: OTP sent if email exists
  */
 authRoutes.post("/reset-password/request", AuthController.requestResetOTP);
 
@@ -235,6 +219,6 @@ authRoutes.post("/reset-password/request", AuthController.requestResetOTP);
  *       200:
  *         description: Password reset successful
  *       400:
- *         description: Invalid or expired OTP or weak password
+ *         description: Invalid OTP or weak password
  */
 authRoutes.post("/reset-password", AuthController.resetPassword);

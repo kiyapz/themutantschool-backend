@@ -123,7 +123,7 @@ export const loginUser = async (body) => {
     accessToken,
     refreshToken,
 
-    data: user.toPublic(),
+    data: user,
   };
 };
 

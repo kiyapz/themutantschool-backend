@@ -13,13 +13,12 @@ const institutionSchema = new mongoose.Schema(
       enum: ["School", "College", "Academy", "Coaching Center", "others"],
       required: true,
     },
-    role: { type: String, default: "admin" },
+
     password: String,
     avatar: {
-      url: String,
-      publicId: String,
+      url: { type: String, default: "" },
+      publicId: { type: String, default: "" },
     },
-
     address: String,
 
     isVerified: { type: Boolean, default: false },
@@ -63,10 +62,17 @@ institutionSchema.pre("save", async function (next) {
 institutionSchema.methods.comparePassword = async function (userPassword) {
   return argon2.verify(this.password, userPassword);
 };
+institutionSchema.methods.toPublic = function () {
+  const obj = this.toObject();
 
-// 🌐 Virtual profile URL
-institutionSchema.virtual("profileUrl").get(function () {
-  return `/institutions/${this.codename}`;
-});
+  // Remove sensitive fields
+  delete obj.password;
+  delete obj.verificationToken;
+  delete obj.verificationTokenExpiresAt;
+  delete obj.resetPasswordToken;
+  delete obj.resetPasswordExpiresAt;
+
+  return obj;
+};
 
 export const Institution = mongoose.model("Institution", institutionSchema);

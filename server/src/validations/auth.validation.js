@@ -19,7 +19,6 @@ export const validationInstitutionRegistration = (data) => {
     email: joi.string().email().required(),
     password: joi.string().min(6).required(),
     codename: joi.string().min(3).max(50).required(),
-    role: joi.string().min(3).max(50).required(),
   });
   return schema.validate(data);
 };

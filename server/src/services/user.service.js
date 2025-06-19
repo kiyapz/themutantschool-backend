@@ -28,8 +28,7 @@ export const getUserById = async (id) => {
 /**
  * Update user profile
  */
-
-export const updateUserProfile = async (id, body, file) => {
+export const updateUserProfile = async (id, body = {}, file) => {
   if (!mongoose.Types.ObjectId.isValid(id)) {
     throw new Error("Invalid user ID");
   }
@@ -37,6 +36,11 @@ export const updateUserProfile = async (id, body, file) => {
   const user = await User.findById(id);
   if (!user) {
     throw new Error("User not found");
+  }
+
+  // Ensure body is always an object
+  if (!body || typeof body !== "object") {
+    body = {};
   }
 
   if (file) {
