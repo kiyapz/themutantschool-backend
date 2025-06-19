@@ -11,7 +11,6 @@ import { canAccessUser } from "../middlewares/accessControl.middleware.js";
 import { authorizeRoles } from "../middlewares/rbac.middleware.js";
 
 export const userRoutes = express.Router();
-
 /**
  * @swagger
  * tags:
@@ -21,7 +20,7 @@ export const userRoutes = express.Router();
 
 /**
  * @swagger
- * /user-profile:
+ * /api/user-profile:
  *   get:
  *     summary: Get all users (Admin only)
  *     tags: [User]
@@ -29,7 +28,7 @@ export const userRoutes = express.Router();
  *       - bearerAuth: []
  *     responses:
  *       200:
- *         description: List of all users
+ *         description: List of user objects
  *       403:
  *         description: Forbidden
  */
@@ -37,7 +36,7 @@ userRoutes.get("/", authenticate, authorizeRoles("admin"), getAllUsers);
 
 /**
  * @swagger
- * /user-profile/{id}:
+ * /api/user-profile/{id}:
  *   get:
  *     summary: Get user by ID (Admin or self)
  *     tags: [User]
@@ -56,13 +55,13 @@ userRoutes.get("/", authenticate, authorizeRoles("admin"), getAllUsers);
  *       403:
  *         description: Forbidden
  *       404:
- *         description: User not found
+ *         description: Not found
  */
 userRoutes.get("/:id", authenticate, canAccessUser, getUserById);
 
 /**
  * @swagger
- * /user-profile/{id}:
+ * /api/user-profile/{id}:
  *   put:
  *     summary: Update user profile (Admin or self)
  *     tags: [User]
@@ -73,37 +72,31 @@ userRoutes.get("/:id", authenticate, canAccessUser, getUserById);
  *     parameters:
  *       - in: path
  *         name: id
- *         required: true
  *         schema:
  *           type: string
+ *         required: true
+ *         description: User ID
  *       - in: formData
  *         name: avatar
  *         type: file
- *         description: Optional avatar file
+ *         description: Profile avatar image file
  *     requestBody:
  *       content:
  *         multipart/form-data:
  *           schema:
  *             type: object
  *             properties:
- *               firstName:
- *                 type: string
- *               lastName:
- *                 type: string
- *               username:
+ *               fullName:
  *                 type: string
  *               bio:
  *                 type: string
- *               avatar:
- *                 type: string
- *                 format: binary
  *     responses:
  *       200:
- *         description: User updated
+ *         description: User profile updated
  *       403:
  *         description: Forbidden
  *       404:
- *         description: User not found
+ *         description: Not found
  */
 userRoutes.put(
   "/:id",
@@ -115,24 +108,25 @@ userRoutes.put(
 
 /**
  * @swagger
- * /user-profile/{id}:
+ * /api/user-profile/{id}:
  *   delete:
- *     summary: Delete a user (Admin only)
+ *     summary: Delete user (Admin only)
  *     tags: [User]
  *     security:
  *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
- *         required: true
  *         schema:
  *           type: string
+ *         required: true
+ *         description: User ID
  *     responses:
  *       200:
  *         description: User deleted successfully
  *       403:
  *         description: Forbidden
  *       404:
- *         description: User not found
+ *         description: Not found
  */
 userRoutes.delete("/:id", authenticate, authorizeRoles("admin"), deleteUser);

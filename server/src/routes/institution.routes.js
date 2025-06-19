@@ -15,17 +15,16 @@ import {
 } from "../middlewares/accessControl.middleware.js";
 
 export const institutionProfileRoutes = express.Router();
-
 /**
  * @swagger
  * tags:
  *   name: Institution
- *   description: Institution profile and management
+ *   description: Institution profile management
  */
 
 /**
  * @swagger
- * /institution-profile:
+ * /api/institution-profile:
  *   get:
  *     summary: Get all institutions (Admin only)
  *     tags: [Institution]
@@ -46,7 +45,7 @@ institutionProfileRoutes.get(
 
 /**
  * @swagger
- * /institution-profile/{id}:
+ * /api/institution-profile/{id}:
  *   get:
  *     summary: Get institution by ID (Admin or self)
  *     tags: [Institution]
@@ -55,9 +54,9 @@ institutionProfileRoutes.get(
  *     parameters:
  *       - in: path
  *         name: id
- *         required: true
  *         schema:
  *           type: string
+ *         required: true
  *         description: Institution ID
  *     responses:
  *       200:
@@ -65,7 +64,7 @@ institutionProfileRoutes.get(
  *       403:
  *         description: Forbidden
  *       404:
- *         description: Institution not found
+ *         description: Not found
  */
 institutionProfileRoutes.get(
   "/:id",
@@ -76,7 +75,7 @@ institutionProfileRoutes.get(
 
 /**
  * @swagger
- * /institution-profile/{id}:
+ * /api/institution-profile/{id}:
  *   put:
  *     summary: Update institution profile (Admin or self)
  *     tags: [Institution]
@@ -87,10 +86,14 @@ institutionProfileRoutes.get(
  *     parameters:
  *       - in: path
  *         name: id
- *         required: true
  *         schema:
  *           type: string
+ *         required: true
  *         description: Institution ID
+ *       - in: formData
+ *         name: avatar
+ *         type: file
+ *         description: Institution logo image
  *     requestBody:
  *       content:
  *         multipart/form-data:
@@ -99,23 +102,17 @@ institutionProfileRoutes.get(
  *             properties:
  *               name:
  *                 type: string
- *               type:
- *                 type: string
- *                 enum: [academy, training]
- *               email:
+ *               codename:
  *                 type: string
  *               address:
  *                 type: string
- *               avatar:
- *                 type: string
- *                 format: binary
  *     responses:
  *       200:
  *         description: Institution updated
  *       403:
  *         description: Forbidden
  *       404:
- *         description: Institution not found
+ *         description: Not found
  */
 institutionProfileRoutes.put(
   "/:id",
@@ -127,18 +124,18 @@ institutionProfileRoutes.put(
 
 /**
  * @swagger
- * /institution-profile/{id}:
+ * /api/institution-profile/{id}:
  *   delete:
- *     summary: Delete institution (Admin only)
+ *     summary: Delete an institution (Admin only)
  *     tags: [Institution]
  *     security:
  *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
- *         required: true
  *         schema:
  *           type: string
+ *         required: true
  *         description: Institution ID
  *     responses:
  *       200:
@@ -146,7 +143,7 @@ institutionProfileRoutes.put(
  *       403:
  *         description: Forbidden
  *       404:
- *         description: Institution not found
+ *         description: Not found
  */
 institutionProfileRoutes.delete(
   "/:id",
@@ -157,9 +154,9 @@ institutionProfileRoutes.delete(
 
 /**
  * @swagger
- * /institution-profile/assign-user:
+ * /api/institution-profile/assign-user:
  *   post:
- *     summary: Assign user (student or instructor) to institution
+ *     summary: Assign a student or instructor to an institution
  *     tags: [Institution]
  *     security:
  *       - bearerAuth: []
@@ -169,9 +166,7 @@ institutionProfileRoutes.delete(
  *         application/json:
  *           schema:
  *             type: object
- *             required:
- *               - institutionId
- *               - userId
+ *             required: [institutionId, userId]
  *             properties:
  *               institutionId:
  *                 type: string
@@ -181,13 +176,13 @@ institutionProfileRoutes.delete(
  *       200:
  *         description: User assigned successfully
  *       403:
- *         description: Access denied
+ *         description: Forbidden
  *       404:
  *         description: Institution or user not found
  */
 institutionProfileRoutes.post(
   "/assign-user",
   authenticate,
-  canAssignUser,
+  canAccessInstitution,
   assignUser
 );

@@ -2,10 +2,16 @@ import express from "express";
 import * as AuthController from "../controllers/auth.controller.js";
 
 export const authRoutes = express.Router();
+/**
+ * @swagger
+ * tags:
+ *   name: Auth
+ *   description: Authentication and user management
+ */
 
 /**
  * @swagger
- * /auth/register:
+ * /api/auth/register:
  *   post:
  *     summary: Register a new user
  *     tags: [Auth]
@@ -15,10 +21,7 @@ export const authRoutes = express.Router();
  *         application/json:
  *           schema:
  *             type: object
- *             required:
- *               - email
- *               - username
- *               - password
+ *             required: [firstName, lastName, email, username, password, role]
  *             properties:
  *               firstName:
  *                 type: string
@@ -37,15 +40,15 @@ export const authRoutes = express.Router();
  *       201:
  *         description: User registered successfully
  *       400:
- *         description: Validation error or email/username exists
+ *         description: Validation error
  */
 authRoutes.post("/register", AuthController.registerUser);
 
 /**
  * @swagger
- * /auth/login:
+ * /api/auth/login:
  *   post:
- *     summary: Login user
+ *     summary: Log in a user
  *     tags: [Auth]
  *     requestBody:
  *       required: true
@@ -53,9 +56,7 @@ authRoutes.post("/register", AuthController.registerUser);
  *         application/json:
  *           schema:
  *             type: object
- *             required:
- *               - email
- *               - password
+ *             required: [email, password]
  *             properties:
  *               email:
  *                 type: string
@@ -63,17 +64,17 @@ authRoutes.post("/register", AuthController.registerUser);
  *                 type: string
  *     responses:
  *       200:
- *         description: Login successful (accessToken in header, refreshToken in cookie)
+ *         description: Login successful — access token returned in header, refresh token via cookie
  *       401:
- *         description: Invalid credentials
+ *         description: Invalid credentials or not verified
  */
 authRoutes.post("/login", AuthController.loginUser);
 
 /**
  * @swagger
- * /auth/verify:
+ * /api/auth/verify:
  *   post:
- *     summary: Verify account using OTP
+ *     summary: Verify user account via OTP
  *     tags: [Auth]
  *     requestBody:
  *       required: true
@@ -89,15 +90,15 @@ authRoutes.post("/login", AuthController.loginUser);
  *                 type: string
  *     responses:
  *       200:
- *         description: Account verified
+ *         description: Verification successful
  *       400:
- *         description: Invalid token or already verified
+ *         description: Invalid or expired token
  */
 authRoutes.post("/verify", AuthController.verifyAccount);
 
 /**
  * @swagger
- * /auth/resend-verification:
+ * /api/auth/resend-verification:
  *   post:
  *     summary: Resend verification OTP
  *     tags: [Auth]
@@ -113,7 +114,7 @@ authRoutes.post("/verify", AuthController.verifyAccount);
  *                 type: string
  *     responses:
  *       200:
- *         description: Token resent
+ *         description: OTP resent
  *       404:
  *         description: User not found
  */
@@ -121,9 +122,9 @@ authRoutes.post("/resend-verification", AuthController.resendVerification);
 
 /**
  * @swagger
- * /auth/check-username:
+ * /api/auth/check-username:
  *   post:
- *     summary: Check if username is available
+ *     summary: Check if a username is available
  *     tags: [Auth]
  *     requestBody:
  *       required: true
@@ -139,34 +140,34 @@ authRoutes.post("/resend-verification", AuthController.resendVerification);
  *       200:
  *         description: Username is available
  *       409:
- *         description: Username already taken
+ *         description: Username is already taken
  */
 authRoutes.post("/check-username", AuthController.checkUsername);
 
 /**
  * @swagger
- * /auth/refresh-token:
+ * /api/auth/refresh-token:
  *   post:
- *     summary: Get new access token using refresh token cookie
+ *     summary: Refresh access token using refresh token cookie
  *     tags: [Auth]
  *     security:
- *       - cookieAuth: []
+ *       - cookieRefreshToken: []
  *     responses:
  *       200:
- *         description: Token refreshed
+ *         description: New access token returned
  *       401:
- *         description: Invalid or expired token
+ *         description: Invalid or expired refresh token
  */
 authRoutes.post("/refresh-token", AuthController.refreshToken);
 
 /**
  * @swagger
- * /auth/logout:
+ * /api/auth/logout:
  *   post:
- *     summary: Logout user (clears refresh token)
+ *     summary: Log out user and clear refresh token
  *     tags: [Auth]
  *     security:
- *       - cookieAuth: []
+ *       - cookieRefreshToken: []
  *     responses:
  *       200:
  *         description: User logged out
@@ -175,7 +176,7 @@ authRoutes.post("/logout", AuthController.logout);
 
 /**
  * @swagger
- * /auth/reset-password/request:
+ * /api/auth/reset-password/request:
  *   post:
  *     summary: Request a password reset OTP
  *     tags: [Auth]
@@ -191,13 +192,13 @@ authRoutes.post("/logout", AuthController.logout);
  *                 type: string
  *     responses:
  *       200:
- *         description: OTP sent if email exists
+ *         description: Reset OTP sent if email exists
  */
 authRoutes.post("/reset-password/request", AuthController.requestResetOTP);
 
 /**
  * @swagger
- * /auth/reset-password:
+ * /api/auth/reset-password:
  *   post:
  *     summary: Reset password using OTP
  *     tags: [Auth]
@@ -219,6 +220,6 @@ authRoutes.post("/reset-password/request", AuthController.requestResetOTP);
  *       200:
  *         description: Password reset successful
  *       400:
- *         description: Invalid OTP or weak password
+ *         description: Invalid or expired OTP
  */
 authRoutes.post("/reset-password", AuthController.resetPassword);

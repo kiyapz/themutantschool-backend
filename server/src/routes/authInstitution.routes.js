@@ -12,7 +12,7 @@ export const institutionRoutes = express.Router();
 
 /**
  * @swagger
- * /institution/register:
+ * /api/institution/register:
  *   post:
  *     summary: Register a new institution
  *     tags: [InstitutionAuth]
@@ -22,7 +22,7 @@ export const institutionRoutes = express.Router();
  *         application/json:
  *           schema:
  *             type: object
- *             required: [email, codename, password]
+ *             required: [email, codename, password, type]
  *             properties:
  *               name:
  *                 type: string
@@ -45,7 +45,7 @@ institutionRoutes.post("/register", InstitutionAuth.registerInstitution);
 
 /**
  * @swagger
- * /institution/login:
+ * /api/institution/login:
  *   post:
  *     summary: Login institution
  *     tags: [InstitutionAuth]
@@ -64,14 +64,14 @@ institutionRoutes.post("/register", InstitutionAuth.registerInstitution);
  *     responses:
  *       200:
  *         description: Login successful
- *       400:
+ *       401:
  *         description: Invalid credentials
  */
 institutionRoutes.post("/login", InstitutionAuth.loginInstitution);
 
 /**
  * @swagger
- * /institution/verify:
+ * /api/institution/verify:
  *   post:
  *     summary: Verify institution account using OTP
  *     tags: [InstitutionAuth]
@@ -97,7 +97,7 @@ institutionRoutes.post("/verify", InstitutionAuth.verifyInstitutionAccount);
 
 /**
  * @swagger
- * /institution/resend-verification:
+ * /api/institution/resend-verification:
  *   post:
  *     summary: Resend verification token
  *     tags: [InstitutionAuth]
@@ -124,7 +124,7 @@ institutionRoutes.post(
 
 /**
  * @swagger
- * /institution/check-codename:
+ * /api/institution/check-codename:
  *   post:
  *     summary: Check if codename is available
  *     tags: [InstitutionAuth]
@@ -148,20 +148,12 @@ institutionRoutes.post("/check-codename", InstitutionAuth.checkCodename);
 
 /**
  * @swagger
- * /institution/refresh-token:
+ * /api/institution/refresh-token:
  *   post:
  *     summary: Get new access token using institution refresh token
  *     tags: [InstitutionAuth]
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             required: [refreshToken]
- *             properties:
- *               refreshToken:
- *                 type: string
+ *     security:
+ *       - cookieRefreshToken: []
  *     responses:
  *       200:
  *         description: Token refreshed
@@ -175,20 +167,12 @@ institutionRoutes.post(
 
 /**
  * @swagger
- * /institution/logout:
+ * /api/institution/logout:
  *   post:
  *     summary: Logout institution
  *     tags: [InstitutionAuth]
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             required: [refreshToken]
- *             properties:
- *               refreshToken:
- *                 type: string
+ *     security:
+ *       - cookieRefreshToken: []
  *     responses:
  *       200:
  *         description: Logged out successfully
@@ -197,7 +181,7 @@ institutionRoutes.post("/logout", InstitutionAuth.logoutInstitution);
 
 /**
  * @swagger
- * /institution/request-reset:
+ * /api/institution/request-reset:
  *   post:
  *     summary: Request a password reset OTP
  *     tags: [InstitutionAuth]
@@ -222,7 +206,7 @@ institutionRoutes.post(
 
 /**
  * @swagger
- * /institution/reset-password:
+ * /api/institution/reset-password:
  *   post:
  *     summary: Reset password using OTP
  *     tags: [InstitutionAuth]
