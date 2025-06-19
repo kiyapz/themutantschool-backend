@@ -26,7 +26,7 @@ export const registerInstitution = async (body) => {
     return { status: 400, success: false, message: error.details[0].message };
   }
 
-  const { email, name, password, codename, type, role = "admin" } = body;
+  const { email, name, password, codename, type } = body;
 
   if (await Institution.exists({ email })) {
     logger.warn(`Registration failed: Email already exists - ${email}`);
@@ -49,7 +49,11 @@ export const registerInstitution = async (body) => {
     type,
     verificationToken,
     verificationTokenExpiresAt,
-    role,
+
+    avatar: {
+      url: "",
+      publicId: "",
+    },
   });
 
   await institution.save();
@@ -104,7 +108,7 @@ export const loginInstitution = async (body) => {
     message: "Login successful",
     accessToken,
     refreshToken,
-    institutionId: institution._id,
+    data: institution.toPublic(),
   };
 };
 

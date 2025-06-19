@@ -1,24 +1,37 @@
-// utils/generateTokens.js
-
 import jwt from "jsonwebtoken";
 import crypto from "crypto";
 import { RefreshToken } from "../models/RefreshToken.model.js";
 import { logger } from "./logger.js";
 
 /**
- * Generate access & refresh tokens for a User or Institution
- * @param {Object} userOrInstitution - Mongoose document
+ * Generate access & refresh tokens for User or Institution
+ * @param {Object} entity - Mongoose document (User or Institution)
  * @returns {{ accessToken: string, refreshToken: string }}
  */
-export const generateTokens = async (userOrInstitution) => {
+export const generateTokens = async (entity) => {
   try {
-    const isUser = userOrInstitution.role !== undefined;
+    // 🏷️ Infer model type
+    const model =
+      entity?.firstName || entity?.lastName
+        ? "User"
+        : entity?.codename && entity?.name
+        ? "Institution"
+        : "Unknown";
+
+    if (model === "Unknown") {
+      logger.warn("⚠️ Unknown entity type when generating token", {
+        entity,
+      });
+      throw new Error("Unrecognized entity type for token generation.");
+    }
+
+    const role = model === "Institution" ? "institution" : entity.role;
 
     const payload = {
-      id: userOrInstitution._id,
-      email: userOrInstitution.email,
-      role: isUser ? userOrInstitution.role : "institution",
-      model: isUser ? "User" : "Institution",
+      id: entity._id,
+      email: entity.email,
+      role,
+      model,
     };
 
     const accessToken = jwt.sign(payload, process.env.JWT_SECRET, {
@@ -30,17 +43,16 @@ export const generateTokens = async (userOrInstitution) => {
 
     await RefreshToken.create({
       token: refreshTokenValue,
-      user: userOrInstitution._id,
-      userType: isUser ? "User" : "Institution",
+      user: entity._id,
+      userType: model,
       expiredAt,
     });
 
-    // ✅ Info log with details
-    logger.info(`🔐 Token generated`, {
-      model: payload.model,
-      id: payload.id,
-      email: payload.email,
-      role: payload.role,
+    logger.info("🔐 Token generated", {
+      model,
+      id: entity._id,
+      email: entity.email,
+      role,
     });
 
     return {
@@ -48,7 +60,6 @@ export const generateTokens = async (userOrInstitution) => {
       refreshToken: refreshTokenValue,
     };
   } catch (err) {
-    // ❌ Error log
     logger.error("❌ Failed to generate tokens", {
       error: err.message,
       stack: err.stack,

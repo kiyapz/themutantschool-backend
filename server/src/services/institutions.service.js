@@ -34,7 +34,7 @@ export const getInstitutionById = async (id) => {
  * @param {object} body Data to update
  * @param {object} file Optional avatar file buffer
  */
-export const updateInstitutionProfile = async (id, body, file) => {
+export const updateInstitutionProfile = async (id, body = {}, file) => {
   if (!mongoose.Types.ObjectId.isValid(id)) {
     throw new Error("Invalid institution ID");
   }
@@ -44,10 +44,13 @@ export const updateInstitutionProfile = async (id, body, file) => {
     throw new Error("Institution not found");
   }
 
+  if (!body || typeof body !== "object") {
+    body = {};
+  }
+
   // Handle avatar upload if file provided
   if (file) {
     logger.info("Uploading new avatar to Cloudinary...");
-
     if (institution.avatar?.publicId) {
       try {
         await deleteFromCloudinary(institution.avatar.publicId);
@@ -63,7 +66,6 @@ export const updateInstitutionProfile = async (id, body, file) => {
     };
   }
 
-  // Prevent sensitive fields from being updated
   delete body._id;
   delete body.password;
 
