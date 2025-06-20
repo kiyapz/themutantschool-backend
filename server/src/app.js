@@ -14,6 +14,11 @@ import { authRoutes } from "./routes/auth.routes.js";
 import { userRoutes } from "./routes/user.routes.js";
 import { institutionRoutes } from "./routes/authInstitution.routes.js";
 import { institutionProfileRoutes } from "./routes/institution.routes.js";
+import { missionRoute } from "./routes/mission.routes.js";
+import { levelRoutes } from "./routes/level.routes.js";
+import { capsuleRoutes } from "./routes/capsule.routes.js";
+import { quizRoute } from "./routes/quiz.routes.js";
+import { submitQuizAttemptRoutes } from "./routes/submitQuizAttempt.routes.js";
 
 dotenv.config(); // Load .env variables
 
@@ -55,6 +60,12 @@ app.use("/api/auth", authRoutes);
 app.use("/api/user-profile", userRoutes);
 app.use("/api/institution", institutionRoutes);
 app.use("/api/institution-profile", institutionProfileRoutes);
+//mission Routes
+app.use("/api/mission", missionRoute);
+app.use("/api/mission-level", levelRoutes);
+app.use("/api/mission-capsule", capsuleRoutes);
+app.use("/api/mission-quiz", quizRoute);
+app.use("/api/mission-submit-quiz", submitQuizAttemptRoutes);
 // ✅ Swagger JSON (always exposed)
 app.get("/api-docs.json", (req, res) => {
   res.setHeader("Content-Type", "application/json");

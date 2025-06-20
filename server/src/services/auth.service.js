@@ -82,7 +82,7 @@ export const registerUser = async (body) => {
     message: "User registered successfully",
     accessToken,
     refreshToken,
-    data: user.toPublic(),
+    data: user,
   };
 };
 
@@ -122,7 +122,6 @@ export const loginUser = async (body) => {
     message: "Login successful",
     accessToken,
     refreshToken,
-
     data: user,
   };
 };

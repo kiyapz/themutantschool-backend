@@ -88,18 +88,18 @@ userSchema.pre("save", async function (next) {
 userSchema.methods.comparePassword = async function (userPassword) {
   return argon2.verify(this.password, userPassword);
 };
-userSchema.methods.toPublic = function () {
-  const obj = this.toObject();
+// userSchema.methods.toPublic = function () {
+//   const obj = this.toObject();
 
-  // Remove sensitive fields
-  delete obj.password;
-  delete obj.verificationToken;
-  delete obj.verificationTokenExpiresAt;
-  delete obj.resetPasswordToken;
-  delete obj.resetPasswordExpiresAt;
+//   // Remove sensitive fields
+//   delete obj.password;
+//   delete obj.verificationToken;
+//   delete obj.verificationTokenExpiresAt;
+//   delete obj.resetPasswordToken;
+//   delete obj.resetPasswordExpiresAt;
 
-  return obj;
-};
+//   return obj;
+// };
 
 // 📦 Export model
 export const User = mongoose.model("User", userSchema);
